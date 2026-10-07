@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { langLabel, langs, ui, type Lang } from "@/data/portfolio";
+import { useEffect, useRef, useState } from "react";
+import { langLabel, langs, profile, ui, type Lang } from "@/data/portfolio";
+import { DownloadIcon } from "@/components/icons/DownloadIcon";
 import { MoonIcon } from "@/components/icons/MoonIcon";
 import { SunIcon } from "@/components/icons/SunIcon";
 
@@ -17,7 +18,45 @@ export function Navbar({
     onToggleTheme: () => void;
 }) {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [active, setActive] = useState<string | null>(null);
+    const progressRef = useRef<HTMLDivElement>(null);
     const t = (v: Record<Lang, string>) => v[lang];
+
+    // scroll progress bar + highlight the section currently in view
+    useEffect(() => {
+        let raf = 0;
+        const update = () => {
+            raf = 0;
+            const { scrollY, innerHeight } = window;
+            const max = document.documentElement.scrollHeight - innerHeight;
+            progressRef.current?.style.setProperty("transform", `scaleX(${max > 0 ? scrollY / max : 0})`);
+
+            let current: string | null = null;
+            for (const id of sections) {
+                const el = document.getElementById(id);
+                if (el && el.getBoundingClientRect().top <= innerHeight * 0.4) current = id;
+            }
+            // the last section is short, so treat "scrolled to the bottom" as reaching it
+            if (max > 0 && scrollY >= max - 2) current = sections[sections.length - 1];
+            setActive(current);
+        };
+        const onScroll = () => {
+            if (!raf) raf = requestAnimationFrame(update);
+        };
+        update();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll);
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+            window.removeEventListener("resize", onScroll);
+            cancelAnimationFrame(raf);
+        };
+    }, []);
+
+    const linkClass = (id: string) =>
+        active === id
+            ? "text-blue-600 dark:text-blue-400"
+            : "text-slate-600 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400";
 
     return (
         <header className="sticky top-0 z-50 border-b border-blue-100/70 bg-white/80 backdrop-blur-md dark:border-blue-900/40 dark:bg-[#050b1a]/80">
@@ -32,15 +71,28 @@ export function Navbar({
                         <li key={id}>
                             <a
                                 href={`#${id}`}
-                                className="text-sm text-slate-600 transition-colors hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
+                                aria-current={active === id ? "true" : undefined}
+                                className={`relative text-sm transition-colors ${linkClass(id)}`}
                             >
                                 <span className="font-mono text-xs text-blue-500">0{i + 1}.</span> {t(ui.nav[id])}
+                                <span
+                                    className={`absolute -bottom-1.5 left-0 h-0.5 rounded-full bg-blue-600 transition-all duration-300 dark:bg-blue-400 ${
+                                        active === id ? "w-full opacity-100" : "w-0 opacity-0"
+                                    }`}
+                                />
                             </a>
                         </li>
                     ))}
                 </ul>
 
                 <div className="flex items-center gap-1.5 sm:gap-2">
+                    <a
+                        href={t(profile.cv)}
+                        download
+                        className="hidden items-center gap-1.5 rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-blue-700 sm:inline-flex dark:hover:bg-blue-500"
+                    >
+                        <DownloadIcon className="h-3.5 w-3.5" /> CV
+                    </a>
                     <div className="flex rounded-lg border border-blue-200 p-0.5 font-mono text-xs dark:border-blue-900/70">
                         {langs.map((l) => (
                             <button
@@ -87,14 +139,30 @@ export function Navbar({
                             <a
                                 href={`#${id}`}
                                 onClick={() => setMenuOpen(false)}
-                                className="block py-2 text-slate-700 hover:text-blue-600 dark:text-slate-200 dark:hover:text-blue-400"
+                                aria-current={active === id ? "true" : undefined}
+                                className={`block py-2 ${linkClass(id)}`}
                             >
                                 <span className="font-mono text-xs text-blue-500">0{i + 1}.</span> {t(ui.nav[id])}
                             </a>
                         </li>
                     ))}
+                    <li className="sm:hidden">
+                        <a
+                            href={t(profile.cv)}
+                            download
+                            className="mt-1 flex items-center gap-2 py-2 font-medium text-blue-600 dark:text-blue-400"
+                        >
+                            <DownloadIcon className="h-4 w-4" /> {t(ui.downloadCv)}
+                        </a>
+                    </li>
                 </ul>
             )}
+            <div
+                ref={progressRef}
+                style={{ transform: "scaleX(0)" }}
+                className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-gradient-to-r from-blue-600 to-sky-400"
+                aria-hidden
+            />
         </header>
     );
 }

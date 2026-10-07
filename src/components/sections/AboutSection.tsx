@@ -2,6 +2,7 @@ import { education, profile, ui, type Lang } from "@/data/portfolio";
 import { MailIcon } from "@/components/icons/MailIcon";
 import { PhoneIcon } from "@/components/icons/PhoneIcon";
 import { PinIcon } from "@/components/icons/PinIcon";
+import { CopyEmailButton } from "@/components/ui/CopyEmailButton";
 import { Logo } from "@/components/ui/Logo";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
@@ -24,6 +25,11 @@ export function AboutSection({ lang }: { lang: Lang }) {
                                 <a href={`mailto:${profile.email}`} className="hover:text-blue-600 dark:hover:text-blue-400">
                                     {profile.email}
                                 </a>
+                                <CopyEmailButton
+                                    lang={lang}
+                                    showLabel={false}
+                                    className="rounded-md p-1 text-sm text-slate-400 transition hover:bg-blue-50 hover:text-blue-600 dark:text-slate-500 dark:hover:bg-blue-950 dark:hover:text-blue-400 [&_svg]:h-4 [&_svg]:w-4"
+                                />
                             </li>
                             <li className="flex items-center gap-3">
                                 <PhoneIcon className="h-5 w-5 text-blue-600 dark:text-blue-400" />

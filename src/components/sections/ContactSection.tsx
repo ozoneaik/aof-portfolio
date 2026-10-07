@@ -3,6 +3,7 @@ import { socialIcon } from "@/components/Icons";
 import { ArrowIcon } from "@/components/icons/ArrowIcon";
 import { MailIcon } from "@/components/icons/MailIcon";
 import { PhoneIcon } from "@/components/icons/PhoneIcon";
+import { CopyEmailButton } from "@/components/ui/CopyEmailButton";
 
 export function ContactSection({ lang }: { lang: Lang }) {
     const t = (v: Record<Lang, string>) => v[lang];
@@ -24,6 +25,10 @@ export function ContactSection({ lang }: { lang: Lang }) {
                             >
                                 <MailIcon className="h-5 w-5" /> {profile.email}
                             </a>
+                            <CopyEmailButton
+                                lang={lang}
+                                className="rounded-lg border border-white/40 px-5 py-3 font-medium transition hover:-translate-y-0.5 hover:bg-white/10"
+                            />
                             <a
                                 href={`tel:${profile.phoneRaw}`}
                                 className="inline-flex items-center gap-2 rounded-lg border border-white/40 px-5 py-3 font-medium transition hover:-translate-y-0.5 hover:bg-white/10"

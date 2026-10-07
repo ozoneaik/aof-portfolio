@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { profile, socials, ui, type Lang } from "@/data/portfolio";
 import { socialIcon } from "@/components/Icons";
+import { DownloadIcon } from "@/components/icons/DownloadIcon";
+import { TypingTerminal } from "@/components/ui/TypingTerminal";
 
 export function HeroSection({ lang }: { lang: Lang }) {
     const t = (v: Record<Lang, string>) => v[lang];
@@ -45,6 +47,13 @@ export function HeroSection({ lang }: { lang: Lang }) {
                             className="rounded-lg border border-blue-300 bg-white px-5 py-3 font-medium text-blue-700 transition hover:-translate-y-0.5 hover:border-blue-500 dark:border-blue-700 dark:bg-transparent dark:text-blue-300 dark:hover:border-blue-400"
                         >
                             {t(ui.ctaContact)}
+                        </a>
+                        <a
+                            href={t(profile.cv)}
+                            download
+                            className="inline-flex items-center gap-2 rounded-lg border border-transparent px-5 py-3 font-medium text-blue-700 transition hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50 dark:text-blue-300 dark:hover:border-blue-800 dark:hover:bg-blue-950"
+                        >
+                            <DownloadIcon className="h-5 w-5" /> {t(ui.downloadCv)}
                         </a>
                     </div>
 
@@ -91,23 +100,7 @@ export function HeroSection({ lang }: { lang: Lang }) {
                             <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
                             <span className="ml-2 font-mono text-[11px] text-blue-200/60">aof@macbook: ~</span>
                         </div>
-                        <pre className="overflow-x-auto p-4 font-mono text-[11.5px] leading-5 text-blue-100 sm:text-xs">
-                            <code>
-                                <span className="text-sky-400">$</span> whoami{"\n"}
-                                <span className="text-white">phuwadech (aof)</span>
-                                {"\n\n"}
-                                <span className="text-sky-400">$</span> cat stack.json{"\n"}
-                                {"{\n"}
-                                {"  "}<span className="text-sky-300">&quot;backend&quot;</span>: [<span className="text-amber-200">&quot;Laravel&quot;</span>, <span className="text-amber-200">&quot;PHP&quot;</span>],{"\n"}
-                                {"  "}<span className="text-sky-300">&quot;frontend&quot;</span>: [<span className="text-amber-200">&quot;React&quot;</span>, <span className="text-amber-200">&quot;Next.js&quot;</span>],{"\n"}
-                                {"  "}<span className="text-sky-300">&quot;db&quot;</span>: [<span className="text-amber-200">&quot;PostgreSQL&quot;</span>, <span className="text-amber-200">&quot;MySQL&quot;</span>]{"\n"}
-                                {"}\n\n"}
-                                <span className="text-sky-400">$</span> status{"\n"}
-                                <span className="text-emerald-300">✔ open to work from 2026-11-01</span>
-                                {"\n"}
-                                <span className="text-sky-400">$</span> <span className="cursor-blink inline-block h-3.5 w-1.5 translate-y-0.5 bg-blue-300" />
-                            </code>
-                        </pre>
+                        <TypingTerminal />
                     </div>
                 </div>
             </div>

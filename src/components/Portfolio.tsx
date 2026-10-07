@@ -10,6 +10,7 @@ import { HeroSection } from "./sections/HeroSection";
 import { Navbar } from "./sections/Navbar";
 import { ProjectsSection } from "./sections/ProjectsSection";
 import { SkillsSection } from "./sections/SkillsSection";
+import { StatsSection } from "./sections/StatsSection";
 
 // language preference: persisted in localStorage, with an in-memory fallback
 let memoryLang: Lang = "th";
@@ -87,6 +88,7 @@ export default function Portfolio() {
 
             <main id="top">
                 <HeroSection lang={lang} />
+                <StatsSection lang={lang} />
                 <AboutSection lang={lang} />
                 <ExperienceSection lang={lang} />
                 <ProjectsSection lang={lang} />

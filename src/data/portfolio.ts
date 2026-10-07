@@ -22,6 +22,12 @@ export const profile = {
     phone: "093-162-2330",
     phoneRaw: "0931622330",
     photo: "/profile.jpg",
+    // put the PDF files in public/cv/
+    cv: {
+        th: "/cv/phuwadech-cv-th.pdf",
+        en: "/cv/phuwadech-cv-en.pdf",
+        zh: "/cv/phuwadech-cv-en.pdf",
+    } as T,
 };
 
 export const socials = [
@@ -100,7 +106,22 @@ export const experience: {
     },
 ];
 
-export const projects: { title: T; desc: T; tags: string[]; featured?: boolean }[] = [
+export type Project = {
+    title: T;
+    desc: T;
+    tags: string[];
+    featured?: boolean;
+    /** measurable results, shown on the card and in the detail dialog */
+    impact?: T[];
+    /** longer write-up shown only in the detail dialog */
+    details?: T;
+    /** what you did on the project */
+    role?: T;
+    /** screenshot in public/, shown in the detail dialog */
+    image?: string;
+};
+
+export const projects: Project[] = [
     {
         title: { th: "ระบบรวมแชทหลายแพลตฟอร์ม", en: "Omni-Channel Chat Platform", zh: "全渠道聊天平台" },
         desc: {
@@ -110,6 +131,13 @@ export const projects: { title: T; desc: T; tags: string[]; featured?: boolean }
         },
         tags: ["React", "Laravel", "Socket.io", "Broadcasting", "PostgreSQL", "MySQL"],
         featured: true,
+        impact: [
+            {
+                th: "รวม 4 แพลตฟอร์มแชทไว้ในระบบเดียว",
+                en: "4 chat platforms in one inbox",
+                zh: "4 个聊天平台统一到一个收件箱",
+            },
+        ],
     },
     {
         title: { th: "AI คัดกรองรูปภาพ", en: "AI Image Screening Model", zh: "AI 图片筛查模型" },
@@ -165,6 +193,7 @@ export const projects: { title: T; desc: T; tags: string[]; featured?: boolean }
             zh: "个人 Mac 工具箱：电池充电上限、清洁键盘锁定模式、剪贴板、内存与温度监控、取色器。",
         },
         tags: ["Swift", "macOS"],
+        impact: [{ th: "6 เครื่องมือในแอปเดียว", en: "6 tools in one app", zh: "一个应用集成 6 个工具" }],
     },
     {
         title: { th: "ระบบสต็อกสินค้า", en: "Inventory Management", zh: "库存管理系统" },
@@ -200,6 +229,20 @@ export const skills: { group: T; items: string[] }[] = [
     },
 ];
 
+export const stats: { value: number; decimals?: number; suffix?: string; label: T }[] = [
+    { value: 2, suffix: "+", label: { th: "ปีประสบการณ์ทำงาน", en: "Years of experience", zh: "年工作经验" } },
+    { value: projects.length, label: { th: "โปรเจกต์ที่พัฒนา", en: "Projects built", zh: "个项目" } },
+    {
+        value: skills.reduce((n, s) => n + s.items.length, 0),
+        label: { th: "ภาษา & เครื่องมือ", en: "Technologies & tools", zh: "项技术与工具" },
+    },
+    {
+        value: Number(education[0].gpa),
+        decimals: 2,
+        label: { th: "เกรดเฉลี่ยปริญญาตรี", en: "Bachelor's GPA", zh: "本科 GPA" },
+    },
+];
+
 export const ui = {
     nav: {
         about: { th: "เกี่ยวกับ", en: "About", zh: "关于" },
@@ -211,6 +254,14 @@ export const ui = {
     hi: { th: "สวัสดีครับ ผมชื่อ", en: "Hi, I'm", zh: "你好，我是" },
     ctaProjects: { th: "ดูผลงาน", en: "View Projects", zh: "查看项目" },
     ctaContact: { th: "ติดต่อผม", en: "Get in Touch", zh: "联系我" },
+    downloadCv: { th: "ดาวน์โหลด CV", en: "Download CV", zh: "下载简历" },
+    copyEmail: { th: "คัดลอกอีเมล", en: "Copy email", zh: "复制邮箱" },
+    copied: { th: "คัดลอกแล้ว", en: "Copied!", zh: "已复制" },
+    viewDetails: { th: "ดูรายละเอียด", en: "View details", zh: "查看详情" },
+    close: { th: "ปิด", en: "Close", zh: "关闭" },
+    projectRole: { th: "หน้าที่ของผม", en: "My role", zh: "我的职责" },
+    projectImpact: { th: "ผลลัพธ์", en: "Impact", zh: "成果" },
+    projectStack: { th: "เทคโนโลยีที่ใช้", en: "Tech stack", zh: "技术栈" },
     aboutTitle: { th: "เกี่ยวกับผม", en: "About Me", zh: "关于我" },
     aboutBody: {
         th: "ผมเป็นนักพัฒนาเว็บ Full-Stack ที่มีประสบการณ์ทำงานจริงกว่า 2 ปี ถนัด Laravel + React + PostgreSQL ชอบแก้ปัญหาให้ทีมทำงานง่ายขึ้นด้วยระบบที่ออกแบบมาดี และสนุกกับการลองเทคโนโลยีใหม่ ๆ ทั้ง AI, LLM แบบ offline และการเขียนแอปบน macOS",
