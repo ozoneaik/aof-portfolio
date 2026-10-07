@@ -206,6 +206,16 @@ export const projects: Project[] = [
     },
 ];
 
+export type ScreenKind = "chat" | "ai" | "repair" | "macos";
+
+/** projects shown on the 3D laptop screen in the scroll showcase, in order */
+export const showcase: { project: Project; screen: ScreenKind }[] = [
+    { project: projects[0], screen: "chat" },
+    { project: projects[1], screen: "ai" },
+    { project: projects[2], screen: "repair" },
+    { project: projects[6], screen: "macos" },
+];
+
 export const skills: { group: T; items: string[] }[] = [
     {
         group: { th: "ภาษา & Framework", en: "Languages & Frameworks", zh: "语言与框架" },
@@ -282,6 +292,14 @@ export const ui = {
         th: "สร้างด้วย Next.js + Tailwind CSS",
         en: "Built with Next.js + Tailwind CSS",
         zh: "使用 Next.js + Tailwind CSS 构建",
+    },
+    showcase: {
+        eyebrow: { th: "Aof · Full-Stack", en: "Aof · Full-Stack", zh: "Aof · 全栈" },
+        introTitle: { th: "สร้างเพื่อใช้งานจริง", en: "Built for real work.", zh: "为真实工作而打造。" },
+        scrollHint: { th: "เลื่อนลงเพื่อดู", en: "Scroll to explore", zh: "向下滚动探索" },
+        bootTitle: { th: "เปิดเครื่อง แล้วไปดูงานกัน", en: "Power on. Let's see the work.", zh: "开机，看看作品。" },
+        skillsTitle: { th: "เบื้องหลังการทำงาน", en: "Under the hood.", zh: "深入内部。" },
+        outroTitle: { th: "มาสร้างอะไรดี ๆ ด้วยกัน", en: "Let's build something great.", zh: "一起打造出色的作品。" },
     },
     themeLight: { th: "เปลี่ยนเป็นโหมดสว่าง", en: "Switch to light mode", zh: "切换到浅色模式" },
     themeDark: { th: "เปลี่ยนเป็นโหมดมืด", en: "Switch to dark mode", zh: "切换到深色模式" },

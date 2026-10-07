@@ -1,16 +1,21 @@
 "use client";
 
-import { useEffect, useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
+import dynamic from "next/dynamic";
 import { langs, type Lang } from "@/data/portfolio";
 import { AboutSection } from "./sections/AboutSection";
 import { ContactSection } from "./sections/ContactSection";
 import { ExperienceSection } from "./sections/ExperienceSection";
 import { Footer } from "./sections/Footer";
 import { HeroSection } from "./sections/HeroSection";
+import { LaptopShowcase } from "./sections/LaptopShowcase";
 import { Navbar } from "./sections/Navbar";
 import { ProjectsSection } from "./sections/ProjectsSection";
 import { SkillsSection } from "./sections/SkillsSection";
 import { StatsSection } from "./sections/StatsSection";
+
+// three.js needs WebGL and window, so the 3D background is client-only and split into its own chunk
+const NetworkBackground = dynamic(() => import("./three/NetworkBackground"), { ssr: false });
 
 // language preference: persisted in localStorage, with an in-memory fallback
 let memoryLang: Lang = "th";
@@ -52,6 +57,8 @@ export default function Portfolio() {
     const lang = useSyncExternalStore(subscribeLang, readLang, () => "th" as Lang);
     const theme = useSyncExternalStore(subscribeTheme, readTheme, () => "light" as Theme);
     const isDark = theme === "dark";
+    // the showcase covers the viewport with its own scene, so the particle background can rest
+    const [showcaseActive, setShowcaseActive] = useState(false);
 
     useEffect(() => {
         document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
@@ -79,6 +86,7 @@ export default function Portfolio() {
 
     return (
         <div className="flex-1">
+            <NetworkBackground isDark={isDark} paused={showcaseActive} />
             <Navbar
                 lang={lang}
                 onLangChange={writeLang}
@@ -89,6 +97,7 @@ export default function Portfolio() {
             <main id="top">
                 <HeroSection lang={lang} />
                 <StatsSection lang={lang} />
+                <LaptopShowcase lang={lang} onActiveChange={setShowcaseActive} />
                 <AboutSection lang={lang} />
                 <ExperienceSection lang={lang} />
                 <ProjectsSection lang={lang} />
