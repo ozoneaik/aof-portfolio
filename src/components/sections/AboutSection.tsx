@@ -41,7 +41,7 @@ export function AboutSection({ lang }: { lang: Lang }) {
                         <div className="space-y-4">
                             {education.map((e) => (
                                 <div
-                                    key={e.gpa}
+                                    key={e.school.en}
                                     className="flex items-center gap-4 rounded-xl border border-blue-100 bg-gradient-to-br from-white to-blue-50/60 p-5 dark:border-blue-900/40 dark:from-slate-900/80 dark:to-blue-950/40"
                                 >
                                     <Logo src={e.logo} alt={t(e.school)} />
