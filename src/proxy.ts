@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { isLang, langs, type Lang } from "@/lib/i18n";
 
-const DEFAULT_LANG: Lang = "th";
+const DEFAULT_LANG: Lang = "en";
 
 /**
  * เลือกภาษาให้คนที่เข้า URL ที่ยังไม่มีภาษา (เช่น "/")
