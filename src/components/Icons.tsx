@@ -89,3 +89,13 @@ export const skillIcon: Record<string, IconType> = {
     Gemini: SiGooglegemini,
     Ollama: SiOllama,
 };
+
+// สีแบรนด์ของแต่ละเทคโนโลยี (ใช้ในวงกลมไอคอนใน Hero และแถบเทคโนโลยี)
+export const brandColor: Record<string, string> = {
+    Laravel: "text-[#FF2D20]",
+    React: "text-[#149ECA]",
+    "Next.js": "text-slate-900 dark:text-white",
+    PostgreSQL: "text-[#4169E1] dark:text-[#6b8cf0]",
+    Docker: "text-[#2496ED]",
+    Swift: "text-[#F05138]",
+};

@@ -1,11 +1,14 @@
-export const langs = ["th", "en", "zh"] as const;
-export type Lang = (typeof langs)[number];
-export const langLabel: Record<Lang, string> = { th: "TH", en: "EN", zh: "中" };
-type T = Record<Lang, string>;
+// ภาษา/ชนิดข้อมูลพื้นฐานแยกไว้ใน lib/i18n.ts เพื่อให้ client component import ได้โดยไม่ต้องโหลดข้อมูลทั้งไฟล์นี้
+import { type T } from "@/lib/i18n";
+export { fill, isLang, langLabel, langs, type Lang, type T } from "@/lib/i18n";
+
+/** โดเมนของเว็บ (ใช้ใน sitemap, canonical, hreflang และลิงก์พรีวิวตอนแชร์) — เปลี่ยนตรงนี้ที่เดียว */
+export const SITE_URL = "https://aof-portfolio.vercel.app";
 
 export const profile = {
     name: { th: "ภูวเดช พาณิชยโสภา", en: "Phuwadech Panichayasopa", zh: "Phuwadech Panichayasopa" } as T,
     nickname: "Aof",
+    nameShort: { th: "ภูวเดช (อ๊อฟ)", en: "Phuwadech (Aof)", zh: "Phuwadech（Aof）" } as T,
     role: { th: "Full-Stack Web Developer", en: "Full-Stack Web Developer", zh: "全栈 Web 开发工程师" } as T,
     tagline: {
         th: "นักพัฒนาเว็บที่ชอบสร้างระบบที่ใช้งานได้จริง ตั้งแต่ระบบภายในองค์กร แชทเรียลไทม์ ไปจนถึงแอปบน macOS",
@@ -14,9 +17,14 @@ export const profile = {
     } as T,
     location: { th: "น่าน, ประเทศไทย", en: "Nan, Thailand", zh: "泰国 难府" } as T,
     status: {
-        th: "พร้อมเริ่มงาน หลังปลดประจำการ 1 พ.ย. 2569",
-        en: "Available from Nov 1, 2026 (after military service)",
-        zh: "2026 年 11 月 1 日起可入职（服兵役结束后）",
+        th: "พร้อมเริ่มงานทันที",
+        en: "Available to start now",
+        zh: "可立即入职",
+    } as T,
+    statusNote: {
+        th: "ปลดประจำการแล้ว 1 พ.ย. 2569",
+        en: "Military service completed Nov 1, 2026",
+        zh: "已于 2026 年 11 月 1 日退役",
     } as T,
     email: "aofphuwadech@gmail.com",
     phone: "093-162-2330",
@@ -107,6 +115,10 @@ export const experience: {
 ];
 
 export type Project = {
+    /** ใช้เป็น key และชื่อ path ที่โชว์บนการ์ด เช่น ~/omni-channel */
+    slug: string;
+    /** ใช้กับตัวกรอง "งานบริษัท / งานส่วนตัว" */
+    category: "work" | "personal";
     title: T;
     desc: T;
     tags: string[];
@@ -123,6 +135,8 @@ export type Project = {
 
 export const projects: Project[] = [
     {
+        slug: "omni-channel",
+        category: "work",
         title: { th: "ระบบรวมแชทหลายแพลตฟอร์ม", en: "Omni-Channel Chat Platform", zh: "全渠道聊天平台" },
         desc: {
             th: "รวมแชทจาก Lazada, Shopee, Facebook และ LINE ผ่าน webhook มาตอบในระบบเดียวแบบเรียลไทม์ มีรายงานการตอบแชทเพื่อประเมิน KPI และบอทตอบคำถามทั่วไป",
@@ -140,6 +154,8 @@ export const projects: Project[] = [
         ],
     },
     {
+        slug: "ai-image",
+        category: "work",
         title: { th: "AI คัดกรองรูปภาพ", en: "AI Image Screening Model", zh: "AI 图片筛查模型" },
         desc: {
             th: "โมเดล AI ทำงานร่วมกับระบบแชท ตรวจสอบรูปที่ลูกค้าส่งเข้ามาว่าเป็นภาพสวัสดีวันจันทร์ หรือภาพ 18+ หรือไม่",
@@ -150,6 +166,8 @@ export const projects: Project[] = [
         featured: true,
     },
     {
+        slug: "repair-request",
+        category: "work",
         title: { th: "ระบบแจ้งซ่อม + สั่งซื้ออะไหล่", en: "Repair Request & Parts Ordering", zh: "报修与配件订购系统" },
         desc: {
             th: "ระบบแจ้งซ่อมพร้อมระบบสั่งซื้ออะไหล่ ตั้งแต่เลือกสินค้าจนถึงจัดส่ง ใช้ React กับ Laravel ในโปรเจคเดียวผ่าน Inertia",
@@ -159,6 +177,8 @@ export const projects: Project[] = [
         tags: ["React", "Laravel", "Inertia"],
     },
     {
+        slug: "leave-system",
+        category: "work",
         title: { th: "ระบบจัดการการลา", en: "Leave Management System", zh: "请假管理系统" },
         desc: {
             th: "ผลงานช่วงฝึกงานที่ Big Data Agency — ระบบการลาของพนักงาน ตั้งแต่กรอกใบลาจนถึงขั้นตอนการอนุมัติและเซ็นเอกสาร",
@@ -168,6 +188,8 @@ export const projects: Project[] = [
         tags: ["Laravel", "PostgreSQL"],
     },
     {
+        slug: "qc-incentive",
+        category: "work",
         title: { th: "ระบบ Incentive QC", en: "QC Incentive System", zh: "QC 绩效奖金系统" },
         desc: {
             th: "คำนวณค่าตอบแทนพิเศษรายเดือนให้กับพนักงานที่เกี่ยวข้องโดยอัตโนมัติ",
@@ -177,6 +199,8 @@ export const projects: Project[] = [
         tags: ["Laravel", "React", "PostgreSQL"],
     },
     {
+        slug: "warranty",
+        category: "work",
         title: { th: "ระบบลงทะเบียนรับประกันสินค้า", en: "Product Warranty Registration", zh: "产品保修登记系统" },
         desc: {
             th: "พัฒนาบน WordPress และแยกเว็บสำหรับลูกค้าประเทศเพื่อนบ้านด้วย React + Laravel ผ่าน Inertia",
@@ -186,6 +210,8 @@ export const projects: Project[] = [
         tags: ["WordPress", "React", "Laravel", "Inertia"],
     },
     {
+        slug: "machub",
+        category: "personal",
         title: { th: "MacHub — แอปบน macOS", en: "MacHub — macOS Utility", zh: "MacHub — macOS 工具" },
         desc: {
             th: "แอปส่วนตัวบน MacBook: จำกัดการชาร์จแบต, โหมดล็อกคีย์บอร์ดเพื่อทำความสะอาด, clipboard, เช็คแรม, ดูอุณหภูมิ, color picker",
@@ -196,6 +222,8 @@ export const projects: Project[] = [
         impact: [{ th: "6 เครื่องมือในแอปเดียว", en: "6 tools in one app", zh: "一个应用集成 6 个工具" }],
     },
     {
+        slug: "inventory",
+        category: "personal",
         title: { th: "ระบบสต็อกสินค้า", en: "Inventory Management", zh: "库存管理系统" },
         desc: {
             th: "จัดการสินค้าที่ขายบนหลายแพลตฟอร์ม สำหรับธุรกิจครอบครัว",
@@ -229,22 +257,131 @@ export const skills: { group: T; items: string[] }[] = [
     },
 ];
 
-export const stats: { value: number; decimals?: number; suffix?: string; label: T }[] = [
-    { value: 2, suffix: "+", label: { th: "ปีประสบการณ์ทำงาน", en: "Years of experience", zh: "年工作经验" } },
-    { value: projects.length, label: { th: "โปรเจกต์ที่พัฒนา", en: "Projects built", zh: "个项目" } },
+/** ตัวเลขในแบนเนอร์ "เกี่ยวกับผม" (นับขึ้นตอน scroll มาถึง) */
+export const facts: {
+    icon: "work" | "education" | "projects" | "location";
+    value?: number;
+    decimals?: number;
+    prefix?: string;
+    suffix?: string;
+    unit?: T;
+    text?: T;
+    label: T;
+}[] = [
     {
-        value: skills.reduce((n, s) => n + s.items.length, 0),
-        label: { th: "ภาษา & เครื่องมือ", en: "Technologies & tools", zh: "项技术与工具" },
+        icon: "work",
+        value: 2,
+        suffix: "+",
+        unit: { th: "ปี", en: "years", zh: "年" },
+        label: { th: "ประสบการณ์ทำงานจริง", en: "Professional experience", zh: "实际工作经验" },
     },
     {
+        icon: "education",
+        prefix: "GPA ",
         value: Number(education[0].gpa),
         decimals: 2,
-        label: { th: "เกรดเฉลี่ยปริญญาตรี", en: "Bachelor's GPA", zh: "本科 GPA" },
+        label: { th: "ปริญญาตรี ม.พะเยา", en: "Bachelor's, University of Phayao", zh: "帕尧大学 学士" },
+    },
+    {
+        icon: "projects",
+        value: projects.length,
+        unit: { th: "โปรเจกต์", en: "projects", zh: "个项目" },
+        label: { th: "ระบบองค์กร & งานส่วนตัว", en: "Company & personal work", zh: "企业系统与个人作品" },
+    },
+    {
+        icon: "location",
+        text: profile.location,
+        label: profile.status,
     },
 ];
 
+export const skillCount = skills.reduce((n, s) => n + s.items.length, 0);
+
+/** การ์ด 6 ช่องในส่วน "สิ่งที่ผมทำได้" */
+export const services: {
+    icon: "server" | "screen" | "database" | "chat" | "deploy" | "ai";
+    tone: "blue" | "sky" | "amber";
+    title: T;
+    desc: T;
+    tags: string;
+}[] = [
+    {
+        icon: "server",
+        tone: "blue",
+        title: { th: "ระบบหลังบ้าน & API", en: "Backend & APIs", zh: "后端与 API" },
+        desc: {
+            th: "ออกแบบ API และ business logic ที่ดูแลต่อได้ง่าย",
+            en: "APIs and business logic that are easy to maintain",
+            zh: "设计易于维护的 API 与业务逻辑",
+        },
+        tags: "Laravel · PHP",
+    },
+    {
+        icon: "screen",
+        tone: "sky",
+        title: { th: "หน้าเว็บ & Dashboard", en: "Web UI & Dashboards", zh: "网页与仪表盘" },
+        desc: {
+            th: "หน้าจอที่ใช้ง่าย รองรับมือถือ ทำงานลื่น",
+            en: "Easy, responsive interfaces that feel fast",
+            zh: "易用、适配手机、流畅的界面",
+        },
+        tags: "React · Next.js · Inertia",
+    },
+    {
+        icon: "database",
+        tone: "amber",
+        title: { th: "ออกแบบฐานข้อมูล", en: "Database Design", zh: "数据库设计" },
+        desc: {
+            th: "วางโครงสร้างข้อมูลให้ถูกต้องและ query ได้เร็ว",
+            en: "Correct data models with fast queries",
+            zh: "结构正确、查询高效的数据模型",
+        },
+        tags: "PostgreSQL · MySQL · TiDB",
+    },
+    {
+        icon: "chat",
+        tone: "blue",
+        title: { th: "แชท & เรียลไทม์", en: "Chat & Real-time", zh: "聊天与实时功能" },
+        desc: {
+            th: "เชื่อม webhook จากหลายแพลตฟอร์มเข้าระบบเดียว",
+            en: "Webhooks from many platforms in one system",
+            zh: "将多平台 Webhook 接入同一系统",
+        },
+        tags: "Socket.io · Broadcasting",
+    },
+    {
+        icon: "deploy",
+        tone: "sky",
+        title: { th: "Deploy & DevOps", en: "Deploy & DevOps", zh: "部署与 DevOps" },
+        desc: {
+            th: "ขึ้นระบบจริงบน server และ cloud พร้อมใช้งาน",
+            en: "Shipping to servers and the cloud, ready to use",
+            zh: "部署到服务器与云端，随时可用",
+        },
+        tags: "Docker · Nginx · Vercel",
+    },
+    {
+        icon: "ai",
+        tone: "amber",
+        title: { th: "AI & แอป macOS", en: "AI & macOS Apps", zh: "AI 与 macOS 应用" },
+        desc: {
+            th: "โมเดลคัดกรองรูปภาพ และแอปเครื่องมือบน Mac",
+            en: "Image screening models and Mac utility apps",
+            zh: "图片筛查模型与 Mac 工具应用",
+        },
+        tags: "Python · Swift · Ollama",
+    },
+];
+
+/** เทคโนโลยีที่โชว์ในแถบใต้ Hero (ชื่อต้องตรงกับ key ใน skillIcon) */
+export const techStrip = ["Laravel", "React", "Next.js", "PostgreSQL", "Docker", "Swift"];
+
+/** เทคโนโลยีที่โชว์เป็นวงกลมซ้อนกันใน Hero */
+export const heroStack = ["Laravel", "React", "PostgreSQL", "Next.js", "Swift"];
+
 export const ui = {
     nav: {
+        services: { th: "ทำอะไรได้บ้าง", en: "What I do", zh: "服务" },
         about: { th: "เกี่ยวกับ", en: "About", zh: "关于" },
         experience: { th: "ประสบการณ์", en: "Experience", zh: "经历" },
         projects: { th: "ผลงาน", en: "Projects", zh: "项目" },
@@ -278,6 +415,87 @@ export const ui = {
         en: "Open to new opportunities and project chats — reach out through any channel below.",
         zh: "欢迎洽谈工作机会或项目合作，可通过以下任意方式联系我。",
     },
+    // ----- SEO -----
+    metaTitle: {
+        th: "ภูวเดช (อ๊อฟ) — Full-Stack Web Developer",
+        en: "Phuwadech (Aof) — Full-Stack Web Developer",
+        zh: "Phuwadech（Aof）— 全栈 Web 开发工程师",
+    },
+    metaDescription: {
+        th: "Portfolio ของภูวเดช พาณิชยโสภา (อ๊อฟ) นักพัฒนาเว็บ Full-Stack ที่ถนัด Laravel, React, Next.js และ PostgreSQL",
+        en: "Portfolio of Phuwadech Panichayasopa (Aof), a full-stack web developer working with Laravel, React, Next.js and PostgreSQL.",
+        zh: "Phuwadech Panichayasopa（Aof）的作品集——擅长 Laravel、React、Next.js 与 PostgreSQL 的全栈 Web 开发工程师。",
+    },
+    // ----- Navbar -----
+    menu: { th: "เมนู", en: "Menu", zh: "菜单" },
+    language: { th: "ภาษา", en: "Language", zh: "语言" },
+    // ----- Hero -----
+    heroEyebrow: {
+        th: "Full-Stack Web Developer · น่าน, ประเทศไทย",
+        en: "Full-Stack Web Developer · Nan, Thailand",
+        zh: "全栈 Web 开发工程师 · 泰国难府",
+    },
+    // หัวข้อแบ่งเป็น 3 บรรทัด: line1 / line2Before + line2Highlight / line3
+    heroLine1: { th: "สร้างระบบ", en: "Building systems", zh: "打造" },
+    heroLine2Before: { th: "ที่คน", en: "people ", zh: "真正" },
+    heroLine2Highlight: { th: "ใช้งาน", en: "actually use", zh: "好用" },
+    heroLine3: { th: "ได้จริง", en: "every day", zh: "的系统" },
+    heroLeadBefore: { th: "สวัสดีครับ ผม", en: "Hi, I'm", zh: "你好，我是" },
+    heroLeadAfter: {
+        th: "นักพัฒนาเว็บที่ชอบสร้างระบบที่ทีมใช้งานได้จริง ตั้งแต่ระบบภายในองค์กร แชทเรียลไทม์ ไปจนถึงแอปบน macOS",
+        en: "— a web developer who loves building systems people actually use, from internal tools and real-time chat to native macOS apps.",
+        zh: "，一名热爱打造实用系统的 Web 开发者——从企业内部系统、实时聊天到原生 macOS 应用。",
+    },
+    proofTitle: { th: "ประสบการณ์ทำงานจริง 2+ ปี", en: "2+ years of real-world experience", zh: "2 年以上实际工作经验" },
+    proofSub: { th: "พัฒนาระบบมาแล้ว {n} โปรเจกต์", en: "{n} projects built so far", zh: "已开发 {n} 个项目" },
+    cardStackLabel: { th: "ถนัดที่สุด", en: "Strongest at", zh: "最擅长" },
+    cardChatBig: { th: "4 แพลตฟอร์ม", en: "4 platforms", zh: "4 个平台" },
+    cardChatSub: {
+        th: "ตอบลูกค้าได้ในหน้าเดียว แบบเรียลไทม์",
+        en: "Every customer chat in one real-time inbox",
+        zh: "在一个页面实时回复所有客户",
+    },
+    termHint: { th: "ลองพิมพ์ {cmd} ในนี้ดูครับ", en: "Try typing {cmd} in here", zh: "试着在这里输入 {cmd}" },
+    termLabel: { th: "พิมพ์คำสั่ง terminal", en: "Type a terminal command", zh: "输入终端命令" },
+    // ----- แถบเทคโนโลยี -----
+    techStripTitle: {
+        th: "เทคโนโลยีที่ผมใช้ทำงานจริงทุกวัน",
+        en: "The stack I use on real work every day",
+        zh: "我日常工作中使用的技术",
+    },
+    // ----- สิ่งที่ผมทำได้ -----
+    servicesTitle: {
+        th: "ครบตั้งแต่หลังบ้าน หน้าบ้าน\nจนถึงขึ้นระบบจริง",
+        en: "From backend and frontend\nall the way to production",
+        zh: "从后端、前端\n到上线部署，一手包办",
+    },
+    // ----- แบนเนอร์เกี่ยวกับผม -----
+    aboutHello: { th: "สวัสดีครับ ผมอ๊อฟ", en: "Hi, I'm Aof", zh: "你好，我是 Aof" },
+    aboutCta: { th: "ดูประสบการณ์ทำงาน", en: "See my experience", zh: "查看工作经历" },
+    // ----- ผลงาน -----
+    filterAll: { th: "ทั้งหมด", en: "All", zh: "全部" },
+    filterWork: { th: "งานบริษัท", en: "Company work", zh: "公司项目" },
+    filterPersonal: { th: "งานส่วนตัว", en: "Personal", zh: "个人项目" },
+    featured: { th: "เด่น", en: "Featured", zh: "精选" },
+    // ----- ทักษะ -----
+    skillsCount: { th: "{n} อย่างที่ผมใช้ทำงาน", en: "{n} tools I work with", zh: "我常用的 {n} 项技术" },
+    // ----- ติดต่อ -----
+    contactChecks1: { th: "พร้อมเริ่มงานทันที", en: "Available to start now", zh: "可立即入职" },
+    contactChecks2: {
+        th: "ประสบการณ์ระบบองค์กรจริง 2+ ปี",
+        en: "2+ years building real company systems",
+        zh: "2 年以上企业系统开发经验",
+    },
+    contactChecks3: {
+        th: "ทำได้ทั้งหลังบ้าน หน้าบ้าน และ deploy",
+        en: "Backend, frontend and deployment",
+        zh: "后端、前端与部署都能胜任",
+    },
+    contactChecks4: { th: "มี CV ทั้งภาษาไทยและอังกฤษ", en: "CV available in Thai and English", zh: "提供泰文与英文简历" },
+    contactNote: { th: "ส่งข้อความมาคุยกันได้เลยครับ", en: "Drop me a message anytime", zh: "随时欢迎留言联系" },
+    emailLabel: { th: "อีเมล", en: "Email", zh: "邮箱" },
+    orCall: { th: "หรือโทร", en: "or call", zh: "或致电" },
+    sendEmail: { th: "ส่งอีเมลหาผม", en: "Send me an email", zh: "给我发邮件" },
     footer: {
         th: "สร้างด้วย Next.js + Tailwind CSS",
         en: "Built with Next.js + Tailwind CSS",
@@ -285,4 +503,24 @@ export const ui = {
     },
     themeLight: { th: "เปลี่ยนเป็นโหมดสว่าง", en: "Switch to light mode", zh: "切换到浅色模式" },
     themeDark: { th: "เปลี่ยนเป็นโหมดมืด", en: "Switch to dark mode", zh: "切换到深色模式" },
+    // ----- ข้อความใน terminal ที่พิมพ์คำสั่งได้ -----
+    term: {
+        helpTitle: { th: "คำสั่งที่ใช้ได้:", en: "Available commands:", zh: "可用命令：" },
+        whoami: { th: "ผมคือใคร", en: "who am I", zh: "我是谁" },
+        stack: { th: "เทคโนโลยีหลัก", en: "main stack", zh: "主要技术栈" },
+        projects: { th: "ไปดูผลงาน", en: "jump to projects", zh: "查看项目" },
+        contact: { th: "ช่องทางติดต่อ", en: "how to reach me", zh: "联系方式" },
+        cv: { th: "ดาวน์โหลด CV", en: "download my CV", zh: "下载简历" },
+        clear: { th: "ล้างหน้าจอ", en: "clear the screen", zh: "清屏" },
+        goProjects: { th: "→ กำลังพาไปหน้าผลงาน...", en: "→ taking you to my projects...", zh: "→ 正在前往项目..." },
+        goContact: { th: "✔ ยินดีมากครับ! พาไปหน้าติดต่อ...", en: "✔ Great! Taking you to contact...", zh: "✔ 太好了！正在前往联系方式..." },
+        cvDone: { th: "✔ กำลังดาวน์โหลด CV...", en: "✔ Downloading CV...", zh: "✔ 正在下载简历..." },
+        sudo: {
+            th: "ขอโทษครับ คุณไม่มีสิทธิ์ sudo ในเครื่องผม 😄",
+            en: "Nice try — you don't have sudo on my machine 😄",
+            zh: "不好意思，你在我的电脑上没有 sudo 权限 😄",
+        },
+        notFound: { th: "ไม่พบคำสั่ง: {cmd} — ลองพิมพ์ help", en: "command not found: {cmd} — try help", zh: "未找到命令：{cmd} — 试试 help" },
+        intro: { th: "# พิมพ์ help เพื่อดูคำสั่งทั้งหมด", en: "# type help to see all commands", zh: "# 输入 help 查看所有命令" },
+    },
 } satisfies Record<string, T | Record<string, T>>;

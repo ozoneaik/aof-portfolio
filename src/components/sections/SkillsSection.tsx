@@ -1,39 +1,60 @@
-import { skills, ui, type Lang } from "@/data/portfolio";
+import { skillCount, skills, ui, type Lang } from "@/data/portfolio";
 import { skillIcon } from "@/components/Icons";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { trackSpotlight } from "@/components/ui/spotlight";
+import { CountUp } from "@/components/ui/CountUp";
+import { SectionHead, toneClass } from "@/components/ui/Decor";
+
+// สีไอคอนหัวการ์ด วนตามลำดับกลุ่ม
+const tones = ["blue", "amber", "sky", "blue", "amber"] as const;
 
 export function SkillsSection({ lang }: { lang: Lang }) {
-    const t = (v: Record<Lang, string>) => v[lang];
+    // หัวข้อ "{n} อย่างที่ผมใช้ทำงาน" → ใส่ตัวเลขนับขึ้นตรง {n}
+    const [before, after] = ui.skillsCount[lang].split("{n}");
 
     return (
-        <section id="skills" className="scroll-mt-16 bg-blue-50/50 py-24 dark:bg-blue-950/20">
-            <div className="mx-auto max-w-6xl px-4 sm:px-6">
-                <SectionHeading index="04" label="skills" title={t(ui.skillsTitle)} />
-                <div className="grid gap-5 md:grid-cols-2">
-                    {skills.map((s) => (
+        <section id="skills" className="scroll-mt-20 py-24">
+            <div className="mx-auto max-w-6xl px-5 sm:px-6">
+                <SectionHead
+                    eyebrow={ui.skillsTitle[lang]}
+                    title={
+                        <>
+                            {before}
+                            <CountUp value={skillCount} />
+                            {after}
+                        </>
+                    }
+                />
+
+                <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                    {skills.map((group, i) => (
                         <div
-                            key={s.group.en}
-                            onMouseMove={trackSpotlight}
-                            className="reveal spotlight relative rounded-xl border border-blue-100 bg-white p-6 dark:border-blue-900/40 dark:bg-slate-900/60"
+                            key={group.group.en}
+                            className={`reveal rounded-[20px] border border-[#edf2f9] p-6 dark:border-blue-900/40 dark:bg-ink-2 ${
+                                i === 0 ? "lg:col-span-2" : ""
+                            }`}
                         >
-                            <h3 className="font-mono text-sm font-semibold text-blue-700 dark:text-blue-300">
-                                <span className="text-blue-300 dark:text-blue-700">const</span> {t(s.group)}
+                            <h3 className="mb-4 flex items-center gap-2.5 font-semibold text-slate-900 dark:text-white">
+                                <span className={`grid h-[34px] w-[34px] place-items-center rounded-[10px] ${toneClass[tones[i % tones.length]]}`}>
+                                    <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                                        <path d="m5 4-3 4 3 4M11 4l3 4-3 4" />
+                                    </svg>
+                                </span>
+                                {group.group[lang]}
+                                <span className="ml-auto font-mono text-xs font-medium text-slate-400">{group.items.length}</span>
                             </h3>
-                            <div className="mt-4 flex flex-wrap gap-2">
-                                {s.items.map((it) => {
-                                    const Icon = skillIcon[it];
+                            <ul className="flex flex-wrap gap-2">
+                                {group.items.map((name) => {
+                                    const Icon = skillIcon[name];
                                     return (
-                                        <span
-                                            key={it}
-                                            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700 transition hover:border-blue-400 hover:bg-blue-50 hover:text-blue-700 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-200 dark:hover:border-blue-500 dark:hover:bg-blue-950 dark:hover:text-blue-300"
+                                        <li
+                                            key={name}
+                                            className="inline-flex items-center gap-1.5 rounded-full border border-[#e6eefa] bg-[#f6f9fe] px-3 py-1.5 text-[13.5px] text-slate-700 dark:border-blue-900/50 dark:bg-blue-950/40 dark:text-slate-300"
                                         >
-                                            {Icon && <Icon className="h-4 w-4 shrink-0" aria-hidden />}
-                                            {it}
-                                        </span>
+                                            {Icon && <Icon className="h-[15px] w-[15px] text-slate-500 dark:text-slate-400" />}
+                                            {name}
+                                        </li>
                                     );
                                 })}
-                            </div>
+                            </ul>
                         </div>
                     ))}
                 </div>

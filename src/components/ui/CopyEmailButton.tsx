@@ -1,5 +1,6 @@
+"use client";
+
 import { useEffect, useState } from "react";
-import { profile, ui, type Lang } from "@/data/portfolio";
 import { CheckIcon } from "@/components/icons/CheckIcon";
 import { CopyIcon } from "@/components/icons/CopyIcon";
 
@@ -8,7 +9,7 @@ async function copyText(text: string) {
         await navigator.clipboard.writeText(text);
         return true;
     } catch {
-        // clipboard API is unavailable outside secure contexts (e.g. plain http on a LAN IP)
+        // clipboard API ใช้ไม่ได้ถ้าไม่ใช่ https (เช่นเปิดผ่าน IP ในวง LAN) → ใช้วิธีเก่าแทน
         const ta = document.createElement("textarea");
         ta.value = text;
         ta.style.position = "fixed";
@@ -21,13 +22,16 @@ async function copyText(text: string) {
     }
 }
 
+/** ปุ่มคัดลอกอีเมล: กดแล้วข้อความเปลี่ยนเป็น "คัดลอกแล้ว" 2 วินาที */
 export function CopyEmailButton({
-    lang,
-    showLabel = true,
+    email,
+    label,
+    copiedLabel,
     className = "",
 }: {
-    lang: Lang;
-    showLabel?: boolean;
+    email: string;
+    label: string;
+    copiedLabel: string;
     className?: string;
 }) {
     const [copied, setCopied] = useState(false);
@@ -38,18 +42,10 @@ export function CopyEmailButton({
         return () => clearTimeout(id);
     }, [copied]);
 
-    const label = ui.copyEmail[lang];
-
     return (
-        <button
-            type="button"
-            onClick={async () => setCopied(await copyText(profile.email))}
-            aria-label={showLabel ? undefined : label}
-            title={label}
-            className={`inline-flex items-center gap-2 ${className}`}
-        >
-            {copied ? <CheckIcon className="h-5 w-5" /> : <CopyIcon className="h-5 w-5" />}
-            {(showLabel || copied) && <span aria-live="polite">{copied ? ui.copied[lang] : label}</span>}
+        <button type="button" onClick={async () => setCopied(await copyText(email))} className={`inline-flex items-center gap-1.5 ${className}`}>
+            {copied ? <CheckIcon className="h-3.5 w-3.5" /> : <CopyIcon className="h-3.5 w-3.5" />}
+            <span aria-live="polite">{copied ? copiedLabel : label}</span>
         </button>
     );
 }
