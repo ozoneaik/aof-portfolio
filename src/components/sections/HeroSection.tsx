@@ -27,13 +27,13 @@ export function HeroSection({ lang }: { lang: Lang }) {
                         {t(profile.tagline)}
                     </p>
 
-                    <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/80 px-3.5 py-1.5 text-sm text-blue-800 dark:border-blue-800/70 dark:bg-blue-950/50 dark:text-blue-200">
+                    {/* <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/80 px-3.5 py-1.5 text-sm text-blue-800 dark:border-blue-800/70 dark:bg-blue-950/50 dark:text-blue-200">
                         <span className="relative flex h-2 w-2">
                             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75" />
                             <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-400" />
-                        </span>
+                        </span
                         {t(profile.status)}
-                    </div>
+                    </div> */}
 
                     <div className="mt-8 flex flex-wrap gap-3">
                         <a
