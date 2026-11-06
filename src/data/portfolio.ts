@@ -74,45 +74,45 @@ export const experience: {
     /** zoom for logos whose image file has wide empty margins */
     logoZoom?: number;
 }[] = [
-    {
-        period: { th: "2568 – 2569", en: "2025 – 2026", zh: "2025 – 2026" },
-        title: { th: "รับราชการทหาร", en: "Military Service", zh: "服兵役" },
-        org: { th: "กองทัพไทย", en: "Royal Thai Armed Forces", zh: "泰国皇家武装部队" },
-        desc: {
-            th: "เข้ารับราชการทหารตามหน้าที่ ปลดประจำการวันที่ 1 พฤศจิกายน 2569",
-            en: "Completed mandatory military service. Discharged on November 1, 2026.",
-            zh: "依法服兵役，于 2026 年 11 月 1 日退役。",
+        {
+            period: { th: "2568 – 2569", en: "2025 – 2026", zh: "2025 – 2026" },
+            title: { th: "รับราชการทหาร", en: "Military Service", zh: "服兵役" },
+            org: { th: "กองทัพไทย", en: "Royal Thai Armed Forces", zh: "泰国皇家武装部队" },
+            desc: {
+                th: "เข้ารับราชการทหารตามหน้าที่ ปลดประจำการวันที่ 1 พฤศจิกายน 2569",
+                en: "Completed mandatory military service. Discharged on November 1, 2026.",
+                zh: "依法服兵役，于 2026 年 11 月 1 日退役。",
+            },
         },
-    },
-    {
-        period: { th: "2566 – 2568", en: "2023 – 2025", zh: "2023 – 2025" },
-        title: { th: "Programmer", en: "Programmer", zh: "程序员" },
-        org: {
-            th: "Pumpkin Corporation Co., Ltd.",
-            en: "Pumpkin Corporation Co., Ltd.",
-            zh: "Pumpkin Corporation Co., Ltd.",
+        {
+            period: { th: "2566 – 2568", en: "2023 – 2025", zh: "2023 – 2025" },
+            title: { th: "Programmer", en: "Programmer", zh: "程序员" },
+            org: {
+                th: "Pumpkin Corporation Co., Ltd.",
+                en: "Pumpkin Corporation Co., Ltd.",
+                zh: "Pumpkin Corporation Co., Ltd.",
+            },
+            logo: "/Pumpkin.webp",
+            logoZoom: 1.6,
+            desc: {
+                th: "พัฒนาระบบภายในองค์กรหลายระบบ เช่น ระบบรวมแชทหลายแพลตฟอร์ม ระบบแจ้งซ่อม ระบบรับประกันสินค้า และระบบ incentive ด้วย Laravel, React และ PostgreSQL",
+                en: "Built multiple internal systems — omni-channel chat, repair requests, warranty registration and QC incentives — with Laravel, React and PostgreSQL.",
+                zh: "使用 Laravel、React 和 PostgreSQL 开发多个企业内部系统，包括全渠道聊天、报修、产品保修登记和 QC 绩效奖金系统。",
+            },
         },
-        logo: "/Pumpkin.webp",
-        logoZoom: 1.6,
-        desc: {
-            th: "พัฒนาระบบภายในองค์กรหลายระบบ เช่น ระบบรวมแชทหลายแพลตฟอร์ม ระบบแจ้งซ่อม ระบบรับประกันสินค้า และระบบ incentive ด้วย Laravel, React และ PostgreSQL",
-            en: "Built multiple internal systems — omni-channel chat, repair requests, warranty registration and QC incentives — with Laravel, React and PostgreSQL.",
-            zh: "使用 Laravel、React 和 PostgreSQL 开发多个企业内部系统，包括全渠道聊天、报修、产品保修登记和 QC 绩效奖金系统。",
+        {
+            period: { th: "2565 – 2566", en: "2022 – 2023", zh: "2022 – 2023" },
+            title: { th: "Web Developer (ฝึกงาน)", en: "Web Developer Intern", zh: "Web 开发实习生" },
+            org: { th: "Big Data Agency, เชียงใหม่", en: "Big Data Agency, Chiang Mai", zh: "Big Data Agency（清迈）" },
+            logo: "/big-data-agency.png",
+            logoZoom: 1.35,
+            desc: {
+                th: "ฝึกงานในตำแหน่งนักพัฒนาเว็บ พัฒนาระบบจัดการการลาของพนักงานด้วย Laravel และ PostgreSQL ร่วมกับทีมพัฒนา",
+                en: "Web development internship — built an employee leave management system with Laravel and PostgreSQL alongside the dev team.",
+                zh: "担任 Web 开发实习生，与开发团队一起使用 Laravel 和 PostgreSQL 开发员工请假管理系统。",
+            },
         },
-    },
-    {
-        period: { th: "2565 – 2566", en: "2022 – 2023", zh: "2022 – 2023" },
-        title: { th: "Web Developer (ฝึกงาน)", en: "Web Developer Intern", zh: "Web 开发实习生" },
-        org: { th: "Big Data Agency, เชียงใหม่", en: "Big Data Agency, Chiang Mai", zh: "Big Data Agency（清迈）" },
-        logo: "/big-data-agency.png",
-        logoZoom: 1.35,
-        desc: {
-            th: "ฝึกงานในตำแหน่งนักพัฒนาเว็บ พัฒนาระบบจัดการการลาของพนักงานด้วย Laravel และ PostgreSQL ร่วมกับทีมพัฒนา",
-            en: "Web development internship — built an employee leave management system with Laravel and PostgreSQL alongside the dev team.",
-            zh: "担任 Web 开发实习生，与开发团队一起使用 Laravel 和 PostgreSQL 开发员工请假管理系统。",
-        },
-    },
-];
+    ];
 
 export type Project = {
     /** ใช้เป็น key และชื่อ path ที่โชว์บนการ์ด เช่น ~/omni-channel */
@@ -257,6 +257,30 @@ export const skills: { group: T; items: string[] }[] = [
     },
 ];
 
+/** ทักษะด้านภาษา: level คือจำนวนจุดที่เติมสีจาก 5 จุด */
+export const languages: { name: T; level: T; label: T; flag: string }[] = [
+    {
+        name: { th: "ภาษาไทย", en: "Thai", zh: "泰语" },
+        level: { th: "ภาษาแม่", en: "Native", zh: "母语" },
+        label: {
+            th: "สื่อสาร อ่าน เขียนได้คล่องแคล่ว",
+            en: "Fluent in speaking, reading and writing",
+            zh: "听说读写流利",
+        },
+        flag: "/flag-th.svg"
+    },
+    {
+        name: { th: "ภาษาอังกฤษ", en: "English", zh: "英语" },
+        level: { th: "B1 (CEFR)", en: "B1 (CEFR)", zh: "B1（CEFR）" },
+        label: {
+            th: "อ่านเอกสารเทคนิคได้ เขียนอีเมลและข้อความทำงานได้",
+            en: "Reads technical docs; writes work emails and messages",
+            zh: "能阅读技术文档，撰写工作邮件与消息",
+        },
+        flag: "/flag-us.svg"
+    },
+];
+
 /** ตัวเลขในแบนเนอร์ "เกี่ยวกับผม" (นับขึ้นตอน scroll มาถึง) */
 export const facts: {
     icon: "work" | "education" | "projects" | "location";
@@ -268,32 +292,32 @@ export const facts: {
     text?: T;
     label: T;
 }[] = [
-    {
-        icon: "work",
-        value: 2,
-        suffix: "+",
-        unit: { th: "ปี", en: "years", zh: "年" },
-        label: { th: "ประสบการณ์ทำงานจริง", en: "Professional experience", zh: "实际工作经验" },
-    },
-    {
-        icon: "education",
-        prefix: "GPA ",
-        value: Number(education[0].gpa),
-        decimals: 2,
-        label: { th: "ปริญญาตรี ม.พะเยา", en: "Bachelor's, University of Phayao", zh: "帕尧大学 学士" },
-    },
-    {
-        icon: "projects",
-        value: projects.length,
-        unit: { th: "โปรเจกต์", en: "projects", zh: "个项目" },
-        label: { th: "ระบบองค์กร & งานส่วนตัว", en: "Company & personal work", zh: "企业系统与个人作品" },
-    },
-    {
-        icon: "location",
-        text: profile.location,
-        label: profile.status,
-    },
-];
+        {
+            icon: "work",
+            value: 2,
+            suffix: "+",
+            unit: { th: "ปี", en: "years", zh: "年" },
+            label: { th: "ประสบการณ์ทำงานจริง", en: "Professional experience", zh: "实际工作经验" },
+        },
+        {
+            icon: "education",
+            prefix: "GPA ",
+            value: Number(education[0].gpa),
+            decimals: 2,
+            label: { th: "ปริญญาตรี ม.พะเยา", en: "Bachelor's, University of Phayao", zh: "帕尧大学 学士" },
+        },
+        {
+            icon: "projects",
+            value: projects.length,
+            unit: { th: "โปรเจกต์", en: "projects", zh: "个项目" },
+            label: { th: "ระบบองค์กร & งานส่วนตัว", en: "Company & personal work", zh: "企业系统与个人作品" },
+        },
+        {
+            icon: "location",
+            text: profile.location,
+            label: profile.status,
+        },
+    ];
 
 export const skillCount = skills.reduce((n, s) => n + s.items.length, 0);
 
@@ -305,73 +329,73 @@ export const services: {
     desc: T;
     tags: string;
 }[] = [
-    {
-        icon: "server",
-        tone: "blue",
-        title: { th: "ระบบหลังบ้าน & API", en: "Backend & APIs", zh: "后端与 API" },
-        desc: {
-            th: "ออกแบบ API และ business logic ที่ดูแลต่อได้ง่าย",
-            en: "APIs and business logic that are easy to maintain",
-            zh: "设计易于维护的 API 与业务逻辑",
+        {
+            icon: "server",
+            tone: "blue",
+            title: { th: "ระบบหลังบ้าน & API", en: "Backend & APIs", zh: "后端与 API" },
+            desc: {
+                th: "ออกแบบ API และ business logic ที่ดูแลต่อได้ง่าย",
+                en: "APIs and business logic that are easy to maintain",
+                zh: "设计易于维护的 API 与业务逻辑",
+            },
+            tags: "Laravel · PHP",
         },
-        tags: "Laravel · PHP",
-    },
-    {
-        icon: "screen",
-        tone: "sky",
-        title: { th: "หน้าเว็บ & Dashboard", en: "Web UI & Dashboards", zh: "网页与仪表盘" },
-        desc: {
-            th: "หน้าจอที่ใช้ง่าย รองรับมือถือ ทำงานลื่น",
-            en: "Easy, responsive interfaces that feel fast",
-            zh: "易用、适配手机、流畅的界面",
+        {
+            icon: "screen",
+            tone: "sky",
+            title: { th: "หน้าเว็บ & Dashboard", en: "Web UI & Dashboards", zh: "网页与仪表盘" },
+            desc: {
+                th: "หน้าจอที่ใช้ง่าย รองรับมือถือ ทำงานลื่น",
+                en: "Easy, responsive interfaces that feel fast",
+                zh: "易用、适配手机、流畅的界面",
+            },
+            tags: "React · Next.js · Inertia",
         },
-        tags: "React · Next.js · Inertia",
-    },
-    {
-        icon: "database",
-        tone: "amber",
-        title: { th: "ออกแบบฐานข้อมูล", en: "Database Design", zh: "数据库设计" },
-        desc: {
-            th: "วางโครงสร้างข้อมูลให้ถูกต้องและ query ได้เร็ว",
-            en: "Correct data models with fast queries",
-            zh: "结构正确、查询高效的数据模型",
+        {
+            icon: "database",
+            tone: "amber",
+            title: { th: "ออกแบบฐานข้อมูล", en: "Database Design", zh: "数据库设计" },
+            desc: {
+                th: "วางโครงสร้างข้อมูลให้ถูกต้องและ query ได้เร็ว",
+                en: "Correct data models with fast queries",
+                zh: "结构正确、查询高效的数据模型",
+            },
+            tags: "PostgreSQL · MySQL · TiDB",
         },
-        tags: "PostgreSQL · MySQL · TiDB",
-    },
-    {
-        icon: "chat",
-        tone: "blue",
-        title: { th: "แชท & เรียลไทม์", en: "Chat & Real-time", zh: "聊天与实时功能" },
-        desc: {
-            th: "เชื่อม webhook จากหลายแพลตฟอร์มเข้าระบบเดียว",
-            en: "Webhooks from many platforms in one system",
-            zh: "将多平台 Webhook 接入同一系统",
+        {
+            icon: "chat",
+            tone: "blue",
+            title: { th: "แชท & เรียลไทม์", en: "Chat & Real-time", zh: "聊天与实时功能" },
+            desc: {
+                th: "เชื่อม webhook จากหลายแพลตฟอร์มเข้าระบบเดียว",
+                en: "Webhooks from many platforms in one system",
+                zh: "将多平台 Webhook 接入同一系统",
+            },
+            tags: "Socket.io · Broadcasting",
         },
-        tags: "Socket.io · Broadcasting",
-    },
-    {
-        icon: "deploy",
-        tone: "sky",
-        title: { th: "Deploy & DevOps", en: "Deploy & DevOps", zh: "部署与 DevOps" },
-        desc: {
-            th: "ขึ้นระบบจริงบน server และ cloud พร้อมใช้งาน",
-            en: "Shipping to servers and the cloud, ready to use",
-            zh: "部署到服务器与云端，随时可用",
+        {
+            icon: "deploy",
+            tone: "sky",
+            title: { th: "Deploy & DevOps", en: "Deploy & DevOps", zh: "部署与 DevOps" },
+            desc: {
+                th: "ขึ้นระบบจริงบน server และ cloud พร้อมใช้งาน",
+                en: "Shipping to servers and the cloud, ready to use",
+                zh: "部署到服务器与云端，随时可用",
+            },
+            tags: "Docker · Nginx · Vercel",
         },
-        tags: "Docker · Nginx · Vercel",
-    },
-    {
-        icon: "ai",
-        tone: "amber",
-        title: { th: "AI & แอป macOS", en: "AI & macOS Apps", zh: "AI 与 macOS 应用" },
-        desc: {
-            th: "โมเดลคัดกรองรูปภาพ และแอปเครื่องมือบน Mac",
-            en: "Image screening models and Mac utility apps",
-            zh: "图片筛查模型与 Mac 工具应用",
+        {
+            icon: "ai",
+            tone: "amber",
+            title: { th: "AI & แอป macOS", en: "AI & macOS Apps", zh: "AI 与 macOS 应用" },
+            desc: {
+                th: "โมเดลคัดกรองรูปภาพ และแอปเครื่องมือบน Mac",
+                en: "Image screening models and Mac utility apps",
+                zh: "图片筛查模型与 Mac 工具应用",
+            },
+            tags: "Python · Swift · Ollama",
         },
-        tags: "Python · Swift · Ollama",
-    },
-];
+    ];
 
 /** เทคโนโลยีที่โชว์ในแถบใต้ Hero (ชื่อต้องตรงกับ key ใน skillIcon) */
 export const techStrip = ["Laravel", "React", "Next.js", "PostgreSQL", "Docker", "Swift"];
@@ -431,9 +455,9 @@ export const ui = {
     language: { th: "ภาษา", en: "Language", zh: "语言" },
     // ----- Hero -----
     heroEyebrow: {
-        th: "Full-Stack Web Developer · น่าน, ประเทศไทย",
-        en: "Full-Stack Web Developer · Nan, Thailand",
-        zh: "全栈 Web 开发工程师 · 泰国难府",
+        th: "Full-Stack Web Developer",
+        en: "Full-Stack Web Developer",
+        zh: "全栈 Web 开发工程师",
     },
     // หัวข้อแบ่งเป็น 3 บรรทัด: line1 / line2Before + line2Highlight / line3
     heroLine1: { th: "สร้างระบบ", en: "Building systems", zh: "打造" },
@@ -478,6 +502,7 @@ export const ui = {
     filterPersonal: { th: "งานส่วนตัว", en: "Personal", zh: "个人项目" },
     featured: { th: "เด่น", en: "Featured", zh: "精选" },
     // ----- ทักษะ -----
+    languagesTitle: { th: "ภาษา", en: "Languages", zh: "语言能力" },
     skillsCount: { th: "{n} อย่างที่ผมใช้ทำงาน", en: "{n} tools I work with", zh: "我常用的 {n} 项技术" },
     // ----- ติดต่อ -----
     contactChecks1: { th: "พร้อมเริ่มงานทันที", en: "Available to start now", zh: "可立即入职" },

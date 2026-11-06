@@ -37,7 +37,7 @@ export function HeroSection({ lang }: { lang: Lang }) {
                         className={`mb-6 mt-4 font-bold leading-[1.15] text-slate-900 dark:text-white ${
                             // ภาษาอังกฤษคำยาวกว่า จึงใช้ตัวเล็กลงเพื่อไม่ให้ตัดเป็น 5 บรรทัด
                             lang === "en" ? "text-[36px] sm:text-5xl lg:text-[54px]" : "text-[40px] sm:text-6xl lg:text-[68px]"
-                        }`}
+                            }`}
                     >
                         {t(ui.heroLine1)}
                         <br />
@@ -132,7 +132,9 @@ export function HeroSection({ lang }: { lang: Lang }) {
                             <p className="leading-snug text-slate-600 dark:text-slate-400">
                                 {t(ui.cardStackLabel)}
                                 <br />
-                                <b className="text-slate-900 dark:text-white">Laravel · React · PostgreSQL</b>
+                                <b className="text-slate-900 dark:text-white">
+                                    Laravel · React · PostgreSQL
+                                </b>
                             </p>
                         </div>
 
