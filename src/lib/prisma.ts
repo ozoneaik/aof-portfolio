@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { PrismaMariaDb } from "@prisma/adapter-mariadb";
-import { PrismaClient } from "../generated/prisma/client";
+import { PrismaClient } from "../../generated/prisma/client";
 
 const adapter = new PrismaMariaDb({
   host: process.env.DATABASE_HOST,
@@ -15,6 +15,10 @@ const adapter = new PrismaMariaDb({
   connectTimeout: 10_000,
   connectionLimit: 5,
 });
-const prisma = new PrismaClient({ adapter });
+// next dev โหลดไฟล์ใหม่ทุกครั้งที่แก้โค้ด ถ้าสร้าง PrismaClient ใหม่ทุกรอบ connection จะเต็ม pool
+// จึงเก็บตัวเดิมไว้ใน globalThis แล้วใช้ซ้ำ
+const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
+const prisma = globalForPrisma.prisma ?? new PrismaClient({ adapter });
+if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
 export { prisma };

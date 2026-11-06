@@ -31,7 +31,7 @@ const factIcons: Record<(typeof facts)[number]["icon"], React.ReactNode> = {
 };
 
 // แบนเนอร์สีฟ้า "สวัสดีครับ ผมอ๊อฟ" (ตำแหน่งเดียวกับ "Meet Your Instructor" ในรูปอ้างอิง)
-export function AboutBanner({ lang }: { lang: Lang }) {
+export function AboutBanner({ lang, projectCount }: { lang: Lang; projectCount: number }) {
     const t = (v: Record<Lang, string>) => v[lang];
 
     return (
@@ -74,7 +74,12 @@ export function AboutBanner({ lang }: { lang: Lang }) {
                             <div>
                                 <b className="block text-[15px]">
                                     {f.value !== undefined ? (
-                                        <CountUp value={f.value} decimals={f.decimals} prefix={f.prefix} suffix={f.suffix} />
+                                        <CountUp
+                                            value={f.value === "projectCount" ? projectCount : f.value}
+                                            decimals={f.decimals}
+                                            prefix={f.prefix}
+                                            suffix={f.suffix}
+                                        />
                                     ) : (
                                         f.text && t(f.text)
                                     )}

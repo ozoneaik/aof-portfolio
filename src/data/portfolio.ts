@@ -114,125 +114,7 @@ export const experience: {
         },
     ];
 
-export type Project = {
-    /** ใช้เป็น key และชื่อ path ที่โชว์บนการ์ด เช่น ~/omni-channel */
-    slug: string;
-    /** ใช้กับตัวกรอง "งานบริษัท / งานส่วนตัว" */
-    category: "work" | "personal";
-    title: T;
-    desc: T;
-    tags: string[];
-    featured?: boolean;
-    /** measurable results, shown on the card and in the detail dialog */
-    impact?: T[];
-    /** longer write-up shown only in the detail dialog */
-    details?: T;
-    /** what you did on the project */
-    role?: T;
-    /** screenshot in public/, shown in the detail dialog */
-    image?: string;
-};
-
-export const projects: Project[] = [
-    {
-        slug: "omni-channel",
-        category: "work",
-        title: { th: "ระบบรวมแชทหลายแพลตฟอร์ม", en: "Omni-Channel Chat Platform", zh: "全渠道聊天平台" },
-        desc: {
-            th: "รวมแชทจาก Lazada, Shopee, Facebook และ LINE ผ่าน webhook มาตอบในระบบเดียวแบบเรียลไทม์ มีรายงานการตอบแชทเพื่อประเมิน KPI และบอทตอบคำถามทั่วไป",
-            en: "Unifies Lazada, Shopee, Facebook and LINE chats via webhooks into one real-time inbox, with response reports for KPI evaluation and an FAQ bot.",
-            zh: "通过 Webhook 将 Lazada、Shopee、Facebook 和 LINE 的消息汇集到一个实时收件箱，提供用于 KPI 考核的回复报表和常见问题机器人。",
-        },
-        tags: ["React", "Laravel", "Socket.io", "Broadcasting", "PostgreSQL", "MySQL"],
-        featured: true,
-        impact: [
-            {
-                th: "รวม 4 แพลตฟอร์มแชทไว้ในระบบเดียว",
-                en: "4 chat platforms in one inbox",
-                zh: "4 个聊天平台统一到一个收件箱",
-            },
-        ],
-    },
-    {
-        slug: "ai-image",
-        category: "work",
-        title: { th: "AI คัดกรองรูปภาพ", en: "AI Image Screening Model", zh: "AI 图片筛查模型" },
-        desc: {
-            th: "โมเดล AI ทำงานร่วมกับระบบแชท ตรวจสอบรูปที่ลูกค้าส่งเข้ามาว่าเป็นภาพสวัสดีวันจันทร์ หรือภาพ 18+ หรือไม่",
-            en: "Works alongside the chat platform to classify incoming customer images — flagging greeting images and 18+ content.",
-            zh: "与聊天平台配合使用，自动识别客户发送的图片是否为问候图或 18+ 内容。",
-        },
-        tags: ["Python", "AI / ML"],
-        featured: true,
-    },
-    {
-        slug: "repair-request",
-        category: "work",
-        title: { th: "ระบบแจ้งซ่อม + สั่งซื้ออะไหล่", en: "Repair Request & Parts Ordering", zh: "报修与配件订购系统" },
-        desc: {
-            th: "ระบบแจ้งซ่อมพร้อมระบบสั่งซื้ออะไหล่ ตั้งแต่เลือกสินค้าจนถึงจัดส่ง ใช้ React กับ Laravel ในโปรเจคเดียวผ่าน Inertia",
-            en: "Repair ticketing with a built-in parts ordering flow from selection to delivery — React and Laravel in a single codebase via Inertia.",
-            zh: "报修工单系统，内置从选购到发货的配件订购流程；通过 Inertia 将 React 与 Laravel 整合在同一项目中。",
-        },
-        tags: ["React", "Laravel", "Inertia"],
-    },
-    {
-        slug: "leave-system",
-        category: "work",
-        title: { th: "ระบบจัดการการลา", en: "Leave Management System", zh: "请假管理系统" },
-        desc: {
-            th: "ผลงานช่วงฝึกงานที่ Big Data Agency — ระบบการลาของพนักงาน ตั้งแต่กรอกใบลาจนถึงขั้นตอนการอนุมัติและเซ็นเอกสาร",
-            en: "Internship project at Big Data Agency — employee leave workflow from request submission through multi-step approval and sign-off.",
-            zh: "在 Big Data Agency 实习期间的项目——员工请假流程，从提交申请到多级审批与签核。",
-        },
-        tags: ["Laravel", "PostgreSQL"],
-    },
-    {
-        slug: "qc-incentive",
-        category: "work",
-        title: { th: "ระบบ Incentive QC", en: "QC Incentive System", zh: "QC 绩效奖金系统" },
-        desc: {
-            th: "คำนวณค่าตอบแทนพิเศษรายเดือนให้กับพนักงานที่เกี่ยวข้องโดยอัตโนมัติ",
-            en: "Automatically calculates monthly incentive pay for QC staff.",
-            zh: "自动计算相关员工每月的绩效奖金。",
-        },
-        tags: ["Laravel", "React", "PostgreSQL"],
-    },
-    {
-        slug: "warranty",
-        category: "work",
-        title: { th: "ระบบลงทะเบียนรับประกันสินค้า", en: "Product Warranty Registration", zh: "产品保修登记系统" },
-        desc: {
-            th: "พัฒนาบน WordPress และแยกเว็บสำหรับลูกค้าประเทศเพื่อนบ้านด้วย React + Laravel ผ่าน Inertia",
-            en: "Built on WordPress, plus a separate site for neighboring-country customers using React + Laravel via Inertia.",
-            zh: "基于 WordPress 开发，并使用 React + Laravel（Inertia）为周边国家客户单独搭建网站。",
-        },
-        tags: ["WordPress", "React", "Laravel", "Inertia"],
-    },
-    {
-        slug: "machub",
-        category: "personal",
-        title: { th: "MacHub — แอปบน macOS", en: "MacHub — macOS Utility", zh: "MacHub — macOS 工具" },
-        desc: {
-            th: "แอปส่วนตัวบน MacBook: จำกัดการชาร์จแบต, โหมดล็อกคีย์บอร์ดเพื่อทำความสะอาด, clipboard, เช็คแรม, ดูอุณหภูมิ, color picker",
-            en: "Personal Mac toolkit: battery charge limit, keyboard-cleaning lock, clipboard history, RAM & temperature monitor, color picker.",
-            zh: "个人 Mac 工具箱：电池充电上限、清洁键盘锁定模式、剪贴板、内存与温度监控、取色器。",
-        },
-        tags: ["Swift", "macOS"],
-        impact: [{ th: "6 เครื่องมือในแอปเดียว", en: "6 tools in one app", zh: "一个应用集成 6 个工具" }],
-    },
-    {
-        slug: "inventory",
-        category: "personal",
-        title: { th: "ระบบสต็อกสินค้า", en: "Inventory Management", zh: "库存管理系统" },
-        desc: {
-            th: "จัดการสินค้าที่ขายบนหลายแพลตฟอร์ม สำหรับธุรกิจครอบครัว",
-            en: "Tracks stock sold across multiple marketplaces for the family business.",
-            zh: "为家族生意管理在多个电商平台销售的商品库存。",
-        },
-        tags: ["Next.js"],
-    },
-];
+// ข้อมูลผลงาน (projects) ย้ายไปเก็บใน database แล้ว: ดู prisma/seed.ts และ src/lib/projects.ts
 
 export const skills: { group: T; items: string[] }[] = [
     {
@@ -285,7 +167,8 @@ export const languages: { name: T; level: T; label: T; flag: string; certificate
 /** ตัวเลขในแบนเนอร์ "เกี่ยวกับผม" (นับขึ้นตอน scroll มาถึง) */
 export const facts: {
     icon: "work" | "education" | "projects" | "location";
-    value?: number;
+    /** ตัวเลข หรือ "projectCount" = จำนวนผลงานที่ดึงจาก database */
+    value?: number | "projectCount";
     decimals?: number;
     prefix?: string;
     suffix?: string;
@@ -309,7 +192,7 @@ export const facts: {
         },
         {
             icon: "projects",
-            value: projects.length,
+            value: "projectCount",
             unit: { th: "โปรเจกต์", en: "projects", zh: "个项目" },
             label: { th: "ระบบองค์กร & งานส่วนตัว", en: "Company & personal work", zh: "企业系统与个人作品" },
         },
@@ -502,6 +385,11 @@ export const ui = {
     filterWork: { th: "งานบริษัท", en: "Company work", zh: "公司项目" },
     filterPersonal: { th: "งานส่วนตัว", en: "Personal", zh: "个人项目" },
     featured: { th: "เด่น", en: "Featured", zh: "精选" },
+    screenshots: { th: "ภาพหน้าจอ {n} รูป", en: "{n} screenshots", zh: "{n} 张截图" },
+    prevImage: { th: "รูปก่อนหน้า", en: "Previous image", zh: "上一张" },
+    nextImage: { th: "รูปถัดไป", en: "Next image", zh: "下一张" },
+    viewCode: { th: "ดูโค้ดบน GitHub", en: "View code on GitHub", zh: "在 GitHub 查看代码" },
+    visitWebsite: { th: "เปิดเว็บไซต์", en: "Visit website", zh: "访问网站" },
     // ----- ทักษะ -----
     languagesTitle: { th: "ภาษา", en: "Languages", zh: "语言能力" },
     viewCertificate : { th: "ดูใบรับรอง", en: "View certificate", zh: "查看证书" },

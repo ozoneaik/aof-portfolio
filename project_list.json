@@ -1,0 +1,420 @@
+[
+    {
+        "projectName": "service-center(pk)",
+        "description": "ระบบแจ้งซ่อมพร้อมระบบสั่งซื้ออะไหล่ ตั้งแต่เลือกสินค้าจนถึงจัดส่ง ใช้ React กับ Laravel ในโปรเจคเดียวผ่าน Inertia",
+        "link": {
+            "github": "https://github.com/ozoneaik/Service-Center-PK.git",
+            "website": "https://service-center.pumpkin-th.com",
+            "preview": [
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/service_center_pk/sv_admin_manage.jpeg",
+                    "caption": {
+                        "th": "หน้าผู้ดูแลระบบ จัดการข้อมูลและผู้ใช้งานของศูนย์บริการ",
+                        "en": "Admin panel for managing service-center data and users",
+                        "zh": "管理员后台：管理服务中心数据与用户"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/service_center_pk/sv_diagram_and_shop.jpeg",
+                    "caption": {
+                        "th": "ไดอะแกรมอะไหล่ของสินค้า พร้อมสั่งซื้ออะไหล่ได้ในหน้าเดียวกัน",
+                        "en": "Product parts diagram with in-page parts ordering",
+                        "zh": "产品配件图解，可在同一页面订购配件"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/service_center_pk/sv_main.png",
+                    "caption": {
+                        "th": "หน้าหลักของระบบศูนย์บริการ",
+                        "en": "Service center home screen",
+                        "zh": "服务中心系统首页"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/service_center_pk/sv_repair_form_1.jpeg",
+                    "caption": {
+                        "th": "ฟอร์มแจ้งซ่อม (ส่วนที่ 1)",
+                        "en": "Repair request form (part 1)",
+                        "zh": "报修表单（第 1 部分）"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/service_center_pk/sv_repair_form_2.jpeg",
+                    "caption": {
+                        "th": "ฟอร์มแจ้งซ่อม (ส่วนที่ 2)",
+                        "en": "Repair request form (part 2)",
+                        "zh": "报修表单（第 2 部分）"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/service_center_pk/sv_repair_history.jpeg",
+                    "caption": {
+                        "th": "ประวัติงานซ่อมย้อนหลัง",
+                        "en": "Repair history",
+                        "zh": "维修历史记录"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/service_center_pk/sv_report.jpeg",
+                    "caption": {
+                        "th": "หน้ารายงานสรุปงานซ่อม",
+                        "en": "Repair summary reports",
+                        "zh": "维修汇总报表"
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "projectName": "callcenter-system-pk",
+        "description": "รวมแชทจาก Lazada, Shopee, Facebook และ LINE ผ่าน webhook มาตอบในระบบเดียวแบบเรียลไทม์ มีรายงานการตอบแชทเพื่อประเมิน KPI และบอทตอบคำถามทั่วไป",
+        "link": {
+            "github": "https://github.com/ozoneaik/Call-Center-System-PK.git",
+            "website": "https://callcenter-pk.pumpkin-th.com/home",
+            "preview": [
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/call-center-pk/cst_bots.png",
+                    "caption": {
+                        "th": "ตั้งค่าบอทตอบคำถามอัตโนมัติ",
+                        "en": "Auto-reply bot settings",
+                        "zh": "自动回复机器人设置"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/call-center-pk/cst_chat.jpeg",
+                    "caption": {
+                        "th": "หน้าแชทตอบลูกค้าแบบเรียลไทม์",
+                        "en": "Real-time customer chat",
+                        "zh": "实时客户聊天界面"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/call-center-pk/cst_chat_list.jpeg",
+                    "caption": {
+                        "th": "รายการแชทจากทุกแพลตฟอร์มรวมไว้ในที่เดียว",
+                        "en": "Unified chat list from every platform",
+                        "zh": "汇总所有平台的聊天列表"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/call-center-pk/cst_login.jpeg",
+                    "caption": {
+                        "th": "หน้าเข้าสู่ระบบ",
+                        "en": "Login page",
+                        "zh": "登录页面"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/call-center-pk/cst_main.jpeg",
+                    "caption": {
+                        "th": "หน้าหลักของระบบ",
+                        "en": "Main dashboard",
+                        "zh": "系统首页"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/call-center-pk/cst_my_case.jpeg",
+                    "caption": {
+                        "th": "เคสของฉัน: แชทที่พนักงานคนนั้นกำลังดูแล",
+                        "en": "My cases: chats assigned to the signed-in agent",
+                        "zh": "我的工单：当前客服负责的会话"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/call-center-pk/cst_platforms.png",
+                    "caption": {
+                        "th": "จัดการการเชื่อมต่อแพลตฟอร์ม Lazada, Shopee, Facebook และ LINE",
+                        "en": "Platform connections: Lazada, Shopee, Facebook and LINE",
+                        "zh": "平台接入管理：Lazada、Shopee、Facebook 与 LINE"
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "projectName": "stock-management",
+        "description": "จัดการสินค้าที่ขายบนหลายแพลตฟอร์ม สำหรับธุรกิจครอบครัว",
+        "link": {
+            "github": "https://github.com/ozoneaik/akk-stock-management-web.git",
+            "website": "https://akk-stock-management-web.vercel.app",
+            "preview": [
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/akk-stock-management-preview/buy_list.jpeg",
+                    "caption": {
+                        "th": "รายการสั่งซื้อสินค้าเข้าสต็อก",
+                        "en": "Purchase (stock-in) list",
+                        "zh": "进货清单"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/akk-stock-management-preview/dashboard.jpeg",
+                    "caption": {
+                        "th": "แดชบอร์ดสรุปยอดขายและสต็อก",
+                        "en": "Sales and stock dashboard",
+                        "zh": "销售与库存仪表盘"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/akk-stock-management-preview/login.jpeg",
+                    "caption": {
+                        "th": "หน้าเข้าสู่ระบบ",
+                        "en": "Login page",
+                        "zh": "登录页面"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/akk-stock-management-preview/main.jpeg",
+                    "caption": {
+                        "th": "หน้าหลักของระบบ",
+                        "en": "Main screen",
+                        "zh": "系统首页"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/akk-stock-management-preview/product_list.jpeg",
+                    "caption": {
+                        "th": "รายการสินค้าพร้อมจำนวนคงเหลือ",
+                        "en": "Product list with stock on hand",
+                        "zh": "商品列表及库存数量"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/akk-stock-management-preview/sale_form.app.jpeg",
+                    "caption": {
+                        "th": "ฟอร์มบันทึกการขาย",
+                        "en": "Sales entry form",
+                        "zh": "销售录入表单"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/akk-stock-management-preview/stock-mangement.png",
+                    "caption": {
+                        "th": "ภาพรวมระบบจัดการสต็อก",
+                        "en": "Stock management overview",
+                        "zh": "库存管理概览"
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "projectName": "macHub",
+        "description": "แอปส่วนตัวบน MacBook: จำกัดการชาร์จแบต, โหมดล็อกคีย์บอร์ดเพื่อทำความสะอาด, clipboard, เช็คแรม, ดูอุณหภูมิ, color picker",
+        "link": {
+            "github": "https://github.com/ozoneaik/MacHub_project.git",
+            "website": null,
+            "preview": [
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/macHub/about_me.png",
+                    "caption": {
+                        "th": "หน้าเกี่ยวกับแอป",
+                        "en": "About screen",
+                        "zh": "关于页面"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/macHub/bar.png",
+                    "caption": {
+                        "th": "เมนูของแอปบนแถบเมนู (menu bar) ของ macOS",
+                        "en": "App menu in the macOS menu bar",
+                        "zh": "macOS 菜单栏中的应用菜单"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/macHub/battery_chager_limiter.png",
+                    "caption": {
+                        "th": "จำกัดเปอร์เซ็นต์การชาร์จ เพื่อถนอมแบตเตอรี่",
+                        "en": "Battery charge limiter to extend battery life",
+                        "zh": "电池充电上限，延长电池寿命"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/macHub/clipboard.png",
+                    "caption": {
+                        "th": "ประวัติ clipboard ย้อนดูสิ่งที่เคยคัดลอก",
+                        "en": "Clipboard history",
+                        "zh": "剪贴板历史"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/macHub/color_picker.png",
+                    "caption": {
+                        "th": "เครื่องมือดูดสีจากหน้าจอ (color picker)",
+                        "en": "Screen color picker",
+                        "zh": "屏幕取色器"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/macHub/general.png",
+                    "caption": {
+                        "th": "ตั้งค่าทั่วไปของแอป",
+                        "en": "General settings",
+                        "zh": "通用设置"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/macHub/keyboard_cleaner.png",
+                    "caption": {
+                        "th": "โหมดล็อกคีย์บอร์ดชั่วคราวเพื่อทำความสะอาด",
+                        "en": "Keyboard lock mode for cleaning",
+                        "zh": "清洁键盘锁定模式"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/macHub/temperature_and_ram_usage.png",
+                    "caption": {
+                        "th": "ดูอุณหภูมิเครื่องและการใช้แรม",
+                        "en": "Temperature and RAM usage monitor",
+                        "zh": "温度与内存使用监控"
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "projectName": "leave-manage-system",
+        "description": "ผลงานช่วงฝึกงานที่ Big Data Agency — ระบบการลาของพนักงาน ตั้งแต่กรอกใบลาจนถึงขั้นตอนการอนุมัติและเซ็นเอกสาร",
+        "link": {
+            "github": "https://github.com/ozoneaik/leave-manage-system.git",
+            "website": null,
+            "preview": [
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/lms-bda/01_submit_leave_form_save_confirm.png",
+                    "caption": {
+                        "th": "พนักงานกรอกใบลาและยืนยันการบันทึก",
+                        "en": "Employee fills in a leave request and confirms saving",
+                        "zh": "员工填写请假单并确认保存"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/lms-bda/02_dashboard_add_leave_button.png",
+                    "caption": {
+                        "th": "แดชบอร์ดพนักงาน พร้อมปุ่มยื่นใบลา",
+                        "en": "Employee dashboard with the new-leave button",
+                        "zh": "员工仪表盘及新建请假按钮"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/lms-bda/03_leave_request_list.png",
+                    "caption": {
+                        "th": "รายการใบลาของฉัน",
+                        "en": "My leave requests",
+                        "zh": "我的请假记录"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/lms-bda/04_leave_request_detail.png",
+                    "caption": {
+                        "th": "รายละเอียดใบลา",
+                        "en": "Leave request details",
+                        "zh": "请假单详情"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/lms-bda/05_cancel_leave_confirm.png",
+                    "caption": {
+                        "th": "ยืนยันการยกเลิกใบลา",
+                        "en": "Confirm cancelling a leave request",
+                        "zh": "确认取消请假"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/lms-bda/06_cancel_leave_success.png",
+                    "caption": {
+                        "th": "ยกเลิกใบลาสำเร็จ",
+                        "en": "Leave request cancelled",
+                        "zh": "请假已成功取消"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/lms-bda/07_substitute_request_list.png",
+                    "caption": {
+                        "th": "รายการคำขอให้ปฏิบัติงานแทน",
+                        "en": "Requests to cover for a colleague",
+                        "zh": "代班请求列表"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/lms-bda/08_substitute_accept_confirm.png",
+                    "caption": {
+                        "th": "ยืนยันรับปฏิบัติงานแทน",
+                        "en": "Confirm accepting a cover request",
+                        "zh": "确认接受代班"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/lms-bda/09_substitute_accepted_result.png",
+                    "caption": {
+                        "th": "ผลลัพธ์หลังรับปฏิบัติงานแทนแล้ว",
+                        "en": "Cover request accepted",
+                        "zh": "代班已接受"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/lms-bda/10_employee_leave_request_list.png",
+                    "caption": {
+                        "th": "ผู้อนุมัติดูรายการใบลาของพนักงาน",
+                        "en": "Approver views employees' leave requests",
+                        "zh": "审批人查看员工请假单"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/lms-bda/11_approve_leave_dialog.png",
+                    "caption": {
+                        "th": "หน้าต่างอนุมัติใบลา",
+                        "en": "Approve leave dialog",
+                        "zh": "审批请假对话框"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/lms-bda/12_approve_leave_success.png",
+                    "caption": {
+                        "th": "อนุมัติใบลาสำเร็จ",
+                        "en": "Leave approved",
+                        "zh": "请假已批准"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/lms-bda/13_employee_list.png",
+                    "caption": {
+                        "th": "รายชื่อพนักงาน",
+                        "en": "Employee list",
+                        "zh": "员工列表"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/lms-bda/14_employee_detail_leave_history.png",
+                    "caption": {
+                        "th": "ข้อมูลพนักงานพร้อมประวัติการลา",
+                        "en": "Employee profile with leave history",
+                        "zh": "员工详情及请假历史"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/lms-bda/15_hr_admin_employee_list.png",
+                    "caption": {
+                        "th": "HR จัดการรายชื่อพนักงานทั้งหมด",
+                        "en": "HR admin: all employees",
+                        "zh": "HR 管理员：全部员工"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/lms-bda/16_hr_edit_leave_balance.png",
+                    "caption": {
+                        "th": "HR แก้ไขจำนวนวันลาคงเหลือ",
+                        "en": "HR edits leave balances",
+                        "zh": "HR 修改剩余假期天数"
+                    }
+                },
+                {
+                    "url": "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/lms-bda/17_hr_transfer_approval_rights.png",
+                    "caption": {
+                        "th": "HR โอนสิทธิ์การอนุมัติใบลาให้คนอื่น",
+                        "en": "HR transfers leave-approval rights",
+                        "zh": "HR 转移请假审批权限"
+                    }
+                }
+            ]
+        }
+    }
+]

@@ -1,23 +1,11 @@
-import { projects, ui, type Lang } from "@/data/portfolio";
+import { ui, type Lang } from "@/data/portfolio";
+import type { ProjectView } from "@/lib/projects";
 import { SectionHead } from "@/components/ui/Decor";
-import { ProjectsGrid, type ProjectView } from "@/components/ui/ProjectsGrid";
+import { ProjectsGrid } from "@/components/ui/ProjectsGrid";
 
-export function ProjectsSection({ lang }: { lang: Lang }) {
+// ข้อมูลผลงานมาจาก database (page.tsx ดึงด้วย getProjects แล้วส่งมา) และแปลเป็นภาษาปัจจุบันแล้ว
+export function ProjectsSection({ lang, projects }: { lang: Lang; projects: ProjectView[] }) {
     const t = (v: Record<Lang, string>) => v[lang];
-
-    // แปลงข้อมูลโปรเจกต์เป็นภาษาปัจจุบันก่อนส่งให้ฝั่ง client
-    const items: ProjectView[] = projects.map((p) => ({
-        slug: p.slug,
-        category: p.category,
-        featured: Boolean(p.featured),
-        title: t(p.title),
-        desc: t(p.desc),
-        details: p.details && t(p.details),
-        role: p.role && t(p.role),
-        impact: (p.impact ?? []).map(t),
-        tags: p.tags,
-        image: p.image,
-    }));
 
     return (
         <section
@@ -27,7 +15,7 @@ export function ProjectsSection({ lang }: { lang: Lang }) {
             <div className="mx-auto max-w-6xl px-5 sm:px-6">
                 <SectionHead eyebrow={t(ui.nav.projects)} title={t(ui.projectsTitle)} />
                 <ProjectsGrid
-                    items={items}
+                    items={projects}
                     labels={{
                         all: t(ui.filterAll),
                         work: t(ui.filterWork),
@@ -38,6 +26,11 @@ export function ProjectsSection({ lang }: { lang: Lang }) {
                         role: t(ui.projectRole),
                         impact: t(ui.projectImpact),
                         stack: t(ui.projectStack),
+                        screenshots: t(ui.screenshots),
+                        prevImage: t(ui.prevImage),
+                        nextImage: t(ui.nextImage),
+                        viewCode: t(ui.viewCode),
+                        visitWebsite: t(ui.visitWebsite),
                     }}
                 />
             </div>

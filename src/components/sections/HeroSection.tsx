@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { fill, heroStack, profile, projects, socials, ui, type Lang } from "@/data/portfolio";
+import { fill, heroStack, profile, socials, ui, type Lang } from "@/data/portfolio";
+import type { ProjectView } from "@/lib/projects";
 import { brandColor, skillIcon } from "@/components/Icons";
 import { DownloadIcon } from "@/components/icons/DownloadIcon";
 import { Blob } from "@/components/ui/Decor";
@@ -10,9 +11,10 @@ import { ParallaxScene } from "@/components/ui/ParallaxScene";
 const floatCard =
     "absolute z-10 animate-float rounded-2xl bg-white p-4 text-[13px] shadow-soft transition-transform duration-500 ease-out dark:bg-ink-2 dark:ring-1 dark:ring-blue-900/50";
 
-export function HeroSection({ lang }: { lang: Lang }) {
+export function HeroSection({ lang, projects }: { lang: Lang; projects: ProjectView[] }) {
     const t = (v: Record<Lang, string>) => v[lang];
-    const omniChat = projects.find((p) => p.slug === "omni-channel")!;
+    // การ์ดลอยใช้ชื่อระบบรวมแชทจาก database (ถ้าหาไม่เจอใช้ข้อความสำรอง)
+    const chatTitle = projects.find((p) => p.slug === "callcenter-system-pk")?.title ?? "Omni-Channel Chat";
     const github = socials.find((s) => s.id === "github")!;
     // แปลงข้อความ terminal ทุกคำสั่งเป็นภาษาปัจจุบัน เช่น { help: { th, en, zh } } → { help: "..." }
     const termText = Object.fromEntries(Object.entries(ui.term).map(([key, v]) => [key, v[lang]])) as Record<
@@ -114,7 +116,7 @@ export function HeroSection({ lang }: { lang: Lang }) {
                                     src={profile.photo}
                                     alt={t(profile.name)}
                                     fill
-                                    priority
+                                    loading="eager"
                                     sizes="(min-width: 640px) 330px, 260px"
                                     className="object-cover"
                                     style={{ objectPosition: "50% 72%" }}
@@ -140,7 +142,7 @@ export function HeroSection({ lang }: { lang: Lang }) {
 
                         {/* การ์ด: ระบบรวมแชท */}
                         <div data-depth="30" style={{ animationDelay: "-4s" }} className={`${floatCard} right-0 top-28 w-[190px] sm:w-[214px] lg:-right-3.5 lg:top-36`}>
-                            <p className="text-[11.5px] text-slate-500 dark:text-slate-400">{t(omniChat.title)}</p>
+                            <p className="text-[11.5px] text-slate-500 dark:text-slate-400">{chatTitle}</p>
                             <p className="my-0.5 text-xl font-bold leading-tight text-slate-900 sm:text-[26px] dark:text-white">{t(ui.cardChatBig)}</p>
                             <p className="text-[11.5px] font-medium text-emerald-700 dark:text-emerald-400">● {t(ui.cardChatSub)}</p>
                             <div className="mt-2.5 flex flex-wrap gap-1.5">

@@ -1,10 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { CloseIcon } from "@/components/icons/CloseIcon";
 import { TrendIcon } from "@/components/icons/TrendIcon";
-import type { ProjectLabels, ProjectView } from "@/components/ui/ProjectsGrid";
+import type { ProjectView } from "@/lib/projects";
+import { ProjectGallery } from "@/components/ui/ProjectGallery";
+import type { ProjectLabels } from "@/components/ui/ProjectsGrid";
 
 const heading = "mt-6 font-mono text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400";
 
@@ -38,7 +39,7 @@ export function ProjectDialog({
             onClose={onClose}
             // คลิกที่พื้นหลังมืด = คลิกโดน <dialog> เอง → ปิด
             onClick={(e) => e.target === e.currentTarget && ref.current?.close()}
-            className="m-auto w-[calc(100%-2rem)] max-w-2xl rounded-3xl border-0 bg-white p-0 text-slate-900 shadow-2xl backdrop:bg-slate-950/60 backdrop:backdrop-blur-sm dark:bg-ink-2 dark:text-slate-100"
+            className="m-auto w-[calc(100%-2rem)] max-w-3xl rounded-3xl border-0 bg-white p-0 text-slate-900 shadow-2xl backdrop:bg-slate-950/60 backdrop:backdrop-blur-sm dark:bg-ink-2 dark:text-slate-100"
         >
             {project && (
                 <div className="max-h-[85vh] overflow-y-auto p-6 sm:p-8">
@@ -57,11 +58,8 @@ export function ProjectDialog({
                         </button>
                     </div>
 
-                    {project.image && (
-                        <div className="relative mt-5 aspect-video overflow-hidden rounded-2xl bg-blue-50 dark:bg-blue-950">
-                            <Image src={project.image} alt={project.title} fill sizes="(min-width: 672px) 640px, 100vw" className="object-cover" />
-                        </div>
-                    )}
+                    {/* gallery ภาพหน้าจอ + คำอธิบาย (key = รีเซ็ตกลับรูปแรกเมื่อเปิดโปรเจกต์อื่น) */}
+                    <ProjectGallery key={project.slug} images={project.images} title={project.title} labels={labels} />
 
                     <p className="mt-5 leading-relaxed text-slate-600 dark:text-slate-300">{project.desc}</p>
                     {project.details && <p className="mt-3 leading-relaxed text-slate-600 dark:text-slate-300">{project.details}</p>}
@@ -94,6 +92,32 @@ export function ProjectDialog({
                             </span>
                         ))}
                     </div>
+
+                    {/* ลิงก์ GitHub / เว็บไซต์ (แสดงเฉพาะที่มี) */}
+                    {(project.githubUrl || project.websiteUrl) && (
+                        <div className="mt-7 flex flex-wrap gap-3">
+                            {project.websiteUrl && (
+                                <a
+                                    href={project.websiteUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+                                >
+                                    {labels.visitWebsite} ↗
+                                </a>
+                            )}
+                            {project.githubUrl && (
+                                <a
+                                    href={project.githubUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="rounded-full border border-blue-200 px-5 py-2.5 text-sm font-semibold text-blue-700 transition hover:border-blue-500 hover:bg-blue-50 dark:border-blue-800 dark:text-blue-300 dark:hover:bg-blue-950"
+                                >
+                                    {labels.viewCode} ↗
+                                </a>
+                            )}
+                        </div>
+                    )}
                 </div>
             )}
         </dialog>

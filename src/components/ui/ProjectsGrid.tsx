@@ -1,22 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import type { ProjectView } from "@/lib/projects";
 import { TrendIcon } from "@/components/icons/TrendIcon";
 import { ProjectDialog } from "@/components/ui/ProjectDialog";
-
-/** ข้อมูลโปรเจกต์ที่แปลภาษาแล้ว (มาจาก ProjectsSection) */
-export type ProjectView = {
-    slug: string;
-    category: "work" | "personal";
-    featured: boolean;
-    title: string;
-    desc: string;
-    details?: string;
-    role?: string;
-    impact: string[];
-    tags: string[];
-    image?: string;
-};
 
 export type ProjectLabels = {
     all: string;
@@ -28,6 +15,11 @@ export type ProjectLabels = {
     role: string;
     impact: string;
     stack: string;
+    screenshots: string; // มี {n} ให้แทนที่
+    prevImage: string;
+    nextImage: string;
+    viewCode: string;
+    visitWebsite: string;
 };
 
 type Filter = "all" | ProjectView["category"];
@@ -113,6 +105,18 @@ export function ProjectsGrid({ items, labels }: { items: ProjectView[]; labels: 
                                 </span>
                             ))}
                         </div>
+
+                        {/* บอกว่ามีภาพหน้าจอให้ดูกี่รูป (กดการ์ดแล้วเปิด gallery) */}
+                        {p.images.length > 0 && (
+                            <p className={`mt-4 flex items-center gap-1.5 text-xs ${p.featured ? "text-[#a5b4cb]" : "text-slate-500 dark:text-slate-400"}`}>
+                                <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                                    <rect x="1.75" y="3" width="12.5" height="10" rx="1.5" />
+                                    <circle cx="5.5" cy="6.5" r="1" />
+                                    <path d="m14.25 10.5-3.5-3.5-6 6" />
+                                </svg>
+                                {labels.screenshots.replace("{n}", String(p.images.length))}
+                            </p>
+                        )}
 
                         <p className={`mt-4 text-sm font-semibold ${p.featured ? "text-sky-300" : "text-blue-600 dark:text-blue-400"}`}>
                             {labels.viewDetails} <span className="inline-block transition group-hover:translate-x-1">→</span>
