@@ -29,7 +29,7 @@ export const profile = {
     email: "aofphuwadech@gmail.com",
     phone: "093-162-2330",
     phoneRaw: "0931622330",
-    photo: "/profile.jpg",
+    photo: "/profile2.jpg",
     // put the PDF files in public/cv/
     cv: {
         th: "/cv/phuwadech-cv-th.pdf",
