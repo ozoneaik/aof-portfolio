@@ -1,10 +1,9 @@
 import Image from "next/image";
-import { fill, heroStack, profile, socials, ui, type Lang } from "@/data/portfolio";
+import { fill, heroStack, profile, ui, type Lang } from "@/data/portfolio";
 import type { ProjectView } from "@/lib/projects";
 import { brandColor, skillIcon } from "@/components/Icons";
 import { DownloadIcon } from "@/components/icons/DownloadIcon";
 import { Blob } from "@/components/ui/Decor";
-import { InteractiveTerminal } from "@/components/ui/InteractiveTerminal";
 import { ParallaxScene } from "@/components/ui/ParallaxScene";
 
 // การ์ดลอยรอบรูป: ลอยขึ้นลงช้า ๆ (animate-float) + ขยับตามเมาส์ (data-depth)
@@ -15,14 +14,6 @@ export function HeroSection({ lang, projects }: { lang: Lang; projects: ProjectV
     const t = (v: Record<Lang, string>) => v[lang];
     // การ์ดลอยใช้ชื่อระบบรวมแชทจาก database (ถ้าหาไม่เจอใช้ข้อความสำรอง)
     const chatTitle = projects.find((p) => p.slug === "callcenter-system-pk")?.title ?? "Omni-Channel Chat";
-    const github = socials.find((s) => s.id === "github")!;
-    // แปลงข้อความ terminal ทุกคำสั่งเป็นภาษาปัจจุบัน เช่น { help: { th, en, zh } } → { help: "..." }
-    const termText = Object.fromEntries(Object.entries(ui.term).map(([key, v]) => [key, v[lang]])) as Record<
-        keyof typeof ui.term,
-        string
-    >;
-    // ข้อความ "ลองพิมพ์ {cmd} ในนี้ดูครับ" แบ่งเป็นก่อน/หลัง เพื่อใส่ <kbd>help</kbd> ตรงกลาง
-    const [hintBefore, hintAfter] = t(ui.termHint).split("{cmd}");
 
     return (
         <ParallaxScene className="relative overflow-hidden pb-20 pt-10 lg:pt-12">
@@ -106,26 +97,26 @@ export function HeroSection({ lang, projects }: { lang: Lang; projects: ProjectV
                             data-depth="6"
                             className="absolute -right-32 -top-14 h-[600px] w-[560px] rounded-full bg-gradient-to-br from-sky-100 to-blue-50 transition-transform duration-500 ease-out lg:-right-44 lg:h-[680px] lg:w-[640px] dark:from-blue-950/70 dark:to-ink-2"
                         />
-                        {/* รูปโปรไฟล์ในกรอบโค้ง */}
+                        {/* รูปโปรไฟล์ในกรอบโค้ง (ไม่มีการ์ดทับหน้าหรือลำตัว) */}
                         <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
                             <div
                                 data-depth="10"
-                                className="relative h-[420px] w-[260px] overflow-hidden rounded-[200px_200px_28px_28px] border-[6px] border-white shadow-[0_30px_60px_-24px_rgb(15_35_71/0.45)] transition-transform duration-500 ease-out sm:h-[520px] sm:w-[330px] dark:border-ink-2"
+                                className="relative h-[460px] w-[290px] overflow-hidden rounded-[200px_200px_28px_28px] border-[6px] border-white shadow-[0_30px_60px_-24px_rgb(15_35_71/0.45)] transition-transform duration-500 ease-out sm:h-[560px] sm:w-[360px] dark:border-ink-2"
                             >
                                 <Image
                                     src={profile.photo}
                                     alt={t(profile.name)}
                                     fill
                                     loading="eager"
-                                    sizes="(min-width: 640px) 330px, 260px"
+                                    sizes="(min-width: 640px) 360px, 290px"
                                     className="object-cover"
                                     style={{ objectPosition: "50% 72%" }}
                                 />
                             </div>
                         </div>
 
-                        {/* การ์ด: สายที่ถนัด */}
-                        <div data-depth="26" style={{ animationDelay: "-2s" }} className={`${floatCard} left-0 top-2.5 flex w-[220px] items-center gap-3 lg:-left-2.5 lg:top-10`}>
+                        {/* การ์ด: สายที่ถนัด → มุมซ้ายบน ทับแค่ขอบโค้งของกรอบรูป ไม่โดนหน้า */}
+                        <div data-depth="26" style={{ animationDelay: "-2s" }} className={`${floatCard} -left-1 top-0 flex w-[210px] items-center gap-3 lg:-left-8 lg:top-6`}>
                             <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[10px] bg-blue-50 text-blue-600 dark:bg-blue-950 dark:text-blue-300">
                                 <svg viewBox="0 0 18 18" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                                     <path d="m6 5-4 4 4 4M12 5l4 4-4 4" />
@@ -140,10 +131,10 @@ export function HeroSection({ lang, projects }: { lang: Lang; projects: ProjectV
                             </p>
                         </div>
 
-                        {/* การ์ด: ระบบรวมแชท */}
-                        <div data-depth="30" style={{ animationDelay: "-4s" }} className={`${floatCard} right-0 top-28 w-[190px] sm:w-[214px] lg:-right-3.5 lg:top-36`}>
+                        {/* การ์ด: ระบบรวมแชท → มุมขวาล่าง ยื่นออกนอกกรอบรูป (มือถือซ่อน เพราะจอแคบจะบังตัว) */}
+                        <div data-depth="30" style={{ animationDelay: "-4s" }} className={`${floatCard} -right-4 bottom-10 hidden w-[200px] sm:block lg:-right-12 lg:bottom-16`}>
                             <p className="text-[11.5px] text-slate-500 dark:text-slate-400">{chatTitle}</p>
-                            <p className="my-0.5 text-xl font-bold leading-tight text-slate-900 sm:text-[26px] dark:text-white">{t(ui.cardChatBig)}</p>
+                            <p className="my-0.5 text-[22px] font-bold leading-tight text-slate-900 dark:text-white">{t(ui.cardChatBig)}</p>
                             <p className="text-[11.5px] font-medium text-emerald-700 dark:text-emerald-400">● {t(ui.cardChatSub)}</p>
                             <div className="mt-2.5 flex flex-wrap gap-1.5">
                                 {["Lazada", "Shopee", "Facebook", "LINE"].map((p) => (
@@ -176,30 +167,6 @@ export function HeroSection({ lang, projects }: { lang: Lang; projects: ProjectV
                         </div> */}
                     </div>
 
-                    {/* Terminal: จอใหญ่ลอยทับมุมซ้ายของรูป / มือถืออยู่ใต้รูป */}
-                    <div
-                        data-depth="22"
-                        style={{ animationDelay: "-5s" }}
-                        className="relative z-20 mt-6 transition-transform duration-500 ease-out lg:absolute lg:-left-10 lg:bottom-24 lg:mt-0 lg:w-[290px] lg:animate-float"
-                    >
-                        <InteractiveTerminal
-                            text={{
-                                ...termText,
-                                label: t(ui.termLabel),
-                                name: t(profile.nameShort),
-                                role: `${t(profile.role)} · ${t(profile.location)}`,
-                                email: profile.email,
-                                phone: profile.phone,
-                                github: `@${github.handle}`,
-                                cvHref: t(profile.cv),
-                            }}
-                        />
-                        <p className="mt-3 text-center text-xs text-slate-500 lg:absolute lg:-bottom-9 lg:left-1/2 lg:mt-0 lg:-translate-x-1/2 lg:whitespace-nowrap lg:rounded-full lg:bg-white lg:px-3 lg:py-1 lg:text-slate-600 lg:shadow-soft dark:text-slate-400 lg:dark:bg-ink-2">
-                            {hintBefore}
-                            <kbd className="rounded bg-blue-50 px-1.5 font-mono text-blue-700 dark:bg-blue-950 dark:text-blue-300">help</kbd>
-                            {hintAfter}
-                        </p>
-                    </div>
                 </div>
             </div>
         </ParallaxScene>

@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { facts, profile, ui, type Lang } from "@/data/portfolio";
+import { facts, profile, socials, ui, type Lang } from "@/data/portfolio";
+import { InteractiveTerminal } from "@/components/ui/InteractiveTerminal";
 import { CountUp } from "@/components/ui/CountUp";
 
 // ไอคอนหน้าแต่ละข้อ (key ตรงกับ facts[].icon)
@@ -33,25 +33,43 @@ const factIcons: Record<(typeof facts)[number]["icon"], React.ReactNode> = {
 // แบนเนอร์สีฟ้า "สวัสดีครับ ผมอ๊อฟ" (ตำแหน่งเดียวกับ "Meet Your Instructor" ในรูปอ้างอิง)
 export function AboutBanner({ lang, projectCount }: { lang: Lang; projectCount: number }) {
     const t = (v: Record<Lang, string>) => v[lang];
+    const github = socials.find((s) => s.id === "github")!;
+    // แปลงข้อความ terminal ทุกคำสั่งเป็นภาษาปัจจุบัน เช่น { help: { th, en, zh } } → { help: "..." }
+    const termText = Object.fromEntries(Object.entries(ui.term).map(([key, v]) => [key, v[lang]])) as Record<
+        keyof typeof ui.term,
+        string
+    >;
+    // ข้อความ "ลองพิมพ์ {cmd} ในนี้ดูครับ" แบ่งเป็นก่อน/หลัง เพื่อใส่ <kbd>help</kbd> ตรงกลาง
+    const [hintBefore, hintAfter] = t(ui.termHint).split("{cmd}");
 
     return (
         <section id="about" className="scroll-mt-24 px-5 sm:px-6">
-            <div className="reveal relative mx-auto grid max-w-6xl items-center gap-8 overflow-hidden rounded-[28px] bg-gradient-to-r from-sky-400 to-blue-500 p-6 text-white sm:p-9 md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1.3fr_1fr] lg:gap-10 dark:from-sky-700 dark:to-blue-800">
+            <div className="reveal relative mx-auto grid max-w-6xl items-center gap-8 overflow-hidden rounded-[28px] bg-gradient-to-r from-sky-400 to-blue-500 p-6 text-white sm:p-9 md:grid-cols-[300px_1fr] lg:grid-cols-[300px_1.2fr_1fr] lg:gap-10 dark:from-sky-700 dark:to-blue-800">
                 {/* วงกลมจาง ๆ มุมขวาบน */}
                 <div aria-hidden className="absolute -right-32 -top-40 h-96 w-96 rounded-full bg-white/10" />
 
-                <div className="relative h-60 overflow-hidden rounded-[20px] border-[5px] border-white/90 lg:h-[250px]">
-                    <Image
-                        src={profile.photo}
-                        alt={t(profile.name)}
-                        fill
-                        sizes="(min-width: 1024px) 280px, (min-width: 768px) 220px, 100vw"
-                        className="object-cover"
-                        style={{ objectPosition: "50% 66%" }}
+                {/* Terminal พิมพ์คำสั่งได้ (ย้ายมาจาก Hero เพื่อไม่ให้บังรูปโปรไฟล์) */}
+                <div className="relative order-2 md:order-1">
+                    <InteractiveTerminal
+                        text={{
+                            ...termText,
+                            label: t(ui.termLabel),
+                            name: t(profile.nameShort),
+                            role: `${t(profile.role)} · ${t(profile.location)}`,
+                            email: profile.email,
+                            phone: profile.phone,
+                            github: `@${github.handle}`,
+                            cvHref: t(profile.cv),
+                        }}
                     />
+                    <p className="mt-3 text-center text-xs text-white/85">
+                        {hintBefore}
+                        <kbd className="rounded bg-white/20 px-1.5 font-mono text-white">help</kbd>
+                        {hintAfter}
+                    </p>
                 </div>
 
-                <div className="relative">
+                <div className="relative order-1 md:order-2">
                     <p className="font-semibold text-white/85">{t(ui.aboutTitle)}</p>
                     <h2 className="mb-3 mt-1 text-[28px] font-bold leading-tight sm:text-4xl">{t(ui.aboutHello)}</h2>
                     <p className="max-w-[460px] text-[14.5px] leading-relaxed text-white/90">{t(ui.aboutBody)}</p>
@@ -63,7 +81,7 @@ export function AboutBanner({ lang, projectCount }: { lang: Lang; projectCount: 
                     </a>
                 </div>
 
-                <ul className="relative grid gap-4 sm:grid-cols-2 md:col-span-2 lg:col-span-1 lg:grid-cols-1">
+                <ul className="relative order-3 grid gap-4 sm:grid-cols-2 md:col-span-2 lg:col-span-1 lg:grid-cols-1">
                     {facts.map((f) => (
                         <li key={f.icon} className="flex items-center gap-3.5 text-sm">
                             <span className="grid h-[38px] w-[38px] shrink-0 place-items-center rounded-xl border-[1.5px] border-white/55">
