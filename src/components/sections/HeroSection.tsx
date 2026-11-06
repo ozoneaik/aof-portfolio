@@ -153,7 +153,7 @@ export function HeroSection({ lang }: { lang: Lang }) {
                         </div>
 
                         {/* การ์ด: สถานะพร้อมทำงาน */}
-                        <div data-depth="18" style={{ animationDelay: "-1s" }} className={`${floatCard} bottom-5 right-0 flex w-[236px] gap-3 lg:-right-1.5 lg:bottom-12`}>
+                        {/* <div data-depth="18" style={{ animationDelay: "-1s" }} className={`${floatCard} bottom-5 right-0 flex w-[236px] gap-3 lg:-right-1.5 lg:bottom-12`}>
                             <span className="relative h-[38px] w-[38px] shrink-0 overflow-hidden rounded-full border-2 border-blue-100 dark:border-blue-900">
                                 <Image
                                     src={profile.photo}
@@ -171,7 +171,7 @@ export function HeroSection({ lang }: { lang: Lang }) {
                                 </p>
                                 <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{t(profile.statusNote)}</p>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
 
                     {/* Terminal: จอใหญ่ลอยทับมุมซ้ายของรูป / มือถืออยู่ใต้รูป */}

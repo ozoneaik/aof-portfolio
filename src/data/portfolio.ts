@@ -54,7 +54,7 @@ export const education = [
     {
         school: { th: "มหาวิทยาลัยพะเยา", en: "University of Phayao", zh: "帕尧大学" } as T,
         level: { th: "ปริญญาตรี", en: "Bachelor's Degree", zh: "学士学位" } as T,
-        gpa: "3.32",
+        gpa: "3.22",
         logo: "/University_of_Phayao.svg",
     },
     {
@@ -258,7 +258,7 @@ export const skills: { group: T; items: string[] }[] = [
 ];
 
 /** ทักษะด้านภาษา: level คือจำนวนจุดที่เติมสีจาก 5 จุด */
-export const languages: { name: T; level: T; label: T; flag: string }[] = [
+export const languages: { name: T; level: T; label: T; flag: string; certificate?: string }[] = [
     {
         name: { th: "ภาษาไทย", en: "Thai", zh: "泰语" },
         level: { th: "ภาษาแม่", en: "Native", zh: "母语" },
@@ -271,7 +271,8 @@ export const languages: { name: T; level: T; label: T; flag: string }[] = [
     },
     {
         name: { th: "ภาษาอังกฤษ", en: "English", zh: "英语" },
-        level: { th: "B1 (CEFR)", en: "B1 (CEFR)", zh: "B1（CEFR）" },
+        level: { th: "A1 (CEFR)", en: "A1 (CEFR)", zh: "A1（CEFR）" },
+        certificate: " https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/CEFR.jpeg",
         label: {
             th: "อ่านเอกสารเทคนิคได้ เขียนอีเมลและข้อความทำงานได้",
             en: "Reads technical docs; writes work emails and messages",
@@ -503,6 +504,7 @@ export const ui = {
     featured: { th: "เด่น", en: "Featured", zh: "精选" },
     // ----- ทักษะ -----
     languagesTitle: { th: "ภาษา", en: "Languages", zh: "语言能力" },
+    viewCertificate : { th: "ดูใบรับรอง", en: "View certificate", zh: "查看证书" },
     skillsCount: { th: "{n} อย่างที่ผมใช้ทำงาน", en: "{n} tools I work with", zh: "我常用的 {n} 项技术" },
     // ----- ติดต่อ -----
     contactChecks1: { th: "พร้อมเริ่มงานทันที", en: "Available to start now", zh: "可立即入职" },

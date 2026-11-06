@@ -86,9 +86,18 @@ export function SkillsSection({ lang }: { lang: Lang }) {
                                         <div className="min-w-0">
                                             <p className="font-semibold text-slate-900 dark:text-white">{l.name[lang]}</p>
                                             <p className="text-[13px] text-slate-500 dark:text-slate-400">{l.label[lang]}</p>
+                                            {l.certificate && (
+                                                <a
+                                                    href={l.certificate}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="mt-1 inline-flex items-center gap-1 text-[13px] font-medium text-blue-600 hover:underline dark:text-blue-400"
+                                                >
+                                                    {ui.viewCertificate[lang]} ↗
+                                                </a>
+                                            )}
                                         </div>
                                     </div>
-                                    {/* ระดับ: จุดที่ i < level เติมสีน้ำเงิน ที่เหลือเป็นสีจาง */}
                                     <div className="flex shrink-0 gap-1.5shrink-0 rounded-full bg-blue-50 px-3 py-1 font-mono text-xs font-semibold text-blue-700 dark:bg-blue-950 dark:text-blue-300">
                                         {l.level[lang]}
                                     </div>
