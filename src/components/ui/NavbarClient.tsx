@@ -6,7 +6,8 @@ import { langLabel, langs, type Lang } from "@/lib/i18n";
 import { CloseIcon } from "@/components/icons/CloseIcon";
 import { MoonIcon } from "@/components/icons/MoonIcon";
 import { SunIcon } from "@/components/icons/SunIcon";
-
+import Image from "next/image";
+import Avatar from "../../../public/avatar.png"
 type Props = {
     lang: Lang;
     links: { id: string; label: string }[];
@@ -23,7 +24,7 @@ function toggleTheme() {
     const isDark = document.documentElement.classList.toggle("dark");
     try {
         localStorage.setItem("theme", isDark ? "dark" : "light");
-    } catch {}
+    } catch { }
 }
 
 export function NavbarClient({ lang, links, labels }: Props) {
@@ -76,15 +77,19 @@ export function NavbarClient({ lang, links, labels }: Props) {
 
     return (
         <header
-            className={`sticky top-0 z-50 border-b bg-white/85 backdrop-blur-md transition-colors dark:bg-ink/85 ${
-                scrolled ? "border-blue-100 dark:border-blue-900/40" : "border-transparent"
-            }`}
+            className={`sticky top-0 z-50 border-b bg-white/85 backdrop-blur-md transition-colors dark:bg-ink/85 ${scrolled ? "border-blue-100 dark:border-blue-900/40" : "border-transparent"
+                }`}
         >
             <nav className="mx-auto flex h-[72px] max-w-6xl items-center justify-between gap-3 px-5 sm:px-6">
                 {/* โลโก้ */}
                 <a href="#top" className="flex items-center gap-2.5">
+
                     <span className="relative grid h-9 w-9 place-items-center rounded-xl bg-blue-600 font-mono text-[15px] font-semibold text-white">
-                        a/
+                        {/* a/ */}
+                        <Image
+                            alt=""
+                            src={Avatar}
+                        />
                         <span className="absolute -right-1 -top-1 h-3 w-3 rounded-full border-2 border-white bg-amber-400 dark:border-ink" />
                     </span>
                     <span className="leading-tight">
@@ -106,9 +111,8 @@ export function NavbarClient({ lang, links, labels }: Props) {
                             >
                                 {label}
                                 <span
-                                    className={`absolute -bottom-1 left-0 h-0.5 rounded-full bg-blue-600 transition-all duration-300 dark:bg-blue-400 ${
-                                        active === id ? "w-full opacity-100" : "w-0 opacity-0"
-                                    }`}
+                                    className={`absolute -bottom-1 left-0 h-0.5 rounded-full bg-blue-600 transition-all duration-300 dark:bg-blue-400 ${active === id ? "w-full opacity-100" : "w-0 opacity-0"
+                                        }`}
                                 />
                             </a>
                         </li>
@@ -128,11 +132,10 @@ export function NavbarClient({ lang, links, labels }: Props) {
                                 type="button"
                                 onClick={() => l !== lang && switchLang(l)}
                                 aria-pressed={lang === l}
-                                className={`rounded-full px-2.5 py-1 transition-colors ${
-                                    lang === l
-                                        ? "bg-blue-600 text-white"
-                                        : "text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-300"
-                                }`}
+                                className={`rounded-full px-2.5 py-1 transition-colors ${lang === l
+                                    ? "bg-blue-600 text-white"
+                                    : "text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-300"
+                                    }`}
                             >
                                 {langLabel[l]}
                             </button>

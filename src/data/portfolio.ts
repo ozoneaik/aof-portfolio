@@ -414,7 +414,7 @@ export const ui = {
     },
     hi: { th: "สวัสดีครับ ผมชื่อ", en: "Hi, I'm", zh: "你好，我是" },
     ctaProjects: { th: "ดูผลงาน", en: "View Projects", zh: "查看项目" },
-    ctaContact: { th: "ติดต่อผม", en: "Get in Touch", zh: "联系我" },
+    ctaContact: { th: "ติดต่อ", en: "Get in Touch", zh: "联系我" },
     downloadCv: { th: "ดาวน์โหลด CV", en: "Download CV", zh: "下载简历" },
     copyEmail: { th: "คัดลอกอีเมล", en: "Copy email", zh: "复制邮箱" },
     copied: { th: "คัดลอกแล้ว", en: "Copied!", zh: "已复制" },
