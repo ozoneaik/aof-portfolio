@@ -25,15 +25,18 @@ import {
     SiPrisma,
     SiPython,
     SiReact,
+    SiScikitlearn,
     SiSwift,
     SiTailwindcss,
     SiTidb,
     SiTypescript,
+    SiUbuntu,
     SiVercel,
     SiWebstorm,
     SiWordpress,
+    SiXampp,
 } from "react-icons/si";
-import { TbDatabase } from "react-icons/tb";
+import { TbBrandAws, TbBrandWindows, TbDatabase } from "react-icons/tb";
 import { VscVscode } from "react-icons/vsc";
 import { FacebookIcon } from "./icons/FacebookIcon";
 import { GitHubIcon } from "./icons/GithubIcon";
@@ -74,6 +77,13 @@ export const skillIcon: Record<string, IconType> = {
     Nginx: SiNginx,
     Apache: SiApache,
     Cloudflare: SiCloudflare,
+    "Cloudflare R2": SiCloudflare,
+    XAMPP: SiXampp,
+    "Ubuntu Server": SiUbuntu,
+    "Windows Server": TbBrandWindows,
+    "AWS S3": TbBrandAws,
+    "Laravel Vapor": SiLaravel,
+    "scikit-learn": SiScikitlearn,
     Vercel: SiVercel,
     Netlify: SiNetlify,
     Hostinger: SiHostinger,

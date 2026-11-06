@@ -15,7 +15,7 @@ export const profile = {
         en: "A web developer who loves building systems people actually use — from internal tools and real-time chat to native macOS apps.",
         zh: "热爱打造真正实用系统的 Web 开发者——从企业内部系统、实时聊天到原生 macOS 应用。",
     } as T,
-    location: { th: "น่าน, ประเทศไทย", en: "Nan, Thailand", zh: "泰国 难府" } as T,
+    location: { th: "จตุจักร, กรุงเทพฯ", en: "Chatuchak, Bangkok", zh: "曼谷 乍都乍" } as T,
     status: {
         th: "พร้อมเริ่มงานทันที",
         en: "Available to start now",
@@ -65,6 +65,7 @@ export const education = [
     },
 ];
 
+/** ประสบการณ์ เรียงตามเวลา: ฝึกงาน → งานประจำ → รับราชการทหาร */
 export const experience: {
     period: T;
     title: T;
@@ -75,13 +76,15 @@ export const experience: {
     logoZoom?: number;
 }[] = [
         {
-            period: { th: "2568 – 2569", en: "2025 – 2026", zh: "2025 – 2026" },
-            title: { th: "รับราชการทหาร", en: "Military Service", zh: "服兵役" },
-            org: { th: "กองทัพไทย", en: "Royal Thai Armed Forces", zh: "泰国皇家武装部队" },
+            period: { th: "2565 – 2566", en: "2022 – 2023", zh: "2022 – 2023" },
+            title: { th: "Web Developer (ฝึกงาน)", en: "Web Developer Intern", zh: "Web 开发实习生" },
+            org: { th: "Big Data Agency, เชียงใหม่", en: "Big Data Agency, Chiang Mai", zh: "Big Data Agency（清迈）" },
+            logo: "/big-data-agency.png",
+            logoZoom: 1.35,
             desc: {
-                th: "เข้ารับราชการทหารตามหน้าที่ ปลดประจำการวันที่ 1 พฤศจิกายน 2569",
-                en: "Completed mandatory military service. Discharged on November 1, 2026.",
-                zh: "依法服兵役，于 2026 年 11 月 1 日退役。",
+                th: "ฝึกงานในตำแหน่งนักพัฒนาเว็บ พัฒนาระบบจัดการการลาของพนักงานด้วย React, Laravel และ PostgreSQL ร่วมกับทีมพัฒนา",
+                en: "Web development internship — built an employee leave management system with React, Laravel and PostgreSQL alongside the dev team.",
+                zh: "担任 Web 开发实习生，与开发团队一起使用 React、Laravel 和 PostgreSQL 开发员工请假管理系统。",
             },
         },
         {
@@ -101,15 +104,13 @@ export const experience: {
             },
         },
         {
-            period: { th: "2565 – 2566", en: "2022 – 2023", zh: "2022 – 2023" },
-            title: { th: "Web Developer (ฝึกงาน)", en: "Web Developer Intern", zh: "Web 开发实习生" },
-            org: { th: "Big Data Agency, เชียงใหม่", en: "Big Data Agency, Chiang Mai", zh: "Big Data Agency（清迈）" },
-            logo: "/big-data-agency.png",
-            logoZoom: 1.35,
+            period: { th: "2568 – 2569", en: "2025 – 2026", zh: "2025 – 2026" },
+            title: { th: "รับราชการทหาร", en: "Military Service", zh: "服兵役" },
+            org: { th: "กองทัพไทย", en: "Royal Thai Armed Forces", zh: "泰国皇家武装部队" },
             desc: {
-                th: "ฝึกงานในตำแหน่งนักพัฒนาเว็บ พัฒนาระบบจัดการการลาของพนักงานด้วย Laravel และ PostgreSQL ร่วมกับทีมพัฒนา",
-                en: "Web development internship — built an employee leave management system with Laravel and PostgreSQL alongside the dev team.",
-                zh: "担任 Web 开发实习生，与开发团队一起使用 Laravel 和 PostgreSQL 开发员工请假管理系统。",
+                th: "เข้ารับราชการทหารตามหน้าที่ ปลดประจำการวันที่ 1 พฤศจิกายน 2569",
+                en: "Completed mandatory military service. Discharged on November 1, 2026.",
+                zh: "依法服兵役，于 2026 年 11 月 1 日退役。",
             },
         },
     ];
@@ -126,8 +127,21 @@ export const skills: { group: T; items: string[] }[] = [
         items: ["PostgreSQL", "MySQL", "TiDB", "Prisma ORM", "Eloquent ORM", "HeidiSQL", "Navicat", "pgAdmin"],
     },
     {
-        group: { th: "DevOps & Hosting", en: "DevOps & Hosting", zh: "DevOps 与部署" },
-        items: ["Docker", "Nginx", "Apache", "Cloudflare", "Vercel", "Netlify", "Hostinger"],
+        group: { th: "Deploy, Server & Cloud", en: "Deploy, Server & Cloud", zh: "部署、服务器与云" },
+        items: [
+            "Docker",
+            "Nginx",
+            "Apache",
+            "XAMPP",
+            "Ubuntu Server",
+            "Windows Server",
+            "AWS S3",
+            "Cloudflare R2",
+            "Vercel",
+            "Laravel Vapor",
+            "Hostinger",
+            "Netlify",
+        ],
     },
     {
         group: { th: "เครื่องมือ", en: "Tools", zh: "工具" },
@@ -135,7 +149,7 @@ export const skills: { group: T; items: string[] }[] = [
     },
     {
         group: { th: "AI", en: "AI", zh: "AI" },
-        items: ["Claude", "ChatGPT", "Gemini", "Ollama"],
+        items: ["scikit-learn", "Claude", "ChatGPT", "Gemini", "Ollama"],
     },
 ];
 
@@ -143,7 +157,7 @@ export const skills: { group: T; items: string[] }[] = [
 export const languages: { name: T; level: T; label: T; flag: string; certificate?: string }[] = [
     {
         name: { th: "ภาษาไทย", en: "Thai", zh: "泰语" },
-        level: { th: "ภาษาแม่", en: "Native", zh: "母语" },
+        level: { th: "ภาษาหลัก", en: "Native", zh: "母语" },
         label: {
             th: "สื่อสาร อ่าน เขียนได้คล่องแคล่ว",
             en: "Fluent in speaking, reading and writing",
@@ -154,11 +168,11 @@ export const languages: { name: T; level: T; label: T; flag: string; certificate
     {
         name: { th: "ภาษาอังกฤษ", en: "English", zh: "英语" },
         level: { th: "A1 (CEFR)", en: "A1 (CEFR)", zh: "A1（CEFR）" },
-        certificate: " https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/CEFR.jpeg",
+        certificate: "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/CEFR.jpeg",
         label: {
-            th: "อ่านเอกสารเทคนิคได้ เขียนอีเมลและข้อความทำงานได้",
-            en: "Reads technical docs; writes work emails and messages",
-            zh: "能阅读技术文档，撰写工作邮件与消息",
+            th: "อ่านเอกสารเทคนิคและ documentation พื้นฐานได้",
+            en: "Can read basic technical docs and documentation",
+            zh: "能阅读基础技术文档",
         },
         flag: "/flag-us.svg"
     },
@@ -255,7 +269,7 @@ export const services: {
                 en: "Webhooks from many platforms in one system",
                 zh: "将多平台 Webhook 接入同一系统",
             },
-            tags: "Socket.io · Broadcasting",
+            tags: "WebSocket · Webhook",
         },
         {
             icon: "deploy",
@@ -266,7 +280,7 @@ export const services: {
                 en: "Shipping to servers and the cloud, ready to use",
                 zh: "部署到服务器与云端，随时可用",
             },
-            tags: "Docker · Nginx · Vercel",
+            tags: "Docker · Nginx · Ubuntu · AWS",
         },
         {
             icon: "ai",
@@ -277,7 +291,7 @@ export const services: {
                 en: "Image screening models and Mac utility apps",
                 zh: "图片筛查模型与 Mac 工具应用",
             },
-            tags: "Python · Swift · Ollama",
+            tags: "Python · scikit-learn · Swift",
         },
     ];
 

@@ -133,7 +133,7 @@
     },
     {
         "projectName": "stock-management",
-        "description": "จัดการสินค้าที่ขายบนหลายแพลตฟอร์ม สำหรับธุรกิจครอบครัว",
+        "description": "จัดการสต็อกสินค้าสำหรับธุรกิจครอบครัว",
         "link": {
             "github": "https://github.com/ozoneaik/akk-stock-management-web.git",
             "website": "https://akk-stock-management-web.vercel.app",
