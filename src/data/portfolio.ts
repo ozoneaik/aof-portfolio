@@ -76,15 +76,13 @@ export const experience: {
     logoZoom?: number;
 }[] = [
         {
-            period: { th: "2565 – 2566", en: "2022 – 2023", zh: "2022 – 2023" },
-            title: { th: "Web Developer (ฝึกงาน)", en: "Web Developer Intern", zh: "Web 开发实习生" },
-            org: { th: "Big Data Agency, เชียงใหม่", en: "Big Data Agency, Chiang Mai", zh: "Big Data Agency（清迈）" },
-            logo: "/big-data-agency.png",
-            logoZoom: 1.35,
+            period: { th: "2568 – 2569", en: "2025 – 2026", zh: "2025 – 2026" },
+            title: { th: "รับราชการทหาร", en: "Military Service", zh: "服兵役" },
+            org: { th: "กองทัพไทย", en: "Royal Thai Armed Forces", zh: "泰国皇家武装部队" },
             desc: {
-                th: "ฝึกงานในตำแหน่งนักพัฒนาเว็บ พัฒนาระบบจัดการการลาของพนักงานด้วย React, Laravel และ PostgreSQL ร่วมกับทีมพัฒนา",
-                en: "Web development internship — built an employee leave management system with React, Laravel and PostgreSQL alongside the dev team.",
-                zh: "担任 Web 开发实习生，与开发团队一起使用 React、Laravel 和 PostgreSQL 开发员工请假管理系统。",
+                th: "เข้ารับราชการทหารตามหน้าที่ ปลดประจำการวันที่ 1 พฤศจิกายน 2569",
+                en: "Completed mandatory military service. Discharged on November 1, 2026.",
+                zh: "依法服兵役，于 2026 年 11 月 1 日退役。",
             },
         },
         {
@@ -104,13 +102,15 @@ export const experience: {
             },
         },
         {
-            period: { th: "2568 – 2569", en: "2025 – 2026", zh: "2025 – 2026" },
-            title: { th: "รับราชการทหาร", en: "Military Service", zh: "服兵役" },
-            org: { th: "กองทัพไทย", en: "Royal Thai Armed Forces", zh: "泰国皇家武装部队" },
+            period: { th: "2565 – 2566", en: "2022 – 2023", zh: "2022 – 2023" },
+            title: { th: "Web Developer (ฝึกงาน)", en: "Web Developer Intern", zh: "Web 开发实习生" },
+            org: { th: "Big Data Agency, เชียงใหม่", en: "Big Data Agency, Chiang Mai", zh: "Big Data Agency（清迈）" },
+            logo: "/big-data-agency.png",
+            logoZoom: 1.35,
             desc: {
-                th: "เข้ารับราชการทหารตามหน้าที่ ปลดประจำการวันที่ 1 พฤศจิกายน 2569",
-                en: "Completed mandatory military service. Discharged on November 1, 2026.",
-                zh: "依法服兵役，于 2026 年 11 月 1 日退役。",
+                th: "ฝึกงานในตำแหน่งนักพัฒนาเว็บ พัฒนาระบบจัดการการลาของพนักงานด้วย React, Laravel และ PostgreSQL ร่วมกับทีมพัฒนา",
+                en: "Web development internship — built an employee leave management system with React, Laravel and PostgreSQL alongside the dev team.",
+                zh: "担任 Web 开发实习生，与开发团队一起使用 React、Laravel 和 PostgreSQL 开发员工请假管理系统。",
             },
         },
     ];
