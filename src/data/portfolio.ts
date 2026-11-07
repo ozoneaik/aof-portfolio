@@ -29,7 +29,12 @@ export const profile = {
     email: "aofphuwadech@gmail.com",
     phone: "093-162-2330",
     phoneRaw: "0931622330",
-    photo: "/profile2.jpg",
+    photo: "/profile3.webp",
+    photos: [
+        { src: "/profile3.webp", position: "50% 30%" },
+        { src: "/profile2.jpg", position: "50% 72%" },
+        { src: "/profile.jpg", position: "50% 30%" },
+    ],
     // put the PDF files in public/cv/
     cv: {
         th: "/cv/phuwadech-cv-th.pdf",
@@ -378,6 +383,7 @@ export const ui = {
         zh: "在一个页面实时回复所有客户",
     },
     termHint: { th: "ลองพิมพ์ {cmd} ในนี้ดูครับ", en: "Try typing {cmd} in here", zh: "试着在这里输入 {cmd}" },
+    photoSlide: { th: "รูปที่ {n}", en: "Photo {n}", zh: "第 {n} 张照片" },
     termLabel: { th: "พิมพ์คำสั่ง terminal", en: "Type a terminal command", zh: "输入终端命令" },
     // ----- แถบเทคโนโลยี -----
     techStripTitle: {

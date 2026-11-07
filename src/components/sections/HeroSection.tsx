@@ -1,9 +1,9 @@
-import Image from "next/image";
 import { fill, heroStack, profile, ui, type Lang } from "@/data/portfolio";
 import type { ProjectView } from "@/lib/projects";
 import { brandColor, skillIcon } from "@/components/Icons";
 import { DownloadIcon } from "@/components/icons/DownloadIcon";
 import { Blob } from "@/components/ui/Decor";
+import { HeroPhotoSlider } from "@/components/ui/HeroPhotoSlider";
 import { ParallaxScene } from "@/components/ui/ParallaxScene";
 
 // การ์ดลอยรอบรูป: ลอยขึ้นลงช้า ๆ (animate-float) + ขยับตามเมาส์ (data-depth)
@@ -103,15 +103,7 @@ export function HeroSection({ lang, projects }: { lang: Lang; projects: ProjectV
                                 data-depth="10"
                                 className="relative h-[460px] w-[290px] overflow-hidden rounded-[200px_200px_28px_28px] border-[6px] border-white shadow-[0_30px_60px_-24px_rgb(15_35_71/0.45)] transition-transform duration-500 ease-out sm:h-[560px] sm:w-[360px] dark:border-ink-2"
                             >
-                                <Image
-                                    src={profile.photo}
-                                    alt={t(profile.name)}
-                                    fill
-                                    loading="eager"
-                                    sizes="(min-width: 640px) 360px, 290px"
-                                    className="object-cover"
-                                    style={{ objectPosition: "50% 72%" }}
-                                />
+                                <HeroPhotoSlider photos={profile.photos} alt={t(profile.name)} slideLabel={t(ui.photoSlide)} />
                             </div>
                         </div>
 
