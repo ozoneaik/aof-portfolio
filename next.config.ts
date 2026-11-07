@@ -14,6 +14,9 @@ const nextConfig: NextConfig = {
     remotePatterns: [{ protocol: "https", hostname: imageUrl }],
   },
   partialPrefetching: true,
+  experimental: {
+    agentUpgrade: "security",
+  },
   turbopack: {
     rules: {
       "*.css": {
