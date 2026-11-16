@@ -42,7 +42,7 @@ export default async function Image() {
                         }}
                     >
                         <div style={{ width: 14, height: 14, borderRadius: 7, background: "#10b981", marginRight: 12 }} />
-                        Available to start now
+                        Available from Dec 1, 2026
                     </div>
                 </div>
                 <div

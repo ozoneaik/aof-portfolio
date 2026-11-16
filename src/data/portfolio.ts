@@ -17,9 +17,9 @@ export const profile = {
     } as T,
     location: { th: "จตุจักร, กรุงเทพฯ", en: "Chatuchak, Bangkok", zh: "曼谷 乍都乍" } as T,
     status: {
-        th: "พร้อมเริ่มงานทันที",
-        en: "Available to start now",
-        zh: "可立即入职",
+        th: "พร้อมเริ่มงาน 1 ธ.ค. 2569",
+        en: "Available from Dec 1, 2026",
+        zh: "可于 2026 年 12 月 1 日入职",
     } as T,
     statusNote: {
         th: "ปลดประจำการแล้ว 1 พ.ย. 2569",
