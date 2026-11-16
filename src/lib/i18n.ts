@@ -1,6 +1,6 @@
-export const langs = ["th", "en", "zh"] as const;
+export const langs = ["th", "en"] as const;
 export type Lang = (typeof langs)[number];
-export const langLabel: Record<Lang, string> = { th: "TH", en: "EN", zh: "中" };
+export const langLabel: Record<Lang, string> = { th: "TH", en: "EN"};
 export type T = Record<Lang, string>;
 
 /** ใช้เช็คว่า string ที่มาจาก URL เป็นภาษาที่รองรับหรือไม่ */
