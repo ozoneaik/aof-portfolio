@@ -20,6 +20,7 @@ export type ProjectLabels = {
     nextImage: string;
     viewCode: string;
     visitWebsite: string;
+    confidential: string;
 };
 
 type Filter = "all" | ProjectView["category"];

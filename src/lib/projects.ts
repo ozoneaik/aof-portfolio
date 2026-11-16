@@ -19,6 +19,8 @@ export type ProjectView = {
     images: ProjectImageView[];
     githubUrl?: string;
     websiteUrl?: string;
+    /** true = งานของบริษัท → ไม่แสดงลิงก์โค้ด/เว็บไซต์ และแสดงข้อความอธิบายแทน */
+    confidential: boolean;
 };
 
 /**
@@ -45,6 +47,8 @@ export async function getProjects(lang: Lang): Promise<ProjectView[]> {
         .filter((p) => p.translations.length > 0) // ข้ามโปรเจกต์ที่ยังไม่มีข้อความภาษานี้
         .map((p) => {
             const tr = p.translations[0];
+            // งานบริษัท (category = work) เป็นทรัพย์สินของบริษัท จึงไม่ส่งลิงก์ออกไปที่หน้าเว็บเลย
+            const confidential = p.category === "work";
             return {
                 slug: p.slug,
                 category: p.category,
@@ -59,8 +63,9 @@ export async function getProjects(lang: Lang): Promise<ProjectView[]> {
                 images: [...p.images]
                     .sort((a, b) => Number(b.isCover) - Number(a.isCover))
                     .map((img) => ({ url: img.url, caption: captionFor(img.caption, lang) })),
-                githubUrl: p.githubUrl ?? undefined,
-                websiteUrl: p.websiteUrl ?? undefined,
+                githubUrl: confidential ? undefined : (p.githubUrl ?? undefined),
+                websiteUrl: confidential ? undefined : (p.websiteUrl ?? undefined),
+                confidential,
             };
         });
 }

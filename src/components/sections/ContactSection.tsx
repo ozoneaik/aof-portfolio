@@ -1,97 +1,82 @@
 import { profile, socials, ui, type Lang } from "@/data/portfolio";
 import { socialIcon } from "@/components/Icons";
+import { DownloadIcon } from "@/components/icons/DownloadIcon";
 import { CopyEmailButton } from "@/components/ui/CopyEmailButton";
-import { Blob } from "@/components/ui/Decor";
+import { SectionHead } from "@/components/ui/Decor";
 
-// ส่วนติดต่อ (วางแบบส่วน "ราคา" ในรูปอ้างอิง: รายการ ✓ ซ้าย / โน้ตเอียงตรงกลาง / การ์ดอีเมลขวา)
+// ส่วนติดต่อ: บล็อกใหญ่ 2 ช่อง (แบบปุ่ม Redeem / Buy ของเว็บเกม) + การ์ดโซเชียล
 export function ContactSection({ lang }: { lang: Lang }) {
     const t = (v: Record<Lang, string>) => v[lang];
-    const checks = [ui.contactChecks1, ui.contactChecks2, ui.contactChecks3, ui.contactChecks4];
 
     return (
-        <section
-            id="contact"
-            className="relative scroll-mt-20 overflow-hidden bg-gradient-to-b from-white to-blue-50 py-24 dark:from-ink dark:to-blue-950/40"
-        >
-            <Blob tone="amber" className="left-[46%] top-24 hidden lg:block" />
-            <Blob tone="sky" className="bottom-24 left-[40%] hidden lg:block" delay={-3} />
+        <section id="contact" className="scroll-mt-20 py-24">
+            <div className="mx-auto max-w-6xl px-5 sm:px-6">
+                <SectionHead eyebrow={t(ui.nav.contact)} title={t(ui.contactTitle)} />
 
-            <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 sm:px-6 md:grid-cols-2 lg:grid-cols-[1.1fr_0.8fr_1fr]">
-                {/* ซ้าย: หัวข้อ + รายการ ✓ */}
-                <div className="reveal">
-                    <p className="font-semibold text-sky-500 dark:text-sky-400">{t(ui.nav.contact)}</p>
-                    <h2 className="mb-3.5 mt-1.5 text-[32px] font-bold leading-tight text-slate-900 sm:text-[40px] dark:text-white">
-                        {t(ui.contactTitle)}
-                    </h2>
-                    <p className="max-w-sm text-slate-600 dark:text-slate-300">{t(ui.contactBody)}</p>
-                    <ul className="mt-6 grid gap-3">
-                        {checks.map((c) => (
-                            <li key={c.en} className="flex items-center gap-3 text-[15px] text-slate-700 dark:text-slate-200">
-                                <span className="grid h-[22px] w-[22px] shrink-0 place-items-center rounded-full bg-sky-500 text-white">
-                                    <svg viewBox="0 0 12 12" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                                        <path d="m2.5 6 2.5 2.5 4.5-5" />
-                                    </svg>
-                                </span>
-                                {t(c)}
-                            </li>
-                        ))}
-                    </ul>
+                <p className="reveal -mt-2 mb-10 max-w-xl text-slate-600 dark:text-slate-300">{t(ui.contactBody)}</p>
+
+                {/* ---------- บล็อกใหญ่ 2 ช่อง ---------- */}
+                <div className="grid gap-4 md:grid-cols-2">
+                    {/* อีเมล: พื้น navy */}
+                    <div className="reveal relative overflow-hidden bg-navy p-8 text-white dark:bg-navy-2">
+                        <span aria-hidden className="absolute -right-16 -top-16 h-56 w-56 rounded-full border-[30px] border-white/5" />
+                        <p className="text-sm text-slate-400">{t(ui.emailLabel)}</p>
+                        <a
+                            href={`mailto:${profile.email}`}
+                            className="mt-1 block break-all font-display text-[26px] font-black italic leading-tight text-sky-300 hover:text-white sm:text-3xl"
+                        >
+                            {t(ui.sendEmail)} →
+                        </a>
+                        <p className="mt-2 break-all font-mono text-sm text-slate-300">{profile.email}</p>
+                        <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+                            <CopyEmailButton
+                                email={profile.email}
+                                label={t(ui.copyEmail)}
+                                copiedLabel={t(ui.copied)}
+                                className="font-semibold text-amber-300 hover:underline"
+                            />
+                            <a href={`tel:${profile.phoneRaw}`} className="text-slate-300 hover:text-white">
+                                {t(ui.orCall)} <b className="text-white">{profile.phone}</b>
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* ดาวน์โหลด CV: พื้นฟ้า-น้ำเงิน */}
+                    <a
+                        href={t(profile.cv)}
+                        download
+                        className="reveal group relative flex items-center justify-between gap-6 overflow-hidden bg-gradient-to-r from-sky-500 to-blue-600 p-8 text-white transition hover:-translate-y-1 dark:from-sky-800 dark:to-blue-900"
+                    >
+                        <span aria-hidden className="absolute -bottom-20 -right-10 h-56 w-56 rounded-full border-[30px] border-white/10" />
+                        <span>
+                            <span className="block text-sm text-white/80">PDF · A4</span>
+                            <span className="block font-display text-[26px] font-black italic leading-tight sm:text-3xl">{t(ui.downloadCv)}</span>
+                        </span>
+                        <span className="relative grid h-14 w-14 shrink-0 place-items-center bg-white text-blue-600 transition group-hover:bg-amber-300 group-hover:text-slate-900">
+                            <DownloadIcon className="h-6 w-6" />
+                        </span>
+                    </a>
                 </div>
 
-                {/* กลาง: โน้ตเอียง + ลูกศร (จอใหญ่เท่านั้น) */}
-                <div className="reveal relative hidden justify-center lg:flex" aria-hidden>
-                    <div className="relative max-w-[230px] -rotate-3 rounded-[18px] bg-white px-6 py-5 text-[19px] font-semibold leading-snug text-slate-900 shadow-soft dark:bg-ink-2 dark:text-white">
-                        {t(ui.contactNote)}
-                        <svg viewBox="0 0 24 22" className="absolute -bottom-3 -right-2.5 h-[26px] w-7 text-sky-400" fill="currentColor">
-                            <path d="M12 21s-9-5.6-9-12.1A5 5 0 0 1 12 6a5 5 0 0 1 9 2.9C21 15.4 12 21 12 21Z" />
-                        </svg>
-                    </div>
-                    <svg viewBox="0 0 70 56" className="absolute -bottom-16 right-2.5 h-14 w-[70px] text-sky-400" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M6 4c0 26 18 42 54 44" />
-                        <path d="m50 38 10 10-12 6" />
-                    </svg>
-                </div>
-
-                {/* ขวา: การ์ดอีเมล */}
-                <div className="reveal rounded-3xl bg-white px-7 py-8 text-center shadow-soft dark:bg-ink-2 dark:ring-1 dark:ring-blue-900/50">
-                    <p className="text-sm text-slate-500 dark:text-slate-400">{t(ui.emailLabel)}</p>
-                    <p className="mb-2.5 mt-1 break-all text-xl font-bold text-slate-900 dark:text-white">{profile.email}</p>
-                    <a
-                        href={`tel:${profile.phoneRaw}`}
-                        className="inline-block rounded-full bg-blue-50 px-4 py-1.5 text-sm text-slate-700 hover:text-blue-700 dark:bg-blue-950 dark:text-slate-300"
-                    >
-                        {t(ui.orCall)} <b className="text-slate-900 dark:text-white">{profile.phone}</b>
-                    </a>
-                    <a
-                        href={`mailto:${profile.email}`}
-                        className="mt-6 block rounded-full bg-blue-600 py-4 font-semibold text-white shadow-[0_10px_24px_-8px_rgb(37_99_235/0.55)] transition hover:-translate-y-0.5 hover:bg-blue-700"
-                    >
-                        {t(ui.sendEmail)}
-                    </a>
-                    <CopyEmailButton
-                        email={profile.email}
-                        label={t(ui.copyEmail)}
-                        copiedLabel={t(ui.copied)}
-                        className="mt-3 text-[13.5px] font-medium text-blue-600 hover:underline dark:text-blue-400"
-                    />
-                    <div className="mt-5 flex justify-center gap-2.5 border-t border-[#eef2f8] pt-5 dark:border-blue-900/40">
-                        {socials.map((s) => {
-                            const Icon = socialIcon[s.id];
-                            return (
-                                <a
-                                    key={s.id}
-                                    href={s.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label={s.label}
-                                    title={s.label}
-                                    className="grid h-10 w-10 place-items-center rounded-xl border border-blue-100 text-slate-500 transition hover:-translate-y-0.5 hover:border-blue-500 hover:text-blue-600 dark:border-blue-900/60 dark:text-slate-400 dark:hover:text-blue-300"
-                                >
-                                    <Icon className="h-[18px] w-[18px]" />
-                                </a>
-                            );
-                        })}
-                    </div>
+                {/* ---------- การ์ดโซเชียล ---------- */}
+                <div className="mt-4 grid grid-cols-2 gap-4 lg:grid-cols-4">
+                    {socials.map((s) => {
+                        const Icon = socialIcon[s.id];
+                        return (
+                            <a
+                                key={s.id}
+                                href={s.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="reveal group flex flex-col gap-1 border-b-4 border-slate-900 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-blue-600 dark:border-slate-600 dark:bg-ink-2 dark:hover:border-sky-400"
+                            >
+                                <Icon className="h-6 w-6 text-slate-700 group-hover:text-blue-600 dark:text-slate-300 dark:group-hover:text-sky-300" />
+                                <b className="mt-2 font-display text-xl font-black italic text-slate-900 dark:text-white">{s.label}</b>
+                                <span className="truncate font-mono text-xs text-slate-500 dark:text-slate-400">{s.handle}</span>
+                                <span className="mt-2 font-bold text-blue-600 transition group-hover:translate-x-1 dark:text-sky-400">↗</span>
+                            </a>
+                        );
+                    })}
                 </div>
             </div>
         </section>

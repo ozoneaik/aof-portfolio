@@ -77,14 +77,14 @@ export function NavbarClient({ lang, links, labels }: Props) {
 
     return (
         <header
-            className={`sticky top-0 z-50 border-b bg-white/85 backdrop-blur-md transition-colors dark:bg-ink/85 ${scrolled ? "border-blue-100 dark:border-blue-900/40" : "border-transparent"
+            className={`sticky top-0 z-50 border-b bg-white transition-shadow dark:bg-ink ${scrolled ? "border-slate-200 shadow-[0_4px_20px_-12px_rgb(15_35_71/0.35)] dark:border-blue-900/40" : "border-transparent"
                 }`}
         >
             <nav className="mx-auto flex h-[72px] max-w-6xl items-center justify-between gap-3 px-5 sm:px-6">
                 {/* โลโก้ */}
                 <a href="#top" className="flex items-center gap-2.5">
 
-                    <span className="relative grid h-9 w-9 place-items-center rounded-xl bg-blue-600 font-mono text-[15px] font-semibold text-white">
+                    <span className="relative grid h-9 w-9 place-items-center rounded-md bg-blue-600 font-mono text-[15px] font-semibold text-white">
                         {/* a/ */}
                         <Image
                             alt=""
@@ -93,7 +93,7 @@ export function NavbarClient({ lang, links, labels }: Props) {
                         <span className="absolute -right-1 -top-1 h-3 w-3 rounded-full border-2 border-white bg-amber-400 dark:border-ink" />
                     </span>
                     <span className="leading-tight">
-                        <b className="block text-[15px] tracking-wide text-slate-900 dark:text-white">PHUWADECH</b>
+                        <b className="block font-display text-[17px] font-black italic tracking-wide text-slate-900 dark:text-white">PHUWADECH</b>
                         <small className="hidden font-mono sm:block text-[10px] uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
                             full-stack dev
                         </small>
@@ -101,17 +101,17 @@ export function NavbarClient({ lang, links, labels }: Props) {
                 </a>
 
                 {/* เมนูหลัก (จอใหญ่) */}
-                <ul className="hidden items-center gap-7 text-[14.5px] lg:flex">
+                <ul className="hidden h-full items-center gap-7 text-[14.5px] font-semibold lg:flex">
                     {links.map(({ id, label }) => (
-                        <li key={id}>
+                        <li key={id} className="h-full">
                             <a
                                 href={`#${id}`}
                                 aria-current={active === id ? "true" : undefined}
-                                className={`relative py-1 transition-colors ${linkClass(id)}`}
+                                className={`relative flex h-full items-center transition-colors ${linkClass(id)}`}
                             >
                                 {label}
                                 <span
-                                    className={`absolute -bottom-1 left-0 h-0.5 rounded-full bg-blue-600 transition-all duration-300 dark:bg-blue-400 ${active === id ? "w-full opacity-100" : "w-0 opacity-0"
+                                    className={`absolute bottom-0 left-0 h-[3px] bg-blue-600 transition-all duration-300 dark:bg-sky-400 ${active === id ? "w-full opacity-100" : "w-0 opacity-0"
                                         }`}
                                 />
                             </a>
@@ -124,7 +124,7 @@ export function NavbarClient({ lang, links, labels }: Props) {
                     <div
                         role="group"
                         aria-label={labels.language}
-                        className="flex rounded-full border border-blue-100 p-0.5 font-mono text-xs dark:border-blue-900/60"
+                        className="flex rounded-md border-2 border-slate-900 p-0.5 font-mono text-xs dark:border-slate-600"
                     >
                         {langs.map((l) => (
                             <button
@@ -132,7 +132,7 @@ export function NavbarClient({ lang, links, labels }: Props) {
                                 type="button"
                                 onClick={() => l !== lang && switchLang(l)}
                                 aria-pressed={lang === l}
-                                className={`rounded-full px-2.5 py-1 transition-colors ${lang === l
+                                className={`rounded-sm px-2.5 py-1 font-semibold transition-colors ${lang === l
                                     ? "bg-blue-600 text-white"
                                     : "text-slate-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-300"
                                     }`}
@@ -147,7 +147,7 @@ export function NavbarClient({ lang, links, labels }: Props) {
                         type="button"
                         onClick={toggleTheme}
                         aria-label={`${labels.themeDark} / ${labels.themeLight}`}
-                        className="relative grid h-9 w-9 place-items-center overflow-hidden rounded-full border border-blue-100 text-amber-500 transition-colors hover:bg-blue-50 dark:border-blue-900/60 dark:text-sky-300 dark:hover:bg-blue-950"
+                        className="relative grid h-9 w-9 place-items-center overflow-hidden rounded-md border border-blue-100 text-amber-500 transition-colors hover:bg-blue-50 dark:border-blue-900/60 dark:text-sky-300 dark:hover:bg-blue-950"
                     >
                         <SunIcon className="absolute h-[18px] w-[18px] transition-all duration-300 dark:-rotate-90 dark:scale-0 dark:opacity-0" />
                         <MoonIcon className="absolute h-4 w-4 rotate-90 scale-0 opacity-0 transition-all duration-300 dark:rotate-0 dark:scale-100 dark:opacity-100" />
@@ -156,7 +156,7 @@ export function NavbarClient({ lang, links, labels }: Props) {
                     {/* ปุ่มติดต่อ */}
                     <a
                         href="#contact"
-                        className="hidden rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_24px_-8px_rgb(37_99_235/0.55)] transition hover:-translate-y-0.5 hover:bg-blue-700 sm:inline-block"
+                        className="hidden rounded-md bg-blue-600 px-5 py-2.5 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-blue-700 sm:inline-block"
                     >
                         {labels.contact}
                     </a>
@@ -167,7 +167,7 @@ export function NavbarClient({ lang, links, labels }: Props) {
                         onClick={() => setMenuOpen((o) => !o)}
                         aria-label={labels.menu}
                         aria-expanded={menuOpen}
-                        className="grid h-9 w-9 place-items-center rounded-full border border-blue-100 text-slate-700 lg:hidden dark:border-blue-900/60 dark:text-slate-200"
+                        className="grid h-9 w-9 place-items-center rounded-md border border-blue-100 text-slate-700 lg:hidden dark:border-blue-900/60 dark:text-slate-200"
                     >
                         {menuOpen ? (
                             <CloseIcon className="h-4 w-4" />
@@ -198,7 +198,7 @@ export function NavbarClient({ lang, links, labels }: Props) {
                         <a
                             href="#contact"
                             onClick={() => setMenuOpen(false)}
-                            className="mt-2 block rounded-full bg-blue-600 py-2.5 text-center font-semibold text-white"
+                            className="mt-2 block rounded-md bg-blue-600 py-2.5 text-center font-semibold text-white"
                         >
                             {labels.contact}
                         </a>

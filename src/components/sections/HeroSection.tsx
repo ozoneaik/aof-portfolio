@@ -1,166 +1,153 @@
-import { fill, heroStack, profile, ui, type Lang } from "@/data/portfolio";
+import { profile, socials, ui, type Lang } from "@/data/portfolio";
 import type { ProjectView } from "@/lib/projects";
-import { brandColor, skillIcon } from "@/components/Icons";
 import { DownloadIcon } from "@/components/icons/DownloadIcon";
-import { Blob } from "@/components/ui/Decor";
+import { GitHubIcon } from "@/components/icons/GithubIcon";
 import { HeroPhotoSlider } from "@/components/ui/HeroPhotoSlider";
 import { ParallaxScene } from "@/components/ui/ParallaxScene";
 
-// การ์ดลอยรอบรูป: ลอยขึ้นลงช้า ๆ (animate-float) + ขยับตามเมาส์ (data-depth)
+// การ์ดลอยรอบรูป: มุมเหลี่ยม พื้นสีเข้มโปร่ง ลอยขึ้นลงช้า ๆ + ขยับตามเมาส์ (data-depth)
 const floatCard =
-    "absolute z-10 animate-float rounded-2xl bg-white p-4 text-[13px] shadow-soft transition-transform duration-500 ease-out dark:bg-ink-2 dark:ring-1 dark:ring-blue-900/50";
+    "absolute z-10 animate-float rounded-md border border-white/15 bg-navy/85 p-4 text-[13px] text-slate-300 shadow-[0_20px_40px_-20px_rgb(0_0_0/0.6)] backdrop-blur transition-transform duration-500 ease-out";
+
+// ปุ่มดำแบบ store badge (App Store / Google Play)
+const badge =
+    "group flex items-center gap-2.5 rounded-xl border-2 border-white/60 bg-black px-4 py-2 text-white transition hover:-translate-y-0.5 hover:border-amber-300";
 
 export function HeroSection({ lang, projects }: { lang: Lang; projects: ProjectView[] }) {
     const t = (v: Record<Lang, string>) => v[lang];
     // การ์ดลอยใช้ชื่อระบบรวมแชทจาก database (ถ้าหาไม่เจอใช้ข้อความสำรอง)
     const chatTitle = projects.find((p) => p.slug === "callcenter-system-pk")?.title ?? "Omni-Channel Chat";
+    const github = socials.find((s) => s.id === "github")!;
 
     return (
-        <ParallaxScene className="relative overflow-hidden pb-20 pt-10 lg:pt-12">
-            <Blob tone="amber" className="left-[46%] top-16 hidden lg:block" />
-            <Blob tone="sky" className="left-[44%] top-80 hidden lg:block" delay={-3} />
-            <Blob tone="blue" className="bottom-10 left-[2%] hidden lg:block" delay={-2} />
-            <Blob tone="dot" className="bottom-16 left-[30%] hidden lg:block" />
+        // pb ใหญ่ไว้ให้แผงผลงาน (ProjectsSection) เลื่อนขึ้นมาซ้อนขอบล่าง
+        // Hero เป็นพื้นเข้มทั้งโหมดสว่างและโหมดมืด (เหมือนภาพ key art ของเว็บเกม)
+        <ParallaxScene className="relative overflow-hidden bg-navy pb-44 pt-14 text-white lg:min-h-[calc(100svh-72px)] lg:pt-16 dark:bg-ink">
+            {/* ---------- พื้นหลัง: แสงฟ้า + ลายจุด + คำใหญ่จาง ๆ ---------- */}
+            <div aria-hidden className="pointer-events-none absolute inset-0">
+                <div className="absolute -right-40 -top-20 h-[700px] w-[700px] rounded-full bg-blue-600/35 blur-[120px]" />
+                <div className="absolute -bottom-40 left-[-10%] h-[500px] w-[500px] rounded-full bg-sky-500/20 blur-[120px]" />
+                <div className="absolute inset-0 bg-[radial-gradient(rgb(255_255_255/0.07)_1.2px,transparent_1.2px)] bg-[size:22px_22px] [mask-image:linear-gradient(to_bottom,#000,transparent_85%)]" />
+                <p className="absolute -left-4 top-6 select-none whitespace-nowrap font-display text-[22vw] font-black italic uppercase leading-none text-white/[0.04]">
+                    Full Stack
+                </p>
+            </div>
 
-            <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 sm:px-6 lg:grid-cols-[1.05fr_1fr] lg:gap-10">
-                {/* ---------- ฝั่งข้อความ (z-10 กันวงกลมพื้นหลังของรูปมาทับบนมือถือ) ---------- */}
+            <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:gap-8">
+                {/* ---------- ฝั่งข้อความ ---------- */}
                 <div className="relative z-10">
-                    <p className="font-semibold text-sky-500 dark:text-sky-400">{t(ui.heroEyebrow)}</p>
-                    <h1
-                        className={`mb-6 mt-4 font-bold leading-[1.15] text-slate-900 dark:text-white ${
-                            // ภาษาอังกฤษคำยาวกว่า จึงใช้ตัวเล็กลงเพื่อไม่ให้ตัดเป็น 5 บรรทัด
-                            lang === "en" ? "text-[36px] sm:text-5xl lg:text-[54px]" : "text-[40px] sm:text-6xl lg:text-[68px]"
-                            }`}
-                    >
-                        {t(ui.heroLine1)}
-                        <br />
-                        {t(ui.heroLine2Before)}
-                        <span className="text-blue-600 dark:text-blue-400">{t(ui.heroLine2Highlight)}</span>
-                        <br />
-                        {t(ui.heroLine3)}
-                        <span
-                            aria-hidden
-                            className="ml-[0.3em] inline-grid h-[0.82em] place-items-center rounded-full bg-amber-200 px-[0.22em] align-[0.18em] font-mono text-[0.38em] font-semibold text-slate-900"
-                        >
-                            &lt;/&gt;
+                    {/* ป้ายเฉียงสีเหลือง: พร้อมเริ่มงาน + ปลดประจำการแล้ว (สิ่งที่ HR อยากรู้เป็นอย่างแรก) */}
+                    <p className="inline-block -skew-x-12 bg-amber-300 px-4 py-1.5 text-sm font-bold text-slate-900">
+                        <span className="inline-flex skew-x-12 flex-wrap items-center gap-x-2">
+                            <span className="h-2 w-2 rounded-full bg-emerald-600 shadow-[0_0_0_3px_rgb(5_150_105/0.25)]" />
+                            {t(profile.status)}
+                            <span className="font-medium text-slate-700">· {t(profile.statusNote)}</span>
                         </span>
-                    </h1>
-                    <p className="max-w-lg text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-                        {t(ui.heroLeadBefore)}&nbsp;<b className="text-slate-900 dark:text-white">{t(profile.nameShort)}</b>{" "}
-                        {t(ui.heroLeadAfter)}
                     </p>
 
-                    <div className="mt-9 flex flex-wrap items-center gap-5">
-                        <a
-                            href="#projects"
-                            className="rounded-full bg-blue-600 px-7 py-3.5 font-semibold text-white shadow-[0_10px_24px_-8px_rgb(37_99_235/0.55)] transition hover:-translate-y-0.5 hover:bg-blue-700"
-                        >
-                            {t(ui.ctaProjects)}
-                        </a>
-                        <a href={t(profile.cv)} download className="group inline-flex items-center gap-3 font-semibold text-slate-700 dark:text-slate-200">
-                            <span className="grid h-11 w-11 place-items-center rounded-full border-[1.5px] border-blue-200 text-blue-600 transition group-hover:border-blue-500 group-hover:bg-blue-50 dark:border-blue-800 dark:text-blue-300 dark:group-hover:bg-blue-950">
-                                <DownloadIcon className="h-[18px] w-[18px]" />
-                            </span>
-                            {t(ui.downloadCv)}
-                        </a>
-                    </div>
+                    {/* ตำแหน่งงานเป็นข้อความใหญ่ที่สุด (HR ต้องรู้ทันทีว่าสมัครตำแหน่งอะไร) */}
+                    <h1
+                        className="mt-6 font-display text-[40px] font-black italic leading-[1.05] drop-shadow-[0_4px_30px_rgb(0_0_0/0.35)] sm:text-6xl lg:text-[62px]"
+                    >
+                        Full-Stack
+                        <br />
+                        <span className="text-sky-300">Web Developer</span>
+                    </h1>
 
-                    {/* ไอคอนเทคโนโลยีซ้อนกัน + ประสบการณ์ */}
-                    <div className="mt-10 flex flex-wrap items-center gap-4">
-                        <div className="flex">
-                            {heroStack.map((name, i) => {
-                                const Icon = skillIcon[name];
-                                return (
-                                    <span
-                                        key={name}
-                                        title={name}
-                                        className={`grid h-10 w-10 place-items-center rounded-full border-2 border-white bg-white shadow-[0_2px_8px_rgb(15_23_42/0.12)] dark:border-ink dark:bg-ink-2 ${i > 0 ? "-ml-2.5" : ""}`}
-                                    >
-                                        <Icon className={`h-5 w-5 ${brandColor[name] ?? ""}`} />
-                                    </span>
-                                );
-                            })}
-                        </div>
-                        <p className="text-sm leading-snug text-slate-600 dark:text-slate-400">
-                            <b className="text-slate-900 dark:text-white">{t(ui.proofTitle)}</b>
-                            <br />
-                            {fill(t(ui.proofSub), { n: projects.length })}
-                        </p>
+                    {/* ประสบการณ์ · ที่อยู่ */}
+                    <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-[15px] font-semibold text-white">
+                        <span>{t(ui.proofTitle)}</span>
+                        <span aria-hidden className="text-slate-500">|</span>
+                        <span className="font-medium text-slate-300">📍 {t(profile.location)}</span>
+                    </p>
+
+                    {/* สโลแกน (ย่อลงเป็นบรรทัดรอง) */}
+                    <p className="mt-5 font-display text-xl font-extrabold italic text-sky-200 sm:text-2xl">
+                        {[t(ui.heroLine1), t(ui.heroLine2Before) + t(ui.heroLine2Highlight), t(ui.heroLine3)].join(lang === "en" ? " " : "")}
+                    </p>
+
+                    <p className="mt-3 max-w-lg text-base leading-relaxed text-slate-300 sm:text-lg">
+                        {t(ui.heroLeadBefore)}&nbsp;<b className="text-white">{t(profile.nameShort)}</b> {t(ui.heroLeadAfter)}
+                    </p>
+
+                    {/* ---------- ปุ่มดำแบบ store badge ---------- */}
+                    <div className="mt-8 flex flex-wrap gap-2.5">
+                        <a href={profile.cv.th} download className={badge}>
+                            <DownloadIcon className="h-6 w-6 shrink-0 text-amber-300" />
+                            <span className="leading-tight">
+                                <small className="block text-[11px] text-white/70">{t(ui.badgeDownload)}</small>
+                                <b className="text-base">{t(ui.badgeCvTh)}</b>
+                            </span>
+                        </a>
+                        <a href={profile.cv.en} download className={badge}>
+                            <DownloadIcon className="h-6 w-6 shrink-0 text-sky-300" />
+                            <span className="leading-tight">
+                                <small className="block text-[11px] text-white/70">{t(ui.badgeDownload)}</small>
+                                <b className="text-base">{t(ui.badgeCvEn)}</b>
+                            </span>
+                        </a>
+                        <a href={github.url} target="_blank" rel="noopener noreferrer" className={badge}>
+                            <GitHubIcon className="h-6 w-6 shrink-0" />
+                            <span className="leading-tight">
+                                <small className="block text-[11px] text-white/70">{t(ui.badgeCodeOn)}</small>
+                                <b className="text-base">GitHub</b>
+                            </span>
+                        </a>
                     </div>
                 </div>
 
-                {/* ---------- ฝั่งรูป + การ์ดลอย ---------- */}
+                {/* ---------- ฝั่งรูป: กรอบโค้ง + มุมเล็งแบบ HUD + การ์ดลอย ---------- */}
                 <div className="relative mx-auto w-full max-w-[480px] lg:max-w-none">
                     <div className="relative h-[500px] sm:h-[560px] lg:h-[600px]">
-                        {/* วงกลมพื้นหลัง */}
-                        <div
-                            data-depth="6"
-                            className="absolute -right-32 -top-14 h-[600px] w-[560px] rounded-full bg-gradient-to-br from-sky-100 to-blue-50 transition-transform duration-500 ease-out lg:-right-44 lg:h-[680px] lg:w-[640px] dark:from-blue-950/70 dark:to-ink-2"
-                        />
-                        {/* รูปโปรไฟล์ในกรอบโค้ง (ไม่มีการ์ดทับหน้าหรือลำตัว) */}
                         <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
-                            <div
-                                data-depth="10"
-                                className="relative h-[460px] w-[290px] overflow-hidden rounded-[200px_200px_28px_28px] border-[6px] border-white shadow-[0_30px_60px_-24px_rgb(15_35_71/0.45)] transition-transform duration-500 ease-out sm:h-[560px] sm:w-[360px] dark:border-ink-2"
-                            >
-                                <HeroPhotoSlider photos={profile.photos} alt={t(profile.name)} slideLabel={t(ui.photoSlide)} />
+                            <div data-depth="10" className="relative transition-transform duration-500 ease-out">
+                                <div className="relative h-[460px] w-[290px] overflow-hidden rounded-[200px_200px_6px_6px] border-[5px] border-sky-300 shadow-[0_0_0_12px_rgb(255_255_255/0.08),0_30px_60px_-24px_rgb(0_0_0/0.7)] sm:h-[540px] sm:w-[350px]">
+                                    <HeroPhotoSlider photos={profile.photos} alt={t(profile.name)} slideLabel={t(ui.photoSlide)} />
+                                </div>
+                                {/* มุมเล็ง 4 มุม (ตกแต่ง) */}
+                                <span aria-hidden className="absolute -bottom-3 -left-3 h-8 w-8 border-b-[3px] border-l-[3px] border-amber-300" />
+                                <span aria-hidden className="absolute -bottom-3 -right-3 h-8 w-8 border-b-[3px] border-r-[3px] border-amber-300" />
                             </div>
                         </div>
 
-                        {/* การ์ด: สายที่ถนัด → มุมซ้ายบน ทับแค่ขอบโค้งของกรอบรูป ไม่โดนหน้า */}
-                        <div data-depth="26" style={{ animationDelay: "-2s" }} className={`${floatCard} -left-1 top-0 flex w-[210px] items-center gap-3 lg:-left-8 lg:top-6`}>
-                            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[10px] bg-blue-50 text-blue-600 dark:bg-blue-950 dark:text-blue-300">
+                        {/* การ์ด: สายที่ถนัด → มุมซ้ายบน */}
+                        <div data-depth="26" style={{ animationDelay: "-2s" }} className={`${floatCard} -left-1 top-0 flex w-[214px] items-center gap-3 lg:-left-8 lg:top-6`}>
+                            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-sky-400/15 text-sky-300">
                                 <svg viewBox="0 0 18 18" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                                     <path d="m6 5-4 4 4 4M12 5l4 4-4 4" />
                                 </svg>
                             </span>
-                            <p className="leading-snug text-slate-600 dark:text-slate-400">
+                            <p className="leading-snug">
                                 {t(ui.cardStackLabel)}
                                 <br />
-                                <b className="text-slate-900 dark:text-white">
-                                    Laravel · React · PostgreSQL
-                                </b>
+                                <b className="text-white">Laravel · React · PostgreSQL</b>
                             </p>
                         </div>
 
-                        {/* การ์ด: ระบบรวมแชท → มุมขวาล่าง ยื่นออกนอกกรอบรูป (มือถือซ่อน เพราะจอแคบจะบังตัว) */}
-                        <div data-depth="30" style={{ animationDelay: "-4s" }} className={`${floatCard} -right-4 bottom-10 hidden w-[200px] sm:block lg:-right-12 lg:bottom-16`}>
-                            <p className="text-[11.5px] text-slate-500 dark:text-slate-400">{chatTitle}</p>
-                            <p className="my-0.5 text-[22px] font-bold leading-tight text-slate-900 dark:text-white">{t(ui.cardChatBig)}</p>
-                            <p className="text-[11.5px] font-medium text-emerald-700 dark:text-emerald-400">● {t(ui.cardChatSub)}</p>
+                        {/* การ์ด: ระบบรวมแชท → มุมขวาล่าง (มือถือซ่อน เพราะจอแคบจะบังตัว) */}
+                        <div data-depth="30" style={{ animationDelay: "-4s" }} className={`${floatCard} -right-4 bottom-12 hidden w-[204px] sm:block lg:-right-10 lg:bottom-20`}>
+                            <p className="text-[11.5px] text-slate-400">{chatTitle}</p>
+                            <p className="my-0.5 font-display text-[24px] font-black italic leading-tight text-white">{t(ui.cardChatBig)}</p>
+                            <p className="text-[11.5px] font-medium text-emerald-400">● {t(ui.cardChatSub)}</p>
                             <div className="mt-2.5 flex flex-wrap gap-1.5">
                                 {["Lazada", "Shopee", "Facebook", "LINE"].map((p) => (
-                                    <span key={p} className="rounded-full bg-blue-50 px-2 py-0.5 text-[10.5px] font-semibold text-blue-700 dark:bg-blue-950 dark:text-blue-300">
+                                    <span key={p} className="rounded-sm bg-white/10 px-2 py-0.5 text-[10.5px] font-semibold text-sky-200">
                                         {p}
                                     </span>
                                 ))}
                             </div>
                         </div>
-
-                        {/* การ์ด: สถานะพร้อมทำงาน */}
-                        {/* <div data-depth="18" style={{ animationDelay: "-1s" }} className={`${floatCard} bottom-5 right-0 flex w-[236px] gap-3 lg:-right-1.5 lg:bottom-12`}>
-                            <span className="relative h-[38px] w-[38px] shrink-0 overflow-hidden rounded-full border-2 border-blue-100 dark:border-blue-900">
-                                <Image
-                                    src={profile.photo}
-                                    alt=""
-                                    fill
-                                    sizes="38px"
-                                    className="scale-[2.6] object-cover"
-                                    style={{ objectPosition: "50% 62%", transformOrigin: "48% 62%" }}
-                                />
-                            </span>
-                            <div>
-                                <p className="flex items-center gap-2 font-semibold text-slate-900 dark:text-white">
-                                    <span className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_0_4px_rgb(16_185_129/0.15)]" />
-                                    {t(profile.status)}
-                                </p>
-                                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{t(profile.statusNote)}</p>
-                            </div>
-                        </div> */}
                     </div>
-
                 </div>
             </div>
+
+            {/* ลิงก์เอียงมุมขวาล่าง แบบ "GO TO ... >>" */}
+            <a
+                href="#projects"
+                className="absolute bottom-36 right-[5%] hidden font-display text-2xl font-black italic text-white transition hover:text-sky-300 lg:block"
+            >
+                {t(ui.ctaProjects)} <span className="text-amber-300">&gt;&gt;</span>
+            </a>
         </ParallaxScene>
     );
 }

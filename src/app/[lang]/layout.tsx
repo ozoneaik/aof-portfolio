@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { IBM_Plex_Sans_Thai, JetBrains_Mono } from "next/font/google";
+import { IBM_Plex_Sans_Thai, JetBrains_Mono, Kanit } from "next/font/google";
 import { isLang, langs, SITE_URL, ui, type Lang } from "@/data/portfolio";
 import { InlineScript } from "@/components/ui/InlineScript";
 import "../globals.css";
@@ -14,6 +14,14 @@ const plexThai = IBM_Plex_Sans_Thai({
 const jetbrainsMono = JetBrains_Mono({
     variable: "--font-jetbrains-mono",
     subsets: ["latin"],
+});
+
+// ฟอนต์หัวข้อแบบเว็บเกม: ตัวหนามาก + เอียง (รองรับภาษาไทย)
+const kanit = Kanit({
+    variable: "--font-kanit",
+    subsets: ["thai", "latin"],
+    weight: ["600", "700", "800", "900"],
+    style: ["normal", "italic"],
 });
 
 type Props = { children: React.ReactNode; params: Promise<{ lang: string }> };
@@ -71,7 +79,7 @@ export default async function RootLayout({ children, params }: Props) {
     return (
         <html
             lang={htmlLang[lang]}
-            className={`${plexThai.variable} ${jetbrainsMono.variable} scroll-smooth antialiased`}
+            className={`${plexThai.variable} ${jetbrainsMono.variable} ${kanit.variable} scroll-smooth antialiased`}
             suppressHydrationWarning
         >
             <head>

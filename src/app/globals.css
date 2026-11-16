@@ -7,6 +7,8 @@
   --font-sans: var(--font-plex-thai), "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
     "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+  /* หัวข้อตัวหนาเอียงสไตล์เว็บเกม → ใช้ด้วย class font-display */
+  --font-display: var(--font-kanit), var(--font-plex-thai), sans-serif;
 
   /* สีน้ำเงินเข้มที่ใช้กับ terminal และการ์ดผลงานเด่น */
   --color-navy: #0b1a33;
@@ -54,6 +56,15 @@ body {
 .dark body {
   background: var(--color-ink);
   color: #e2e8f0;
+}
+
+/* ลายจุดเล็ก ๆ คล้ายแผนที่ ใช้เป็นพื้นหลัง section */
+@utility dot-grid {
+  background-image: radial-gradient(rgb(15 35 71 / 0.09) 1.2px, transparent 1.2px);
+  background-size: 18px 18px;
+  &:where(.dark, .dark *) {
+    background-image: radial-gradient(rgb(148 163 184 / 0.1) 1.2px, transparent 1.2px);
+  }
 }
 
 /* เลื่อนขึ้นมาตอน scroll ถึง (class is-visible ใส่โดย RevealObserver) */

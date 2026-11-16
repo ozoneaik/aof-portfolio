@@ -4,7 +4,6 @@ import { getProjects } from "@/lib/projects";
 import { Navbar } from "@/components/sections/Navbar";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { TechStrip } from "@/components/sections/TechStrip";
-import { ServicesSection } from "@/components/sections/ServicesSection";
 import { AboutBanner } from "@/components/sections/AboutBanner";
 import { ExperienceSection } from "@/components/sections/ExperienceSection";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
@@ -25,11 +24,11 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             <Navbar lang={lang} />
             <main id="top">
                 <HeroSection lang={lang} projects={projects} />
+                {/* แผงผลงานซ้อนขอบล่างของ Hero จึงต้องอยู่ถัดจาก Hero ทันที */}
+                <ProjectsSection lang={lang} projects={projects} />
                 <TechStrip lang={lang} />
-                <ServicesSection lang={lang} />
                 <AboutBanner lang={lang} projectCount={projects.length} />
                 <ExperienceSection lang={lang} />
-                <ProjectsSection lang={lang} projects={projects} />
                 <SkillsSection lang={lang} />
                 <ContactSection lang={lang} />
             </main>

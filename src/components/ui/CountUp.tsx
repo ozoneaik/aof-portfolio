@@ -27,12 +27,13 @@ export function CountUp({
 
         const fmt = (n: number, done: boolean) => prefix + n.toFixed(decimals) + (done ? suffix : "");
         let raf = 0;
-        el.textContent = fmt(0, false);
+        // ไม่เขียน 0 ทับไว้ล่วงหน้า: ก่อนเลื่อนมาถึงยังเห็นค่าจริง (พิมพ์หน้า / แชร์ลิงก์ / ระบบอ่านหน้าเว็บ เห็นตัวเลขถูกต้อง)
 
         const io = new IntersectionObserver(
             ([entry]) => {
                 if (!entry.isIntersecting) return;
                 io.disconnect();
+                el.textContent = fmt(0, false);
                 const start = performance.now();
                 const tick = (now: number) => {
                     const p = Math.min((now - start) / 1400, 1);

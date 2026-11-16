@@ -26,7 +26,7 @@ export function Blob({
     );
 }
 
-/** เส้นหยักสีเหลืองใต้หัวข้อ */
+/** เส้นหยักสีเหลืองใต้หัวข้อ (ไม่ได้ใช้ในดีไซน์ใหม่ เก็บไว้เผื่อกลับไปใช้) */
 export function Squiggle({ className = "" }: { className?: string }) {
     return (
         <svg width="64" height="10" viewBox="0 0 64 10" fill="none" aria-hidden className={className}>
@@ -35,15 +35,56 @@ export function Squiggle({ className = "" }: { className?: string }) {
     );
 }
 
-/** หัวข้อของแต่ละ section: ข้อความเล็กสีฟ้า + หัวข้อใหญ่ + เส้นหยัก */
-export function SectionHead({ eyebrow, title }: { eyebrow: string; title: React.ReactNode }) {
+/**
+ * ป้ายเฉียงสไตล์เว็บเกม เช่น "เพิ่มเติม" / "ล่าสุด"
+ * ตัวนอกเอียง -12° ตัวในเอียงกลับ +12° → กล่องเอียงแต่ตัวหนังสือตรง
+ */
+export function SkewTag({ children, className = "" }: { children: React.ReactNode; className?: string }) {
     return (
-        <div className="reveal mx-auto mb-12 max-w-2xl text-center">
-            <p className="font-semibold text-sky-500 dark:text-sky-400">{eyebrow}</p>
-            <h2 className="mt-1.5 whitespace-pre-line text-[26px] font-bold leading-snug text-slate-900 sm:text-[34px] dark:text-white">
-                {title}
-            </h2>
-            <Squiggle className="mx-auto mt-3" />
+        <span className={`inline-block -skew-x-12 bg-amber-300 px-3 py-0.5 text-xs font-bold text-slate-900 ${className}`}>
+            <span className="inline-block skew-x-12">{children}</span>
+        </span>
+    );
+}
+
+/**
+ * หัวข้อของแต่ละ section: ชิดซ้าย ข้อความเล็ก mono + หัวข้อตัวหนาเอียง + แถบสี 2 ท่อนด้านล่าง
+ * - tone="light" ใช้บนพื้นสีเข้ม/สีน้ำเงิน (ตัวหนังสือขาว)
+ * - right: ใส่อะไรไว้ฝั่งขวาของหัวข้อก็ได้ (เช่น ปุ่ม)
+ */
+export function SectionHead({
+    eyebrow,
+    title,
+    tone = "default",
+    right,
+}: {
+    eyebrow: string;
+    title: React.ReactNode;
+    tone?: "default" | "light";
+    right?: React.ReactNode;
+}) {
+    const light = tone === "light";
+    return (
+        <div className="reveal mb-10 flex flex-wrap items-end justify-between gap-6">
+            <div>
+                <p className={`font-mono text-xs font-semibold uppercase tracking-[0.2em] ${light ? "text-white/80" : "text-blue-600 dark:text-sky-400"}`}>
+                    {"// "}
+                    {eyebrow}
+                </p>
+                <h2
+                    className={`mt-2 whitespace-pre-line font-display text-[34px] font-black italic leading-[1.1] sm:text-5xl ${
+                        light ? "text-white" : "text-slate-900 dark:text-white"
+                    }`}
+                >
+                    {title}
+                </h2>
+                {/* แถบเฉียง 2 ท่อน (น้ำเงิน + amber) แทนเส้นหยักแบบเดิม */}
+                <div aria-hidden className="mt-4 flex gap-1.5">
+                    <span className={`h-1.5 w-12 -skew-x-[30deg] ${light ? "bg-white" : "bg-blue-600 dark:bg-sky-400"}`} />
+                    <span className="h-1.5 w-5 -skew-x-[30deg] bg-amber-400" />
+                </div>
+            </div>
+            {right}
         </div>
     );
 }

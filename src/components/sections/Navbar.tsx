@@ -2,7 +2,7 @@ import { ui, type Lang } from "@/data/portfolio";
 import { NavbarClient } from "@/components/ui/NavbarClient";
 
 // ลำดับเมนูบน Navbar (id ต้องตรงกับ id ของแต่ละ section)
-const sections = ["services", "about", "experience", "projects", "skills", "contact"] as const;
+const sections = ["projects", "about", "experience", "skills", "contact"] as const;
 
 // ส่วนนี้เป็น Server Component: แปลข้อความให้เสร็จแล้วค่อยส่งให้ฝั่ง client
 // ฝั่ง browser จึงไม่ต้องโหลดข้อความทั้ง 3 ภาษา

@@ -52,21 +52,18 @@ export const socials = [
         url: "https://www.linkedin.com/in/phuwadech-panichaysopa-b5b84a374",
     },
     { id: "facebook", label: "Facebook", handle: "Phuwadech.Aof", url: "https://www.facebook.com/Phuwadech.Aof" },
-    { id: "reddit", label: "Reddit", handle: "u/ozoneaik", url: "https://www.reddit.com/user/ozoneaik" },
 ] as const;
 
 export const education = [
     {
         school: { th: "มหาวิทยาลัยพะเยา", en: "University of Phayao", zh: "帕尧大学" } as T,
-        level: { th: "ปริญญาตรี", en: "Bachelor's Degree", zh: "学士学位" } as T,
+        level: {
+            th: "วิศวกรรมศาสตรบัณฑิต สาขาวิศวกรรมคอมพิวเตอร์",
+            en: "B.Eng. in Computer Engineering",
+            zh: "计算机工程 工学学士",
+        } as T,
         gpa: "3.22",
         logo: "/University_of_Phayao.svg",
-    },
-    {
-        school: { th: "โรงเรียนบ่อเกลือ", en: "Bo Kluea School", zh: "博格鲁中学" } as T,
-        level: { th: "มัธยมศึกษาตอนต้น–ปลาย", en: "Secondary School", zh: "初中至高中" } as T,
-        gpa: "3.20",
-        logo: "/bokluea.png",
     },
 ];
 
@@ -76,12 +73,17 @@ export const experience: {
     title: T;
     org: T;
     desc: T;
+    /** ผลงานเด่นในงานนี้ (แสดงเป็น bullet) */
+    points?: T[];
     logo?: string;
     /** zoom for logos whose image file has wide empty margins */
     logoZoom?: number;
+    /** "main" = งานหลัก (แสดงเด่นที่สุด), "military" = รับราชการทหาร (แสดงเป็นแถบสั้น ๆ) */
+    kind?: "main" | "military";
 }[] = [
         {
             period: { th: "2568 – 2569", en: "2025 – 2026", zh: "2025 – 2026" },
+            kind: "military",
             title: { th: "รับราชการทหาร", en: "Military Service", zh: "服兵役" },
             org: { th: "กองทัพไทย", en: "Royal Thai Armed Forces", zh: "泰国皇家武装部队" },
             desc: {
@@ -92,6 +94,7 @@ export const experience: {
         },
         {
             period: { th: "2566 – 2568", en: "2023 – 2025", zh: "2023 – 2025" },
+            kind: "main",
             title: { th: "Programmer", en: "Programmer", zh: "程序员" },
             org: {
                 th: "Pumpkin Corporation Co., Ltd.",
@@ -101,10 +104,32 @@ export const experience: {
             logo: "/Pumpkin.webp",
             logoZoom: 1.6,
             desc: {
-                th: "พัฒนาระบบภายในองค์กรหลายระบบ เช่น ระบบรวมแชทหลายแพลตฟอร์ม ระบบแจ้งซ่อม ระบบรับประกันสินค้า และระบบ incentive ด้วย Laravel, React และ PostgreSQL",
-                en: "Built multiple internal systems — omni-channel chat, repair requests, warranty registration and QC incentives — with Laravel, React and PostgreSQL.",
-                zh: "使用 Laravel、React 和 PostgreSQL 开发多个企业内部系统，包括全渠道聊天、报修、产品保修登记和 QC 绩效奖金系统。",
+                th: "พัฒนาระบบภายในองค์กรที่ใช้งานจริงด้วย Laravel, React และ PostgreSQL",
+                en: "Built production internal systems with Laravel, React and PostgreSQL.",
+                zh: "使用 Laravel、React 和 PostgreSQL 开发并上线多个企业内部系统。",
             },
+            points: [
+                {
+                    th: "ระบบรวมแชท Lazada, Shopee, Facebook และ LINE แบบเรียลไทม์ ใช้งานโดยทีม CS, Marketing และ Sales ประมาณ 5–10 คน",
+                    en: "Real-time omni-channel chat (Lazada, Shopee, Facebook, LINE) used by ~5–10 CS, Marketing and Sales staff",
+                    zh: "实时全渠道聊天系统（Lazada、Shopee、Facebook、LINE），客服、市场与销售约 5–10 人使用",
+                },
+                {
+                    th: "ระบบแจ้งซ่อม + สั่งซื้ออะไหล่ ใช้งานกับร้านค้าที่ร่วมกับบริษัทประมาณ 20 ร้าน",
+                    en: "Repair-request & parts-ordering system used by ~20 partner shops",
+                    zh: "报修与配件订购系统，约 20 家合作门店使用",
+                },
+                {
+                    th: "โมเดล AI คัดกรองรูปภาพ (scikit-learn) ทำงานร่วมกับระบบแชท",
+                    en: "AI image-screening model (scikit-learn) integrated with the chat platform",
+                    zh: "与聊天平台集成的 AI 图片筛查模型（scikit-learn）",
+                },
+                {
+                    th: "ระบบคำนวณ Incentive QC สำหรับฝ่าย HR และระบบลงทะเบียนรับประกันสินค้า",
+                    en: "QC incentive calculator for HR and a product warranty registration system",
+                    zh: "HR 使用的 QC 奖金计算系统，以及产品保修登记系统",
+                },
+            ],
         },
         {
             period: { th: "2565 – 2566", en: "2022 – 2023", zh: "2022 – 2023" },
@@ -122,44 +147,40 @@ export const experience: {
 
 // ข้อมูลผลงาน (projects) ย้ายไปเก็บใน database แล้ว: ดู prisma/seed.ts และ src/lib/projects.ts
 
+/** ทักษะที่ใช้ในงานจริง (แสดงเป็นการ์ด) */
 export const skills: { group: T; items: string[] }[] = [
     {
         group: { th: "ภาษา & Framework", en: "Languages & Frameworks", zh: "语言与框架" },
-        items: ["TypeScript", "JavaScript", "PHP", "Python", "Swift", "React", "Next.js", "Laravel", "Flutter", "Tailwind", "Bootstrap 5", "HTML", "CSS"],
+        items: ["TypeScript", "JavaScript", "PHP", "Python", "Swift", "React", "Next.js", "Laravel", "Inertia", "Tailwind", "scikit-learn"],
     },
     {
         group: { th: "ฐานข้อมูล", en: "Databases", zh: "数据库" },
-        items: ["PostgreSQL", "MySQL", "TiDB", "Prisma ORM", "Eloquent ORM", "HeidiSQL", "Navicat", "pgAdmin"],
+        items: ["PostgreSQL", "MySQL", "TiDB", "Prisma ORM", "Eloquent ORM"],
     },
     {
         group: { th: "Deploy, Server & Cloud", en: "Deploy, Server & Cloud", zh: "部署、服务器与云" },
-        items: [
-            "Docker",
-            "Nginx",
-            "Apache",
-            "XAMPP",
-            "Ubuntu Server",
-            "Windows Server",
-            "AWS S3",
-            "Cloudflare R2",
-            "Vercel",
-            "Laravel Vapor",
-            "Hostinger",
-            "Netlify",
-        ],
-    },
-    {
-        group: { th: "เครื่องมือ", en: "Tools", zh: "工具" },
-        items: ["VS Code", "WebStorm", "PhpStorm", "WordPress", "Figma", "Word", "Excel"],
-    },
-    {
-        group: { th: "AI", en: "AI", zh: "AI" },
-        items: ["scikit-learn", "Claude", "ChatGPT", "Gemini", "Ollama"],
+        items: ["Docker", "Nginx", "Ubuntu Server", "AWS S3", "Cloudflare R2", "Vercel"],
     },
 ];
 
+/** เครื่องมือที่เคยใช้ (แสดงเป็นแถวเล็กบรรทัดเดียว) */
+export const otherSkills = [
+    "Bootstrap 5",
+    "Apache",
+    "Windows Server",
+    "Laravel Vapor",
+    "Netlify",
+    "Hostinger",
+    "XAMPP",
+    "WordPress",
+    "Figma",
+    "Ollama",
+    "pgAdmin",
+    "Navicat",
+];
+
 /** ทักษะด้านภาษา: level คือจำนวนจุดที่เติมสีจาก 5 จุด */
-export const languages: { name: T; level: T; label: T; flag: string; certificate?: string }[] = [
+export const languages: { name: T; level?: T; label: T; flag: string; certificate?: string }[] = [
     {
         name: { th: "ภาษาไทย", en: "Thai", zh: "泰语" },
         level: { th: "ภาษาหลัก", en: "Native", zh: "母语" },
@@ -172,12 +193,11 @@ export const languages: { name: T; level: T; label: T; flag: string; certificate
     },
     {
         name: { th: "ภาษาอังกฤษ", en: "English", zh: "英语" },
-        level: { th: "A1 (CEFR)", en: "A1 (CEFR)", zh: "A1（CEFR）" },
-        certificate: "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/CEFR.jpeg",
+        // ไม่แสดงระดับ และไม่แปะใบรับรอง (ถ้าจะกลับมาใช้: certificate: "https://pub-24ef2c0a48694b08a123774483d7e950.r2.dev/CEFR.jpeg")
         label: {
-            th: "อ่านเอกสารเทคนิคและ documentation พื้นฐานได้",
-            en: "Can read basic technical docs and documentation",
-            zh: "能阅读基础技术文档",
+            th: "สามารถอ่านคู่มือต่าง ๆ ได้",
+            en: "Can read manuals and technical documentation",
+            zh: "能阅读各类手册与技术文档",
         },
         flag: "/flag-us.svg"
     },
@@ -197,8 +217,8 @@ export const facts: {
 }[] = [
         {
             icon: "work",
+            prefix: "~",
             value: 2,
-            suffix: "+",
             unit: { th: "ปี", en: "years", zh: "年" },
             label: { th: "ประสบการณ์ทำงานจริง", en: "Professional experience", zh: "实际工作经验" },
         },
@@ -328,9 +348,9 @@ export const ui = {
     projectStack: { th: "เทคโนโลยีที่ใช้", en: "Tech stack", zh: "技术栈" },
     aboutTitle: { th: "เกี่ยวกับผม", en: "About Me", zh: "关于我" },
     aboutBody: {
-        th: "ผมเป็นนักพัฒนาเว็บ Full-Stack ที่มีประสบการณ์ทำงานจริงกว่า 2 ปี ถนัด Laravel + React + PostgreSQL ชอบแก้ปัญหาให้ทีมทำงานง่ายขึ้นด้วยระบบที่ออกแบบมาดี และสนุกกับการลองเทคโนโลยีใหม่ ๆ ทั้ง AI, LLM แบบ offline และการเขียนแอปบน macOS",
-        en: "I'm a full-stack web developer with 2+ years of professional experience, most at home with Laravel + React + PostgreSQL. I enjoy making teams' work easier through well-designed systems, and love tinkering with new tech — AI, offline LLMs and native macOS apps.",
-        zh: "我是一名全栈 Web 开发者，拥有 2 年以上的实际工作经验，擅长 Laravel + React + PostgreSQL。我喜欢通过设计良好的系统让团队工作更轻松，也乐于尝试新技术，包括 AI、本地离线 LLM 和 macOS 原生应用开发。",
+        th: "ผมเป็นนักพัฒนาเว็บ Full-Stack ที่มีประสบการณ์ทำงานจริงประมาณ 2 ปี ถนัด Laravel + React + PostgreSQL ชอบแก้ปัญหาให้ทีมทำงานง่ายขึ้นด้วยระบบที่ออกแบบมาดี และสนุกกับการลองเทคโนโลยีใหม่ ๆ ทั้ง AI, LLM แบบ offline และการเขียนแอปบน macOS",
+        en: "I'm a full-stack web developer with about 2 years of professional experience, most at home with Laravel + React + PostgreSQL. I enjoy making teams' work easier through well-designed systems, and love tinkering with new tech — AI, offline LLMs and native macOS apps.",
+        zh: "我是一名全栈 Web 开发者，拥有约 2 年的实际工作经验，擅长 Laravel + React + PostgreSQL。我喜欢通过设计良好的系统让团队工作更轻松，也乐于尝试新技术，包括 AI、本地离线 LLM 和 macOS 原生应用开发。",
     },
     education: { th: "การศึกษา", en: "Education", zh: "教育背景" },
     experienceTitle: { th: "ประสบการณ์ทำงาน", en: "Work Experience", zh: "工作经历" },
@@ -373,7 +393,7 @@ export const ui = {
         en: "— a web developer who loves building systems people actually use, from internal tools and real-time chat to native macOS apps.",
         zh: "，一名热爱打造实用系统的 Web 开发者——从企业内部系统、实时聊天到原生 macOS 应用。",
     },
-    proofTitle: { th: "ประสบการณ์ทำงานจริง 2+ ปี", en: "2+ years of real-world experience", zh: "2 年以上实际工作经验" },
+    proofTitle: { th: "ประสบการณ์ทำงานจริงประมาณ 2 ปี", en: "~2 years of real-world experience", zh: "约 2 年实际工作经验" },
     proofSub: { th: "พัฒนาระบบมาแล้ว {n} โปรเจกต์", en: "{n} projects built so far", zh: "已开发 {n} 个项目" },
     cardStackLabel: { th: "ถนัดที่สุด", en: "Strongest at", zh: "最擅长" },
     cardChatBig: { th: "4 แพลตฟอร์ม", en: "4 platforms", zh: "4 个平台" },
@@ -385,6 +405,21 @@ export const ui = {
     termHint: { th: "ลองพิมพ์ {cmd} ในนี้ดูครับ", en: "Try typing {cmd} in here", zh: "试着在这里输入 {cmd}" },
     photoSlide: { th: "รูปที่ {n}", en: "Photo {n}", zh: "第 {n} 张照片" },
     termLabel: { th: "พิมพ์คำสั่ง terminal", en: "Type a terminal command", zh: "输入终端命令" },
+    // ปุ่มดำแบบ store badge ใน Hero
+    badgeDownload: { th: "ดาวน์โหลด", en: "Download", zh: "下载" },
+    badgeCvTh: { th: "CV ภาษาไทย", en: "CV (Thai)", zh: "简历（泰文）" },
+    badgeCvEn: { th: "CV English", en: "CV (English)", zh: "简历（英文）" },
+    badgeCodeOn: { th: "ดูโค้ดบน", en: "Code on", zh: "代码托管于" },
+    // แผงผลงานใต้ Hero
+    featuredProjects: { th: "ผลงานเด่น", en: "Featured work", zh: "精选项目" },
+    // ประสบการณ์ / ทักษะ
+    confidentialNote: {
+        th: "ระบบและซอร์สโค้ดนี้เป็นทรัพย์สินของบริษัท จึงไม่สามารถเปิดเผยลิงก์ได้ ยินดีอธิบายรายละเอียดและแนวทางการพัฒนาในการสัมภาษณ์ครับ",
+        en: "This system and its source code belong to the company, so links can't be shared publicly. Happy to walk through the details in an interview.",
+        zh: "该系统及源代码属于公司资产，无法公开链接。欢迎在面试中详细介绍开发细节。",
+    },
+    latestJob: { th: "งานล่าสุด", en: "Latest role", zh: "最近职位" },
+    skillsOther: { th: "เคยใช้งาน", en: "Also used", zh: "也用过" },
     // ----- แถบเทคโนโลยี -----
     techStripTitle: {
         th: "เทคโนโลยีที่ผมใช้ทำงานจริงทุกวัน",
@@ -415,18 +450,6 @@ export const ui = {
     viewCertificate : { th: "ดูใบรับรอง", en: "View certificate", zh: "查看证书" },
     skillsCount: { th: "{n} อย่างที่ผมใช้ทำงาน", en: "{n} tools I work with", zh: "我常用的 {n} 项技术" },
     // ----- ติดต่อ -----
-    contactChecks1: { th: "พร้อมเริ่มงานทันที", en: "Available to start now", zh: "可立即入职" },
-    contactChecks2: {
-        th: "ประสบการณ์ระบบองค์กรจริง 2+ ปี",
-        en: "2+ years building real company systems",
-        zh: "2 年以上企业系统开发经验",
-    },
-    contactChecks3: {
-        th: "ทำได้ทั้งหลังบ้าน หน้าบ้าน และ deploy",
-        en: "Backend, frontend and deployment",
-        zh: "后端、前端与部署都能胜任",
-    },
-    contactChecks4: { th: "มี CV ทั้งภาษาไทยและอังกฤษ", en: "CV available in Thai and English", zh: "提供泰文与英文简历" },
     contactNote: { th: "ส่งข้อความมาคุยกันได้เลยครับ", en: "Drop me a message anytime", zh: "随时欢迎留言联系" },
     emailLabel: { th: "อีเมล", en: "Email", zh: "邮箱" },
     orCall: { th: "หรือโทร", en: "or call", zh: "或致电" },

@@ -39,14 +39,14 @@ export function ProjectDialog({
             onClose={onClose}
             // คลิกที่พื้นหลังมืด = คลิกโดน <dialog> เอง → ปิด
             onClick={(e) => e.target === e.currentTarget && ref.current?.close()}
-            className="m-auto w-[calc(100%-2rem)] max-w-3xl rounded-3xl border-0 bg-white p-0 text-slate-900 shadow-2xl backdrop:bg-slate-950/60 backdrop:backdrop-blur-sm dark:bg-ink-2 dark:text-slate-100"
+            className="m-auto w-[calc(100%-2rem)] max-w-3xl rounded-md border-0 bg-white p-0 text-slate-900 shadow-2xl backdrop:bg-slate-950/60 backdrop:backdrop-blur-sm dark:bg-ink-2 dark:text-slate-100"
         >
             {project && (
                 <div className="max-h-[85vh] overflow-y-auto p-6 sm:p-8">
                     <div className="flex items-start justify-between gap-4">
                         <div>
                             <p className="font-mono text-xs text-slate-400">~/{project.slug}</p>
-                            <h3 className="mt-1 text-2xl font-bold">{project.title}</h3>
+                            <h3 className="mt-1 font-display text-[28px] font-black italic leading-tight">{project.title}</h3>
                         </div>
                         <button
                             type="button"
@@ -93,6 +93,14 @@ export function ProjectDialog({
                         ))}
                     </div>
 
+                    {/* งานบริษัท: อธิบายว่าทำไมไม่มีลิงก์ */}
+                    {project.confidential && (
+                        <p className="mt-7 flex gap-2.5 border-l-4 border-amber-400 bg-amber-50 px-4 py-3 text-sm leading-relaxed text-slate-700 dark:bg-amber-950/30 dark:text-slate-300">
+                            <span aria-hidden>🔒</span>
+                            {labels.confidential}
+                        </p>
+                    )}
+
                     {/* ลิงก์ GitHub / เว็บไซต์ (แสดงเฉพาะที่มี) */}
                     {(project.githubUrl || project.websiteUrl) && (
                         <div className="mt-7 flex flex-wrap gap-3">
@@ -101,7 +109,7 @@ export function ProjectDialog({
                                     href={project.websiteUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+                                    className="rounded-md bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
                                 >
                                     {labels.visitWebsite} ↗
                                 </a>
@@ -111,7 +119,7 @@ export function ProjectDialog({
                                     href={project.githubUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="rounded-full border border-blue-200 px-5 py-2.5 text-sm font-semibold text-blue-700 transition hover:border-blue-500 hover:bg-blue-50 dark:border-blue-800 dark:text-blue-300 dark:hover:bg-blue-950"
+                                    className="rounded-md border border-blue-200 px-5 py-2.5 text-sm font-semibold text-blue-700 transition hover:border-blue-500 hover:bg-blue-50 dark:border-blue-800 dark:text-blue-300 dark:hover:bg-blue-950"
                                 >
                                     {labels.viewCode} ↗
                                 </a>

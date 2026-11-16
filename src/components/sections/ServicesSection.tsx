@@ -1,5 +1,5 @@
 import { services, ui, type Lang } from "@/data/portfolio";
-import { Blob, SectionHead, toneClass } from "@/components/ui/Decor";
+import { SectionHead, SkewTag } from "@/components/ui/Decor";
 
 // ไอคอนเส้นของแต่ละการ์ด (key ตรงกับ services[].icon)
 const icons: Record<(typeof services)[number]["icon"], React.ReactNode> = {
@@ -43,30 +43,42 @@ const icons: Record<(typeof services)[number]["icon"], React.ReactNode> = {
     ),
 };
 
+// พื้นการ์ดแต่ละโทน (ไล่สีลงไปเป็น navy เหมือนการ์ดโหมดเกม)
+const cardTone = {
+    blue: "from-blue-600 to-navy",
+    sky: "from-sky-500 to-navy",
+    amber: "from-amber-500 to-navy",
+};
+
 export function ServicesSection({ lang }: { lang: Lang }) {
     return (
-        <section id="services" className="relative scroll-mt-20 py-24">
-            <Blob tone="amber" className="left-[8%] top-28 hidden md:block" />
-            <Blob tone="sky" className="right-[10%] top-24 hidden md:block" delay={-2} />
-            <Blob tone="dot" className="bottom-28 right-[4%] hidden md:block" />
-
+        <section id="services" className="dot-grid scroll-mt-20 bg-slate-50 py-24 dark:bg-ink-2/60">
             <div className="mx-auto max-w-6xl px-5 sm:px-6">
                 <SectionHead eyebrow={ui.nav.services[lang]} title={ui.servicesTitle[lang]} />
 
-                <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
-                    {services.map((s) => (
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {services.map((s, i) => (
                         <article
                             key={s.icon}
-                            className="reveal rounded-[18px] border border-[#edf2f9] bg-white px-4 pb-6 pt-7 text-center transition duration-300 hover:-translate-y-1 hover:border-blue-100 hover:shadow-card dark:border-blue-900/40 dark:bg-ink-2"
+                            className={`reveal group relative flex min-h-[290px] flex-col overflow-hidden bg-gradient-to-b p-6 text-white transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_40px_-20px_rgb(15_35_71/0.7)] ${cardTone[s.tone]}`}
                         >
-                            <div className={`mx-auto mb-4 grid h-[54px] w-[54px] place-items-center rounded-2xl ${toneClass[s.tone]}`}>
+                            {/* เลขลำดับตัวใหญ่จาง ๆ มุมขวาบน */}
+                            <span aria-hidden className="absolute -top-3 right-3 font-display text-[96px] font-black italic leading-none text-white/10">
+                                {String(i + 1).padStart(2, "0")}
+                            </span>
+
+                            <div className="mb-auto grid h-12 w-12 place-items-center rounded-md bg-white/15">
                                 <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                                     {icons[s.icon]}
                                 </svg>
                             </div>
-                            <h3 className="mb-2 text-[15.5px] font-semibold leading-snug text-slate-900 dark:text-white">{s.title[lang]}</h3>
-                            <p className="text-[13px] leading-relaxed text-slate-500 dark:text-slate-400">{s.desc[lang]}</p>
-                            <p className="mt-3 font-mono text-[10.5px] text-blue-600 dark:text-blue-400">{s.tags}</p>
+
+                            <h3 className="mt-10 font-display text-[26px] font-black italic leading-tight">{s.title[lang]}</h3>
+                            <p className="mb-5 mt-2 text-sm leading-relaxed text-white/80">{s.desc[lang]}</p>
+                            <SkewTag className="self-start font-mono !font-semibold">{s.tags}</SkewTag>
+
+                            {/* แถบสีวิ่งใต้การ์ดตอน hover */}
+                            <span aria-hidden className="absolute bottom-0 left-0 h-1 w-0 bg-amber-300 transition-all duration-300 group-hover:w-full" />
                         </article>
                     ))}
                 </div>
