@@ -14,6 +14,9 @@ type Props = {
     labels: { contact: string; menu: string; language: string; themeLight: string; themeDark: string };
 };
 
+// ภาษาที่แสดงเป็นปุ่มบน Navbar (ซ่อน zh ไว้ก่อน — หน้า /zh ยังเปิดได้ถ้าพิมพ์ URL ตรง)
+const visibleLangs = langs.filter((l) => l !== "zh");
+
 // จำภาษาที่เลือกไว้ใน cookie (proxy.ts ใช้ตอนเข้า "/" ครั้งหน้า)
 function rememberLang(next: Lang) {
     document.cookie = `lang=${next}; path=/; max-age=31536000; samesite=lax`;
@@ -126,7 +129,7 @@ export function NavbarClient({ lang, links, labels }: Props) {
                         aria-label={labels.language}
                         className="flex rounded-md border-2 border-slate-900 p-0.5 font-mono text-xs dark:border-slate-600"
                     >
-                        {langs.map((l) => (
+                        {visibleLangs.map((l) => (
                             <button
                                 key={l}
                                 type="button"
