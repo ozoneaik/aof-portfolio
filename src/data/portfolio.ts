@@ -93,7 +93,7 @@ export const experience: {
             },
         },
         {
-            period: { th: "2566 – 2568", en: "2023 – 2025", zh: "2023 – 2025" },
+            period: { th: "มี.ค. 2567 – ส.ค. 2568", en: "Mar 2024 – Aug 2025", zh: "2024年3月 – 2025年8月" },
             kind: "main",
             title: { th: "Programmer", en: "Programmer", zh: "程序员" },
             org: {
@@ -132,16 +132,33 @@ export const experience: {
             ],
         },
         {
-            period: { th: "2565 – 2566", en: "2022 – 2023", zh: "2022 – 2023" },
+            period: { th: "เม.ย. 2565 – มี.ค. 2567", en: "Apr 2022 – Mar 2024", zh: "2022年4月 – 2024年3月" },
             title: { th: "Web Developer (ฝึกงาน)", en: "Web Developer Intern", zh: "Web 开发实习生" },
             org: { th: "Big Data Agency, เชียงใหม่", en: "Big Data Agency, Chiang Mai", zh: "Big Data Agency（清迈）" },
             logo: "/big-data-agency.png",
             logoZoom: 1.35,
             desc: {
-                th: "ฝึกงานในตำแหน่งนักพัฒนาเว็บ พัฒนาระบบจัดการการลาของพนักงานด้วย React, Laravel และ PostgreSQL ร่วมกับทีมพัฒนา",
-                en: "Web development internship — built an employee leave management system with React, Laravel and PostgreSQL alongside the dev team.",
-                zh: "担任 Web 开发实习生，与开发团队一起使用 React、Laravel 和 PostgreSQL 开发员工请假管理系统。",
+                th: "ฝึกงาน 3 ช่วงระหว่างเรียน (ปี 3 – ปี 4) ในตำแหน่งนักพัฒนาเว็บ ร่วมกับทีมพัฒนา",
+                en: "Three web development internships alongside my studies (3rd–4th year), working with the dev team.",
+                zh: "在读期间（大三至大四）三次担任 Web 开发实习生，与开发团队合作。",
             },
+            points: [
+                {
+                    th: "เม.ย. – มิ.ย. 2565: พัฒนาระบบจัดการการลาของพนักงานด้วย React, Laravel และ PostgreSQL",
+                    en: "Apr – Jun 2022: built the employee leave management system with React, Laravel and PostgreSQL",
+                    zh: "2022年4月–6月：使用 React、Laravel 和 PostgreSQL 开发员工请假管理系统",
+                },
+                {
+                    th: "มี.ค. – พ.ค. 2566: พัฒนาระบบจัดการการลาเวอร์ชันใหม่",
+                    en: "Mar – May 2023: built the new version of the leave management system",
+                    zh: "2023年3月–5月：开发新版请假管理系统",
+                },
+                {
+                    th: "ต.ค. 2566 – มี.ค. 2567: ร่วมพัฒนา MJU Longan Platform, EGAT O&M Platform (CCTV Manager และ Predictive AI Manager) และ CD Supply Delivery",
+                    en: "Oct 2023 – Mar 2024: worked on MJU Longan Platform, EGAT O&M Platform (CCTV Manager and Predictive AI Manager) and CD Supply Delivery",
+                    zh: "2023年10月–2024年3月：参与开发 MJU Longan Platform、EGAT O&M Platform（CCTV Manager 与 Predictive AI Manager）及 CD Supply Delivery",
+                },
+            ],
         },
     ];
 
@@ -217,10 +234,8 @@ export const facts: {
 }[] = [
         {
             icon: "work",
-            prefix: "~",
-            value: 2,
-            unit: { th: "ปี", en: "years", zh: "年" },
-            label: { th: "ประสบการณ์ทำงานจริง", en: "Professional experience", zh: "实际工作经验" },
+            text: { th: "1 ปี 6 เดือน", en: "1.5 years", zh: "1.5 年" },
+            label: { th: "งานประจำ (+ ฝึกงาน ~9 เดือน)", en: "Full-time (+ ~9 months of internships)", zh: "全职（另有约 9 个月实习）" },
         },
         {
             icon: "education",
@@ -348,9 +363,9 @@ export const ui = {
     projectStack: { th: "เทคโนโลยีที่ใช้", en: "Tech stack", zh: "技术栈" },
     aboutTitle: { th: "เกี่ยวกับผม", en: "About Me", zh: "关于我" },
     aboutBody: {
-        th: "ผมเป็นนักพัฒนาเว็บ Full-Stack ที่มีประสบการณ์ทำงานจริงประมาณ 2 ปี ถนัด Laravel + React + PostgreSQL ชอบแก้ปัญหาให้ทีมทำงานง่ายขึ้นด้วยระบบที่ออกแบบมาดี และสนุกกับการลองเทคโนโลยีใหม่ ๆ ทั้ง AI, LLM แบบ offline และการเขียนแอปบน macOS",
-        en: "I'm a full-stack web developer with about 2 years of professional experience, most at home with Laravel + React + PostgreSQL. I enjoy making teams' work easier through well-designed systems, and love tinkering with new tech — AI, offline LLMs and native macOS apps.",
-        zh: "我是一名全栈 Web 开发者，拥有约 2 年的实际工作经验，擅长 Laravel + React + PostgreSQL。我喜欢通过设计良好的系统让团队工作更轻松，也乐于尝试新技术，包括 AI、本地离线 LLM 和 macOS 原生应用开发。",
+        th: "ผมเป็นนักพัฒนาเว็บ Full-Stack ที่มีประสบการณ์งานประจำ 1 ปี 6 เดือน และฝึกงานระหว่างเรียนอีก 3 ช่วง (รวมประมาณ 9 เดือน) ถนัด Laravel + React + PostgreSQL ชอบแก้ปัญหาให้ทีมทำงานง่ายขึ้นด้วยระบบที่ออกแบบมาดี และสนุกกับการลองเทคโนโลยีใหม่ ๆ ทั้ง AI, LLM แบบ offline และการเขียนแอปบน macOS",
+        en: "I'm a full-stack web developer with 1.5 years of full-time experience plus three internships while studying (about 9 months in total), most at home with Laravel + React + PostgreSQL. I enjoy making teams' work easier through well-designed systems, and love tinkering with new tech — AI, offline LLMs and native macOS apps.",
+        zh: "我是一名全栈 Web 开发者，拥有 1.5 年全职工作经验，以及在读期间三次实习（共约 9 个月），擅长 Laravel + React + PostgreSQL。我喜欢通过设计良好的系统让团队工作更轻松，也乐于尝试新技术，包括 AI、本地离线 LLM 和 macOS 原生应用开发。",
     },
     education: { th: "การศึกษา", en: "Education", zh: "教育背景" },
     experienceTitle: { th: "ประสบการณ์ทำงาน", en: "Work Experience", zh: "工作经历" },
@@ -393,7 +408,7 @@ export const ui = {
         en: "— a web developer who loves building systems people actually use, from internal tools and real-time chat to native macOS apps.",
         zh: "，一名热爱打造实用系统的 Web 开发者——从企业内部系统、实时聊天到原生 macOS 应用。",
     },
-    proofTitle: { th: "ประสบการณ์ทำงานจริงประมาณ 2 ปี", en: "~2 years of real-world experience", zh: "约 2 年实际工作经验" },
+    proofTitle: { th: "งานประจำ 1 ปี 6 เดือน + ฝึกงาน 3 ช่วง (~9 เดือน)", en: "1.5 yrs full-time + 3 internships (~9 months)", zh: "全职 1.5 年 + 3 次实习（约 9 个月）" },
     proofSub: { th: "พัฒนาระบบมาแล้ว {n} โปรเจกต์", en: "{n} projects built so far", zh: "已开发 {n} 个项目" },
     cardStackLabel: { th: "ถนัดที่สุด", en: "Strongest at", zh: "最擅长" },
     cardChatBig: { th: "4 แพลตฟอร์ม", en: "4 platforms", zh: "4 个平台" },
